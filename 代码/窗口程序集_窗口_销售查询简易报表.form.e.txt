@@ -1,0 +1,393 @@
+﻿.程序集 窗口程序集_窗口_销售查询简易报表, , , 
+.程序集变量 店铺名称_超级列表框组件句柄, 整数型, , , 
+.程序集变量 报表数据_高级表格组件句柄, 整数型, , , 
+.程序集变量 查找开始日期, 文本型, , , 
+.程序集变量 查找结束日期, 文本型, , , 
+.程序集变量 查找信息库房, 文本型, , , 
+.程序集变量 查找库房名称, 文本型, , , 
+.程序集变量 回收库房名称, 文本型, , , 
+.程序集变量 查找结算品类, 文本型, , , 
+
+.子程序 _窗口_销售查询简易报表_创建完毕, , , 
+
+赋值 (店铺名称_超级列表框组件句柄, 组件取窗口绑定组件 (窗口_销售查询简易报表.店铺名称_超级列表框EX.取窗口句柄 ()))
+赋值 (报表数据_高级表格组件句柄, 组件取窗口绑定组件 (窗口_销售查询简易报表.报表数据_高级表格Ex.取窗口句柄 ()))
+
+
+赋值 (窗口_销售查询简易报表.窗口Ex1.图标, 读入文件 (相加 (取运行目录 (), “\img\tubiao.jpg”)))
+窗口_销售查询简易报表._查询条件_初始化 ()
+赋值 (窗口_销售查询简易报表.窗口Ex1.标题, 相加 (“销售查询简易报表 时间:”, 窗口_销售查询简易报表.编辑框_起始时间.内容, “至”, 窗口_销售查询简易报表.编辑框_结束时间.内容))
+窗口_销售查询简易报表._子程序_加载表头 ()
+窗口_销售查询简易报表._超级按钮EX_查询_鼠标左键单击 (0, 0, 0, 0)
+返回 ()
+
+
+.子程序 _子程序_加载表头, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 局部_数据宽, 文本型, , "0", 
+.局部变量 局部_对齐方式, 文本型, , "0", 
+.局部变量 表格字体, 字节集, , , 
+.局部变量 表头计次, 整数型, , , 
+
+赋值 (局部_表格头, {“序号”, “店铺名称”, “黄金销售”, “黄金回收”, “黄金应结”, “海峡金”, “本月应结”, “应结/多结”, “本月实际应结”, “本月已结”, “累计未结”, “备注”})
+赋值 (局部_数据宽, {“65”, “-1”, “-1”, “-1”, “-1”, “-1”, “-1”, “-1”, “-1”, “-1”, “-1”, “-1”})
+赋值 (局部_对齐方式, {“1”, “1”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “1”})
+窗口_销售查询简易报表.报表数据_高级表格Ex.删除项目 (-1, -1)  ' 删除全部
+窗口_销售查询简易报表.报表数据_高级表格Ex.删除列 (-1, )  ' 删除全部
+组件暂停重画 (报表数据_高级表格组件句柄)
+窗口_销售查询简易报表.报表数据_高级表格Ex.插入项目 (0, 1, 0, 40, 40, 40, , , )
+.如果真 (等于 (窗口_销售查询简易报表.报表数据_高级表格Ex.取列数量 (), 0))
+    .计次循环首 (取数组成员数 (局部_表格头), 表头计次)
+        窗口_销售查询简易报表.报表数据_高级表格Ex.插入列 (-1, 1, 到数值 (局部_数据宽[表头计次]), 65, 相加 (到数值 (局部_数据宽[表头计次]), 50), 生成字体Ex数据 (“微软雅黑”, 14, 0, 3, 0, -14868183), 30, 30, 1, 生成字体Ex数据 (“微软雅黑”, 12, 0, 3, 0, -14868183), 16, 16, 到数值 (局部_对齐方式[表头计次]), 生成字体Ex数据 (“微软雅黑”, 13, 0, 3, 0, -3593686), 16, 16, 到数值 (局部_对齐方式[表头计次]), , , , , , , )
+        
+        窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (0, 相减 (表头计次, 1), 0, 相减 (表头计次, 1), 局部_表格头[表头计次])
+        组件插入元素 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), -1, 10)
+        组件置文本元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 0, -1, 0, 位或 (#布局模式_宽度_父宽, #布局模式_高度_父高), 10, 0, -20, 0, 0, {}, 46)
+    .计次循环尾 ()
+.如果真结束
+组件允许重画 (报表数据_高级表格组件句柄)
+
+
+.子程序 _编辑框_起始时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+赋值 (窗口_销售查询简易报表.编辑框_起始时间.内容, _主窗口_弹出日期框 ())
+返回 (0)
+
+.子程序 _编辑框_结束时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 查询结束时间, 文本型, , , 
+
+赋值 (查询结束时间, _主窗口_弹出日期框 ())
+.如果 (小于 (到时间 (查询结束时间), 到时间 (窗口_销售查询简易报表.编辑框_起始时间.内容)))
+    赋值 (窗口_销售查询简易报表.编辑框_结束时间.内容, 窗口_销售查询简易报表.编辑框_起始时间.内容)
+.否则
+    赋值 (窗口_销售查询简易报表.编辑框_结束时间.内容, 查询结束时间)
+.如果结束
+返回 (0)
+
+.子程序 _查询条件_初始化, , , 
+.局部变量 库房列表集句柄, 整数型, , , 
+.局部变量 库房数量, 整数型, , , 
+.局部变量 库房计次, 整数型, , , 
+.局部变量 库房列表数据id, 文本型, , , 
+.局部变量 库房列表数据名称, 文本型, , , 
+
+.如果 (等于 (到文本 (时间_格式化 (取现行时间 (), “dd”, “”, 真)), “01”))
+    赋值 (窗口_销售查询简易报表.编辑框_起始时间.内容, 到文本 (时间_格式化 (增减时间 (到时间 (到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真))), #月份, -1), “yyyy-MM-01”, “”, 真)))
+.否则
+    赋值 (窗口_销售查询简易报表.编辑框_起始时间.内容, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-01”, “”, 真)))
+.如果结束
+赋值 (窗口_销售查询简易报表.编辑框_结束时间.内容, 到文本 (时间_格式化 (增减时间 (到时间 (到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真))), #日, -1), “yyyy-MM-dd”, “”, 真)))
+
+赋值 (窗口_销售查询简易报表.编辑框_起始时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+赋值 (窗口_销售查询简易报表.编辑框_结束时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+赋值 (窗口_销售查询简易报表.单选框_结料.选中, 真)
+赋值 (窗口_销售查询简易报表.单选框_结账.选中, 假)
+赋值 (窗口_销售查询简易报表.单选框_结料.禁止, 真)
+赋值 (窗口_销售查询简易报表.单选框_结账.禁止, 真)
+
+
+组件暂停重画 (店铺名称_超级列表框组件句柄)
+组件插入元素 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 1)
+组件置选择框元素属性 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 到整数 (&_销售查询报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 0, 1, 0, , 0, 1)
+组件插入元素 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 1)
+组件置选择框元素属性 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0, 到整数 (&_销售查询报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+窗口_销售查询简易报表.店铺名称_超级列表框EX.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT id AS akufang,CASE WHEN id = '0' THEN '总库' ELSE title END AS btitle FROM xipunum_erp_type WHERE type = '商铺' AND superior = '0' AND id in (”, 全局_店铺权限操作, “) UNION ALL SELECT '0' AS akufang, '总库' AS btitle FROM dual WHERE '0' IN (”, 全局_店铺权限操作, “) ORDER BY akufang = '0' DESC, akufang”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (库房列表集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (库房数量, 取记录集行数 (库房列表集句柄))
+窗口_销售查询简易报表.店铺名称_超级列表框EX.插入项目 (-1, 库房数量, , 30)
+.计次循环首 (库房数量, 库房计次)
+    赋值 (库房列表数据id, “”)
+    赋值 (库房列表数据名称, “”)
+    读字段值 (库房列表集句柄, “akufang”, 库房列表数据id)
+    读字段值 (库房列表集句柄, “btitle”, 库房列表数据名称)
+    组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 1)
+    窗口_销售查询简易报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 1, 取文本右边 (相加 (“000”, 到文本 (库房计次)), 取文本长度 (到文本 (库房数量))))
+    窗口_销售查询简易报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 2, 到文本 (编码转换 (到字节集 (库房列表数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 3, 到文本 (编码转换 (到字节集 (库房列表数据id), #编码_UTF_8, #编码_GBK, )))
+    到下一行 (库房列表集句柄)
+.计次循环尾 ()
+释放记录集 (库房列表集句柄)
+组件允许重画 (店铺名称_超级列表框组件句柄)
+.如果真 (小于或等于 (库房数量, 1))
+    赋值 (窗口_销售查询简易报表.店铺名称_超级列表框EX.禁止, 真)
+.如果真结束
+
+
+.子程序 _销售查询报表_表头回调, 整数型, , 
+.参数 组件句柄, 整数型, , 
+.参数 元素事件, 整数型, , 
+.参数 元素归属, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+.局部变量 局_状态, 整数型, , , 
+.局部变量 局_计次, 整数型, , , 
+
+.如果真 (等于 (组件句柄, 店铺名称_超级列表框组件句柄))
+    .如果真 (并且 (等于 (元素事件, #元素事件_左键单击), 等于 (元素归属, #元素归属_超列表头)))
+        赋值 (局_状态, 到整数 (组件取选择框元素数据 (组件句柄, 元素归属, 项目索引, 列索引, 元素索引, 16)))
+        .计次循环首 (窗口_销售查询简易报表.店铺名称_超级列表框EX.取项目数量 (), 局_计次)
+            组件置选择框元素数据 (组件句柄, #元素归属_超列项目, 相减 (局_计次, 1), 0, 0, 0, 1, 0, “”, 0, 局_状态)
+        .计次循环尾 ()
+    .如果真结束
+    
+.如果真结束
+
+返回 (0)
+
+
+.子程序 _店铺名称_超级列表框EX_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果真 (大于 (窗口_销售查询简易报表.店铺名称_超级列表框EX.取项目数量 (), 0))
+        .如果 (等于 (到整数 (组件取选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 16)), 0))
+            组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 1)
+        .否则
+            组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 0)
+        .如果结束
+        
+    .如果真结束
+    
+.如果真结束
+返回 (0)
+
+
+
+.子程序 _超级按钮EX_重置_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+窗口_销售查询简易报表._窗口_销售查询简易报表_创建完毕 ()
+返回 ()
+
+.子程序 _按钮EX_导出数据_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 导出表格, 类_导出EXCEL表格, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 高级表格行数, 整数型, , , 
+.局部变量 高级表格列数, 整数型, , , 
+.局部变量 表行_计次, 整数型, , , 
+.局部变量 表列_计次, 整数型, , , 
+.局部变量 导出报表名称, 文本型, , , 
+
+赋值 (高级表格行数, 窗口_销售查询简易报表.报表数据_高级表格Ex.取项目数量 ())
+赋值 (高级表格列数, 窗口_销售查询简易报表.报表数据_高级表格Ex.取列数量 ())
+导出表格.置行数 (相加 (高级表格行数, 1))
+导出表格.置列数 (高级表格列数)
+.计次循环首 (高级表格行数, 表行_计次)
+    .计次循环首 (高级表格列数, 表列_计次)
+        导出表格.置数据 (表行_计次, 表列_计次, 窗口_销售查询简易报表.报表数据_高级表格Ex.取项目文本 (相减 (表行_计次, 1), 相减 (表列_计次, 1)))
+    .计次循环尾 ()
+.计次循环尾 ()
+赋值 (导出报表名称, “销售查询报表表.xlsx”)
+创建目录 (相加 (取运行目录 (), “\biaoge”))
+删除文件 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+导出表格.导出 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+执行 (4, 相加 (取运行目录 (), “\biaoge\”, 导出报表名称), , , )
+返回 ()
+
+
+.子程序 _超级按钮EX_查询_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 店铺名称权限, 文本型, , , 
+.局部变量 店铺名称数量, 整数型, , , 
+.局部变量 店铺名称计次, 整数型, , , 
+
+赋值 (窗口_销售查询简易报表.超级按钮EX_查询.禁止, 真)
+赋值 (窗口_销售查询简易报表.超级按钮EX_重置.禁止, 真)
+赋值 (窗口_销售查询简易报表.按钮EX_导出数据.禁止, 真)
+赋值 (窗口_销售查询简易报表.窗口Ex1.标题, 相加 (“销售查询报表 时间:”, 窗口_销售查询简易报表.编辑框_起始时间.内容, “至”, 窗口_销售查询简易报表.编辑框_结束时间.内容))
+
+赋值 (店铺名称权限, “”)
+赋值 (店铺名称数量, 0)
+.计次循环首 (窗口_销售查询简易报表.店铺名称_超级列表框EX.取项目数量 (), 店铺名称计次)
+    .如果真 (等于 (到整数 (组件取选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (店铺名称计次, 1), 0, 0, 16)), 1))
+        赋值 (店铺名称权限, 相加 (店铺名称权限, “'”, 窗口_销售查询简易报表.店铺名称_超级列表框EX.取项目文本 (相减 (店铺名称计次, 1), 3), 到文本 (“',”)))
+        赋值 (店铺名称数量, 相加 (店铺名称数量, 1))
+    .如果真结束
+    
+.计次循环尾 ()
+
+赋值 (查找结算品类, 全_结算品类)
+
+赋值 (查找开始日期, 相加 (窗口_销售查询简易报表.编辑框_起始时间.内容, “ 00:00:00”))
+赋值 (查找结束日期, 到文本 (时间_格式化 (增减时间 (到时间 (窗口_销售查询简易报表.编辑框_结束时间.内容), #日, 1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+
+赋值 (查找库房名称, “”)
+.如果 (不等于 (店铺名称数量, 0))
+    赋值 (查找库房名称, 相加 (“ and a.kufang in (”, 到文本 (取文本左边 (店铺名称权限, 相减 (取文本长度 (店铺名称权限), 1))), “)”))
+    赋值 (回收库房名称, 相加 (“ and d.department in (”, 到文本 (取文本左边 (店铺名称权限, 相减 (取文本长度 (店铺名称权限), 1))), “)”))
+.否则
+    赋值 (查找库房名称, “”)
+    赋值 (回收库房名称, “”)
+.如果结束
+
+
+窗口_销售查询简易报表._报表数据详情_展示 ()
+赋值 (窗口_销售查询简易报表.超级按钮EX_查询.禁止, 假)
+赋值 (窗口_销售查询简易报表.超级按钮EX_重置.禁止, 假)
+赋值 (窗口_销售查询简易报表.按钮EX_导出数据.禁止, 假)
+返回 ()
+
+.子程序 _报表数据详情_展示, , , 
+.局部变量 商品销售汇总集句柄, 整数型, , , 
+.局部变量 商品销售汇总, 整数型, , , 
+.局部变量 商品汇总计次, 整数型, , , 
+.局部变量 商品销售汇总店铺名称, 文本型, , , 
+.局部变量 商品销售汇总黄金销售, 文本型, , , 
+.局部变量 商品销售汇总黄金回收, 文本型, , , 
+.局部变量 商品销售汇总黄金应结, 文本型, , , 
+.局部变量 商品销售汇总海峡金, 文本型, , , 
+.局部变量 商品销售汇总本月应结, 文本型, , , 
+.局部变量 商品销售汇总多结, 文本型, , , 
+.局部变量 商品销售汇总实际应结, 文本型, , , 
+.局部变量 商品销售汇总已结, 文本型, , , 
+.局部变量 商品销售汇总累计未结, 文本型, , , 
+.局部变量 商品销售汇总合计集句柄, 整数型, , , 
+.局部变量 商品销售汇总合计黄金销售, 文本型, , , 
+.局部变量 商品销售汇总合计黄金回收, 文本型, , , 
+.局部变量 商品销售汇总合计黄金应结, 文本型, , , 
+.局部变量 商品销售汇总合计海峡金, 文本型, , , 
+.局部变量 商品销售汇总合计本月应结, 文本型, , , 
+.局部变量 商品销售汇总合计多结, 文本型, , , 
+.局部变量 商品销售汇总合计实际应结, 文本型, , , 
+.局部变量 商品销售汇总合计已结, 文本型, , , 
+.局部变量 商品销售汇总合计累计未结, 文本型, , , 
+
+窗口_销售查询简易报表.报表数据_高级表格Ex.删除项目 (1, 相减 (窗口_销售查询简易报表.报表数据_高级表格Ex.取项目数量 (), 1))
+组件暂停重画 (报表数据_高级表格组件句柄)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT sum.kufangid AS kufangid, sum.kufang AS kufang, CAST(ROUND( sum( sum.sjjinzhong ), 3 ) AS DECIMAL ( 20, 3 )) AS sjjinzhong, sum.hsjinzhong AS hsjinzhong, CAST(ROUND( sum( sum.sjjinzhong )- sum.hsjinzhong, 3 ) AS DECIMAL ( 20, 3 )) AS hjyingjie, CAST(ROUND( sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS haixia, CAST(ROUND( sum( sum.sjjinzhong )- sum.hsjinzhong-sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS yingjie,CAST(ROUND( COALESCE (j.duojie, 0 ), 3 ) AS DECIMAL ( 20, 3 )) AS lsjiesuan,CAST(ROUND(COALESCE (j.duojie, 0 )+sum( sum.sjjinzhong )- sum.hsjinzhong-sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS sjyingjie, CAST(ROUND( COALESCE ( j.jsnet_weight, 0 ), 3 ) AS DECIMAL ( 20, 3 )) AS jsnet_weight,CAST(ROUND( COALESCE ( j.jsnet_weight, 0 )-COALESCE (j.duojie, 0 )-sum( sum.sjjinzhong )+ sum.hsjinzhong+sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS weijie FROM ( SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid, CASE WHEN COALESCE ( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid, CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang, CAST(ROUND( a.net_weight, 3 ) AS DECIMAL ( 20, 3 )) AS sjjinzhong, COALESCE ( g.hsjinzhong, 0 ) AS hsjinzhong, b.xsfactory as xsfactory, CASE WHEN b.xsfactory = '海峡金' THEN CAST(ROUND(a.net_weight, 3 ) AS DECIMAL ( 20, 3 )) ELSE '0.000' END AS haixia FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order AS b ON b.id = a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL LEFT JOIN ( SELECT d.department AS kufangid,CAST(ROUND( sum( a.jin_zhong ), 3 ) AS DECIMAL ( 20, 3 )) AS hsjinzhong FROM xipunum_erp_retreat AS a INNER JOIN xipunum_erp_retreat_title AS b ON b.id = a.product_name INNER JOIN xipunum_erp_category AS c ON c.id = b.category_id INNER JOIN xipunum_erp_user AS d ON d.USER = a.shopping_guide WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 回收库房名称, “ AND b.category_id IN (”, 查找结算品类, “) GROUP BY d.department ORDER BY d.department ASC ) AS g ON g.kufangid = a.kufang WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 查找库房名称, “ ORDER BY a.id DESC ) AS sum LEFT JOIN (SELECT a.kufang as kufang,CAST(ROUND(sum(a.net_weight), 3 ) AS DECIMAL ( 20, 3 )) AS jsnet_weight,CAST(ROUND(sum(a.duojie), 3 ) AS DECIMAL ( 20, 3 )) AS duojie FROM xipunum_erp_outbound_netweight_order as a INNER JOIN xipunum_erp_outbound_netweight AS b ON b.netweight_number = a.netweight_number WHERE a.creationtime>= '”, 查找开始日期, “' and a.creationtime < '”, 查找结束日期, “' and b.type='0' and b.caizhiid='4'  GROUP BY kufang) as j on j.kufang = sum.kufangid WHERE sum.pinleiid IN (”, 查找结算品类, “)  GROUP BY sum.kufangid ORDER BY CAST( sum.kufangid AS UNSIGNED ) ASC;”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (商品销售汇总集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (商品销售汇总, 取记录集行数 (商品销售汇总集句柄))
+载入 (窗口_进度条, 窗口_销售查询简易报表, 假)
+赋值 (窗口_进度条.标题, “数据正在加载中...”)
+赋值 (窗口_进度条.进度条1.最大位置, 相加 (商品销售汇总, 1))
+.计次循环首 (商品销售汇总, 商品汇总计次)
+    赋值 (窗口_进度条.标题, 相加 (“正在获取销售数据...(”, 取文本左边 (到文本 (相乘 (相除 (到数值 (商品汇总计次), 商品销售汇总), 100)), 4), “%)”))
+    赋值 (商品销售汇总店铺名称, “”)
+    赋值 (商品销售汇总黄金销售, “”)
+    赋值 (商品销售汇总黄金回收, “”)
+    赋值 (商品销售汇总黄金应结, “”)
+    赋值 (商品销售汇总海峡金, “”)
+    赋值 (商品销售汇总本月应结, “”)
+    赋值 (商品销售汇总多结, “”)
+    赋值 (商品销售汇总实际应结, “”)
+    赋值 (商品销售汇总已结, “”)
+    赋值 (商品销售汇总累计未结, “”)
+    读字段值 (商品销售汇总集句柄, “kufang”, 商品销售汇总店铺名称)
+    读字段值 (商品销售汇总集句柄, “sjjinzhong”, 商品销售汇总黄金销售)
+    读字段值 (商品销售汇总集句柄, “hsjinzhong”, 商品销售汇总黄金回收)
+    读字段值 (商品销售汇总集句柄, “hjyingjie”, 商品销售汇总黄金应结)
+    读字段值 (商品销售汇总集句柄, “haixia”, 商品销售汇总海峡金)
+    读字段值 (商品销售汇总集句柄, “yingjie”, 商品销售汇总本月应结)
+    读字段值 (商品销售汇总集句柄, “lsjiesuan”, 商品销售汇总多结)
+    读字段值 (商品销售汇总集句柄, “sjyingjie”, 商品销售汇总实际应结)
+    读字段值 (商品销售汇总集句柄, “jsnet_weight”, 商品销售汇总已结)
+    读字段值 (商品销售汇总集句柄, “weijie”, 商品销售汇总累计未结)
+    窗口_销售查询简易报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 0, 商品汇总计次, 0, 到文本 (商品汇总计次))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 1, 商品汇总计次, 1, 到文本 (编码转换 (到字节集 (商品销售汇总店铺名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 2, 商品汇总计次, 2, 到文本 (编码转换 (到字节集 (商品销售汇总黄金销售), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 3, 商品汇总计次, 3, 到文本 (编码转换 (到字节集 (商品销售汇总黄金回收), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 4, 商品汇总计次, 4, 到文本 (编码转换 (到字节集 (商品销售汇总黄金应结), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 5, 商品汇总计次, 5, 到文本 (编码转换 (到字节集 (商品销售汇总海峡金), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 6, 商品汇总计次, 6, 到文本 (编码转换 (到字节集 (商品销售汇总本月应结), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 7, 商品汇总计次, 7, 到文本 (编码转换 (到字节集 (商品销售汇总多结), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 8, 商品汇总计次, 8, 到文本 (编码转换 (到字节集 (商品销售汇总实际应结), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 9, 商品汇总计次, 9, 到文本 (编码转换 (到字节集 (商品销售汇总已结), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 10, 商品汇总计次, 10, 到文本 (编码转换 (到字节集 (商品销售汇总累计未结), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (商品汇总计次, 11, 商品汇总计次, 11, 到文本 (“负代表少结，正为多结。”))
+    窗口_销售查询简易报表.报表数据_高级表格Ex.置字体色 (商品汇总计次, 11, 商品汇总计次, 11, -2084559)
+    赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+    到下一行 (商品销售汇总集句柄)
+.计次循环尾 ()
+释放记录集 (商品销售汇总集句柄)
+
+赋值 (商品销售汇总合计黄金销售, “”)
+赋值 (商品销售汇总合计黄金回收, “”)
+赋值 (商品销售汇总合计黄金应结, “”)
+赋值 (商品销售汇总合计海峡金, “”)
+赋值 (商品销售汇总合计本月应结, “”)
+赋值 (商品销售汇总合计多结, “”)
+赋值 (商品销售汇总合计实际应结, “”)
+赋值 (商品销售汇总合计已结, “”)
+赋值 (商品销售汇总合计累计未结, “”)
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND( sum(tol.sjjinzhong), 3 ) AS DECIMAL ( 20, 3 )) AS sjjinzhong,CAST(ROUND( sum(tol.hsjinzhong), 3 ) AS DECIMAL ( 20, 3 )) AS hsjinzhong,CAST(ROUND( sum(tol.hjyingjie), 3 ) AS DECIMAL ( 20, 3 )) AS hjyingjie,CAST(ROUND( sum(tol.haixia), 3 ) AS DECIMAL ( 20, 3 )) AS haixia,CAST(ROUND( sum(tol.yingjie), 3 ) AS DECIMAL ( 20, 3 )) AS yingjie,CAST(ROUND( sum(tol.lsjiesuan), 3 ) AS DECIMAL ( 20, 3 )) AS lsjiesuan,CAST(ROUND( sum(tol.sjyingjie), 3 ) AS DECIMAL ( 20, 3 )) AS sjyingjie,CAST(ROUND( sum(tol.jsnet_weight), 3 ) AS DECIMAL ( 20, 3 )) AS jsnet_weight,CAST(ROUND( sum(tol.weijie), 3 ) AS DECIMAL ( 20, 3 )) AS weijie FROM (SELECT sum.kufangid AS kufangid, sum.kufang AS kufang, CAST(ROUND( sum( sum.sjjinzhong ), 3 ) AS DECIMAL ( 20, 3 )) AS sjjinzhong, sum.hsjinzhong AS hsjinzhong, CAST(ROUND( sum( sum.sjjinzhong )- sum.hsjinzhong, 3 ) AS DECIMAL ( 20, 3 )) AS hjyingjie, CAST(ROUND( sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS haixia, CAST(ROUND( sum( sum.sjjinzhong )- sum.hsjinzhong-sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS yingjie,CAST(ROUND( COALESCE (j.duojie, 0 ), 3 ) AS DECIMAL ( 20, 3 )) AS lsjiesuan,CAST(ROUND(COALESCE (j.duojie, 0 )+sum( sum.sjjinzhong )- sum.hsjinzhong-sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS sjyingjie, CAST(ROUND( COALESCE ( j.jsnet_weight, 0 ), 3 ) AS DECIMAL ( 20, 3 )) AS jsnet_weight,CAST(ROUND( COALESCE ( j.jsnet_weight, 0 )-COALESCE (j.duojie, 0 )-sum( sum.sjjinzhong )+ sum.hsjinzhong+sum( sum.haixia ), 3 ) AS DECIMAL ( 20, 3 )) AS weijie FROM ( SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid, CASE WHEN COALESCE ( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid, CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang, CAST(ROUND( a.net_weight, 3 ) AS DECIMAL ( 20, 3 )) AS sjjinzhong, COALESCE ( g.hsjinzhong, 0 ) AS hsjinzhong, b.xsfactory as xsfactory, CASE WHEN b.xsfactory = '海峡金' THEN CAST(ROUND(a.net_weight, 3 ) AS DECIMAL ( 20, 3 )) ELSE '0.000' END AS haixia FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order AS b ON b.id = a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL LEFT JOIN ( SELECT d.department AS kufangid,CAST(ROUND( sum( a.jin_zhong ), 3 ) AS DECIMAL ( 20, 3 )) AS hsjinzhong FROM xipunum_erp_retreat AS a INNER JOIN xipunum_erp_retreat_title AS b ON b.id = a.product_name INNER JOIN xipunum_erp_category AS c ON c.id = b.category_id INNER JOIN xipunum_erp_user AS d ON d.USER = a.shopping_guide WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 回收库房名称, “ AND b.category_id IN (”, 查找结算品类, “) GROUP BY d.department ORDER BY d.department ASC ) AS g ON g.kufangid = a.kufang WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 查找库房名称, “ ORDER BY a.id DESC ) AS sum LEFT JOIN (SELECT a.kufang as kufang,CAST(ROUND(sum(a.net_weight), 3 ) AS DECIMAL ( 20, 3 )) AS jsnet_weight,CAST(ROUND(sum(a.duojie), 3 ) AS DECIMAL ( 20, 3 )) AS duojie FROM xipunum_erp_outbound_netweight_order as a INNER JOIN xipunum_erp_outbound_netweight AS b ON b.netweight_number = a.netweight_number WHERE a.creationtime>= '”, 查找开始日期, “' and a.creationtime < '”, 查找结束日期, “' and b.type='0' and b.caizhiid='4'  GROUP BY kufang) as j on j.kufang = sum.kufangid WHERE sum.pinleiid IN (”, 查找结算品类, “)  GROUP BY sum.kufangid ORDER BY CAST( sum.kufangid AS UNSIGNED ) ASC) as tol”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (商品销售汇总合计集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (商品销售汇总合计集句柄, “sjjinzhong”, 商品销售汇总合计黄金销售)
+读字段值 (商品销售汇总合计集句柄, “hsjinzhong”, 商品销售汇总合计黄金回收)
+读字段值 (商品销售汇总合计集句柄, “hjyingjie”, 商品销售汇总合计黄金应结)
+读字段值 (商品销售汇总合计集句柄, “haixia”, 商品销售汇总合计海峡金)
+读字段值 (商品销售汇总合计集句柄, “yingjie”, 商品销售汇总合计本月应结)
+读字段值 (商品销售汇总合计集句柄, “lsjiesuan”, 商品销售汇总合计多结)
+读字段值 (商品销售汇总合计集句柄, “sjyingjie”, 商品销售汇总合计实际应结)
+读字段值 (商品销售汇总合计集句柄, “jsnet_weight”, 商品销售汇总合计已结)
+读字段值 (商品销售汇总合计集句柄, “weijie”, 商品销售汇总合计累计未结)
+释放记录集 (商品销售汇总合计集句柄)
+窗口_销售查询简易报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 1, 相加 (商品销售汇总, 1), 1, 到文本 (“合计”))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 2, 相加 (商品销售汇总, 1), 2, 到文本 (编码转换 (到字节集 (商品销售汇总合计黄金销售), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 3, 相加 (商品销售汇总, 1), 3, 到文本 (编码转换 (到字节集 (商品销售汇总合计黄金回收), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 4, 相加 (商品销售汇总, 1), 4, 到文本 (编码转换 (到字节集 (商品销售汇总合计黄金应结), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 5, 相加 (商品销售汇总, 1), 5, 到文本 (编码转换 (到字节集 (商品销售汇总合计海峡金), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 6, 相加 (商品销售汇总, 1), 6, 到文本 (编码转换 (到字节集 (商品销售汇总合计本月应结), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 7, 相加 (商品销售汇总, 1), 7, 到文本 (编码转换 (到字节集 (商品销售汇总合计多结), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 8, 相加 (商品销售汇总, 1), 8, 到文本 (编码转换 (到字节集 (商品销售汇总合计实际应结), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 9, 相加 (商品销售汇总, 1), 9, 到文本 (编码转换 (到字节集 (商品销售汇总合计已结), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置项目文本 (相加 (商品销售汇总, 1), 10, 相加 (商品销售汇总, 1), 10, 到文本 (编码转换 (到字节集 (商品销售汇总合计累计未结), #编码_UTF_8, #编码_GBK, )))
+窗口_销售查询简易报表.报表数据_高级表格Ex.置字体色 (相加 (商品销售汇总, 1), 0, 相加 (商品销售汇总, 1), 10, -2084559)
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+.如果真 (是否已创建 (窗口_进度条))
+    窗口_进度条.销毁 ()
+.如果真结束
+
+组件允许重画 (报表数据_高级表格组件句柄)
+返回 ()
+
+.子程序 _单选框_结料_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售查询简易报表.单选框_结料.选中, 真)
+赋值 (窗口_销售查询简易报表.单选框_结账.选中, 假)
+
+
+.子程序 _单选框_结账_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售查询简易报表.单选框_结料.选中, 假)
+赋值 (窗口_销售查询简易报表.单选框_结账.选中, 真)
+
+

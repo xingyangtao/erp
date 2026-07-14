@@ -1,0 +1,240 @@
+﻿.程序集 窗口程序集_首页自动任务, , , 
+
+.子程序 主窗口_主窗口线程句柄, , , 
+.局部变量 工具条EX1句柄, 整数型, , , 
+.局部变量 饼型图EX1句柄, 整数型, , , 
+.局部变量 图标列表框EX1句柄, 整数型, , , 
+.局部变量 品类规格计次, 整数型, , , 
+.局部变量 图标列表框EX1索引, 整数型, , , 
+.局部变量 查询开始日期, 文本型, , , 
+.局部变量 查询开始日期1, 文本型, , , 
+.局部变量 查询结束日期, 文本型, , , 
+.局部变量 当日销售回收集句柄, 整数型, , , 
+.局部变量 当日销售金额, 文本型, , , 
+.局部变量 当日销售数量, 文本型, , , 
+.局部变量 当日销售金重, 文本型, , , 
+.局部变量 当日回收金额, 文本型, , , 
+.局部变量 当日回收金重, 文本型, , , 
+.局部变量 当日实收金额, 文本型, , , 
+.局部变量 当日实际重量, 文本型, , , 
+.局部变量 显示销售金额, 文本型, , , 
+.局部变量 显示销售数量, 文本型, , , 
+.局部变量 显示销售金重, 文本型, , , 
+.局部变量 显示回收金额, 文本型, , , 
+.局部变量 显示回收金重, 文本型, , , 
+.局部变量 显示实收金额, 文本型, , , 
+.局部变量 显示实际重量, 文本型, , , 
+.局部变量 曲线实收值, 双精度小数型, , , 
+.局部变量 曲线销售值, 双精度小数型, , , 
+.局部变量 曲线回收值, 双精度小数型, , , 
+.局部变量 当日销售类别集句柄, 整数型, , , 
+.局部变量 销售类别数量, 整数型, , , 
+.局部变量 销售类别金重, 文本型, , , 
+.局部变量 销售类别名称, 文本型, , , 
+.局部变量 月销售排行榜集句柄, 整数型, , , 
+.局部变量 销售排行榜数量, 整数型, , , 
+.局部变量 销售排行榜计次, 整数型, , , 
+.局部变量 销售排行榜款号, 文本型, , , 
+.局部变量 销售排行榜品类, 文本型, , , 
+.局部变量 销售排行榜规格, 文本型, , , 
+.局部变量 销售排行榜计数, 文本型, , , 
+.局部变量 销售排行榜金额, 文本型, , , 
+.局部变量 超级列表框EX3索引, 整数型, , , 
+.局部变量 查找销售检索, 文本型, , , 
+.局部变量 颜色数量, 整数型, , , 
+.局部变量 颜色索引, 整数型, , , 
+.局部变量 当前颜色, 整数型, , , 
+.局部变量 品类金重值, 双精度小数型, , , 
+
+.如果真 (等于 (_首页任务_窗口仍有效 (), 假))
+    返回 ()
+.如果真结束
+.如果真 (等于 (全_MySQL读取_任务, 0))
+    返回 ()
+.如果真结束
+赋值 (查询开始日期, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+赋值 (查询开始日期1, 到文本 (时间_格式化 (增减时间 (到时间 (取现行时间 ()), #月份, -1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+赋值 (查询结束日期, 到文本 (时间_格式化 (增减时间 (到时间 (取现行时间 ()), #日, 1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+.如果 (等于 (全局_销售查询发票, “1”))
+    赋值 (查找销售检索, “ and x.fapiao='1'”)
+.否则
+    赋值 (查找销售检索, “”)
+.如果结束
+赋值 (工具条EX1句柄, 组件取窗口绑定组件 (窗口_主窗口.工具条EX1.取窗口句柄 ()))
+赋值 (饼型图EX1句柄, 组件取窗口绑定组件 (窗口_主窗口.饼型图EX1.取窗口句柄 ()))
+赋值 (图标列表框EX1句柄, 组件取窗口绑定组件 (窗口_主窗口.图标列表框EX1.取窗口句柄 ()))
+赋值 (当日销售金额, “0.00”)
+赋值 (当日销售数量, “0.00”)
+赋值 (当日销售金重, “0.000”)
+赋值 (当日回收金额, “0.00”)
+赋值 (当日回收金重, “0.000”)
+赋值 (当日实收金额, “0.00”)
+赋值 (当日实际重量, “0.000”)
+执行SQL语句 (全_MySQL读取_任务, 到文本 (编码转换 (到字节集 (相加 (“SELECT chuku.settlement as settlement,chuku.quantity as quantity,chuku.net_weight as net_weight,huishou.retreat_amount as retreat_amount,huishou.jin_zhong as jin_zhong,CAST(ROUND( COALESCE ( chuku.settlement - huishou.retreat_amount, 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS shishou,CAST(ROUND( COALESCE ( chuku.net_weight - huishou.jin_zhong, 0 ), 3 ) AS DECIMAL ( 30, 3)) AS shijijin FROM (SELECT CAST(ROUND( COALESCE ( sum( a.settlement ), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS settlement,CAST(ROUND( COALESCE ( sum( a.quantity ), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS quantity,CAST(ROUND( COALESCE ( sum( a.net_weight ), 0 ), 3 ) AS DECIMAL ( 30, 3 )) AS net_weight FROM xipunum_erp_outbound as a INNER JOIN xipunum_erp_outbound_order AS x ON x.id = a.order_id WHERE a.creationtime >='”, 查询开始日期, “' and a.creationtime <'”, 查询结束日期, “'”, 查找销售检索, “ and a.shopping_guide in ”, 全局_全局查看, “) as chuku,(SELECT CAST(ROUND(COALESCE(sum(retreat_amount), 0), 2) AS DECIMAL(30, 2)) as retreat_amount,CAST(ROUND(COALESCE(sum(jin_zhong), 0), 3) AS DECIMAL(30, 3)) as jin_zhong FROM xipunum_erp_retreat WHERE creationtime >='”, 查询开始日期, “' and  creationtime <'”, 查询结束日期, “' and shopping_guide in ”, 全局_全局查看, “) as huishou”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (当日销售回收集句柄, 取记录集 (全_MySQL读取_任务))
+.如果真 (不等于 (当日销售回收集句柄, 0))
+    .如果真 (大于 (取记录集行数 (当日销售回收集句柄), 0))
+        读字段值 (当日销售回收集句柄, “settlement”, 当日销售金额)
+        读字段值 (当日销售回收集句柄, “quantity”, 当日销售数量)
+        读字段值 (当日销售回收集句柄, “net_weight”, 当日销售金重)
+        读字段值 (当日销售回收集句柄, “retreat_amount”, 当日回收金额)
+        读字段值 (当日销售回收集句柄, “jin_zhong”, 当日回收金重)
+        读字段值 (当日销售回收集句柄, “shishou”, 当日实收金额)
+        读字段值 (当日销售回收集句柄, “shijijin”, 当日实际重量)
+    .如果真结束
+    释放记录集 (当日销售回收集句柄)
+.如果真结束
+.如果真 (等于 (_首页任务_窗口仍有效 (), 假))
+    返回 ()
+.如果真结束
+赋值 (显示销售金额, 当日销售金额)
+赋值 (显示销售数量, 当日销售数量)
+赋值 (显示销售金重, 当日销售金重)
+赋值 (显示回收金额, 当日回收金额)
+赋值 (显示回收金重, 当日回收金重)
+赋值 (显示实收金额, 当日实收金额)
+赋值 (显示实际重量, 当日实际重量)
+赋值 (曲线实收值, 到数值 (当日实收金额))
+赋值 (曲线销售值, 到数值 (当日销售金额))
+赋值 (曲线回收值, 到数值 (当日回收金额))
+.如果真 (等于 (窗口_主窗口.开关按钮Ex1.选中, 真))
+    赋值 (显示销售金额, “***”)
+    赋值 (显示销售数量, “***”)
+    赋值 (显示销售金重, “***”)
+    赋值 (显示回收金额, “***”)
+    赋值 (显示回收金重, “***”)
+    赋值 (显示实收金额, “***”)
+    赋值 (显示实际重量, “***”)
+    赋值 (曲线实收值, 0)
+    赋值 (曲线销售值, 0)
+    赋值 (曲线回收值, 0)
+.如果真结束
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 0, -1, 1, 4, 1, 0, 显示销售金额, )
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 1, -1, 1, 4, 1, 0, 显示销售数量, )
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 2, -1, 1, 4, 1, 0, 显示销售金重, )
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 3, -1, 1, 4, 1, 0, 显示回收金额, )
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 4, -1, 1, 4, 1, 0, 显示回收金重, )
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 5, -1, 1, 4, 1, 0, 显示实收金额, )
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 6, -1, 1, 4, 1, 0, 显示实际重量, )
+窗口_主窗口.曲线图Ex1.置图例值 (0, 29, 曲线实收值)
+窗口_主窗口.曲线图Ex1.置图例值 (1, 29, 曲线销售值)
+窗口_主窗口.曲线图Ex1.置图例值 (2, 29, 曲线回收值)
+_首页任务_调整曲线纵轴 (当日销售金额, 当日回收金额)
+.如果真 (等于 (_首页任务_窗口仍有效 (), 假))
+    返回 ()
+.如果真结束
+窗口_主窗口.图标列表框EX1.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_任务, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND(COALESCE (sum(a.net_weight), 0 ), 3 ) AS DECIMAL ( 30, 3 )) AS net_weight,CASE WHEN b.item_number != '' THEN d.title  WHEN b.specification_id !='' THEN f.title ELSE '未匹配' END AS pinlei FROM xipunum_erp_outbound as a INNER JOIN xipunum_erp_outbound_order AS x ON x.id = a.order_id INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS c ON c.kuanhao = b.item_number LEFT JOIN xipunum_erp_category AS d ON d.id = c.category_id LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id LEFT JOIN xipunum_erp_category AS f ON f.id = e.category_id WHERE a.creationtime >= '”, 查询开始日期, “'  AND a.creationtime < '”, 查询结束日期, “'”, 查找销售检索, “ AND a.shopping_guide IN ”, 全局_全局查看, “ GROUP BY CASE WHEN b.item_number != '' THEN d.title  WHEN b.specification_id !='' THEN f.title ELSE '未匹配' END HAVING net_weight > 0”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (当日销售类别集句柄, 取记录集 (全_MySQL读取_任务))
+赋值 (销售类别数量, 0)
+.如果真 (不等于 (当日销售类别集句柄, 0))
+    赋值 (销售类别数量, 取记录集行数 (当日销售类别集句柄))
+.如果真结束
+.如果真 (等于 (_首页任务_窗口仍有效 (), 假))
+    .如果真 (不等于 (当日销售类别集句柄, 0))
+        释放记录集 (当日销售类别集句柄)
+    .如果真结束
+    返回 ()
+.如果真结束
+窗口_主窗口.饼型图EX1.置图例数量 (销售类别数量)
+.如果真 (并且 (不等于 (当日销售类别集句柄, 0), 大于 (销售类别数量, 0)))
+    赋值 (颜色数量, 取数组成员数 (窗口_主窗口.颜色数值数组))
+    .计次循环首 (销售类别数量, 品类规格计次)
+        赋值 (销售类别金重, “0.000”)
+        赋值 (销售类别名称, “”)
+        读字段值 (当日销售类别集句柄, “net_weight”, 销售类别金重)
+        读字段值 (当日销售类别集句柄, “pinlei”, 销售类别名称)
+        赋值 (品类金重值, 到数值 (销售类别金重))
+        .如果 (大于 (颜色数量, 0))
+            赋值 (颜色索引, 相加 (求余数 (相减 (品类规格计次, 1), 颜色数量), 1))
+            赋值 (当前颜色, 窗口_主窗口.颜色数值数组[颜色索引])
+        .否则
+            赋值 (当前颜色, 0)
+        .如果结束
+        窗口_主窗口.饼型图EX1.置图例属性 (相减 (品类规格计次, 1), 0, 当前颜色)
+        窗口_主窗口.饼型图EX1.置图例值 (相减 (品类规格计次, 1), 品类金重值)
+        赋值 (图标列表框EX1索引, 窗口_主窗口.图标列表框EX1.插入项目 (-1, , , , , ))
+        窗口_主窗口.图标列表框EX1.置项目文本 (图标列表框EX1索引, 相加 (到文本 (编码转换 (到字节集 (销售类别名称), #编码_UTF_8, #编码_GBK, )), “:”, 销售类别金重, “g”))
+        组件置颜色元素数据 (图标列表框EX1句柄, #元素归属_普列项目, 图标列表框EX1索引, -1, 0, , 1, 0, 10, 当前颜色)
+        到下一行 (当日销售类别集句柄)
+    .计次循环尾 ()
+.如果真结束
+.如果真 (不等于 (当日销售类别集句柄, 0))
+    释放记录集 (当日销售类别集句柄)
+.如果真结束
+.如果真 (等于 (_首页任务_窗口仍有效 (), 假))
+    返回 ()
+.如果真结束
+窗口_主窗口.超级列表框EX1.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_任务, 到文本 (编码转换 (到字节集 (相加 (“SELECT CASE WHEN b.item_number != '' THEN b.item_number ELSE '无款号' END AS item_number,CASE WHEN b.item_number != '' THEN d.title  WHEN b.specification_id !='' THEN f.title ELSE '未匹配' END AS pinlei,CASE WHEN b.item_number != '' THEN e.title  WHEN b.specification_id !='' THEN e.title ELSE '未匹配' END AS guige,CAST(ROUND(COALESCE (sum(a.quantity), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS quantity,CAST(ROUND(COALESCE (sum(a.settlement), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS settlement FROM xipunum_erp_outbound as a INNER JOIN xipunum_erp_outbound_order AS x ON x.id = a.order_id INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS c ON c.kuanhao = b.item_number LEFT JOIN xipunum_erp_category AS d ON d.id = c.category_id LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id LEFT JOIN xipunum_erp_category AS f ON f.id = e.category_id WHERE a.creationtime >= '”, 查询开始日期1, “'  AND a.creationtime < '”, 查询结束日期, “'”, 查找销售检索, “ AND a.shopping_guide IN ”, 全局_全局查看, “ GROUP BY CASE WHEN b.item_number != '' AND b.item_number IS NOT NULL THEN CONCAT('item_', b.item_number) ELSE CONCAT('spec_', COALESCE(e.category_id, ''), '_', COALESCE(e.id, '')) END,CASE WHEN b.item_number != '' THEN b.item_number ELSE '无款号' END,CASE WHEN b.item_number != '' THEN d.title  WHEN b.specification_id !='' THEN f.title ELSE '未匹配' END,CASE WHEN b.item_number != '' THEN d.title  WHEN b.specification_id !='' THEN e.title ELSE '未匹配' END ORDER BY SUM(a.quantity) DESC LIMIT 10”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (月销售排行榜集句柄, 取记录集 (全_MySQL读取_任务))
+.如果真 (不等于 (月销售排行榜集句柄, 0))
+    赋值 (销售排行榜数量, 取记录集行数 (月销售排行榜集句柄))
+    .计次循环首 (销售排行榜数量, 销售排行榜计次)
+        赋值 (销售排行榜款号, “”)
+        赋值 (销售排行榜品类, “”)
+        赋值 (销售排行榜规格, “”)
+        赋值 (销售排行榜计数, “”)
+        赋值 (销售排行榜金额, “”)
+        读字段值 (月销售排行榜集句柄, “item_number”, 销售排行榜款号)
+        读字段值 (月销售排行榜集句柄, “pinlei”, 销售排行榜品类)
+        读字段值 (月销售排行榜集句柄, “guige”, 销售排行榜规格)
+        读字段值 (月销售排行榜集句柄, “quantity”, 销售排行榜计数)
+        读字段值 (月销售排行榜集句柄, “settlement”, 销售排行榜金额)
+        赋值 (超级列表框EX3索引, 窗口_主窗口.超级列表框EX1.插入项目 (-1, 1, , 30))
+        .如果真 (等于 (窗口_主窗口.开关按钮Ex1.选中, 真))
+            赋值 (销售排行榜计数, “***”)
+            赋值 (销售排行榜金额, “***”)
+        .如果真结束
+        窗口_主窗口.超级列表框EX1.置项目文本 (超级列表框EX3索引, 0, 到文本 (销售排行榜计次))
+        窗口_主窗口.超级列表框EX1.置项目文本 (超级列表框EX3索引, 1, 到文本 (编码转换 (到字节集 (销售排行榜款号), #编码_UTF_8, #编码_GBK, )))
+        窗口_主窗口.超级列表框EX1.置项目文本 (超级列表框EX3索引, 2, 到文本 (编码转换 (到字节集 (销售排行榜品类), #编码_UTF_8, #编码_GBK, )))
+        窗口_主窗口.超级列表框EX1.置项目文本 (超级列表框EX3索引, 3, 到文本 (编码转换 (到字节集 (销售排行榜规格), #编码_UTF_8, #编码_GBK, )))
+        窗口_主窗口.超级列表框EX1.置项目文本 (超级列表框EX3索引, 4, 到文本 (编码转换 (到字节集 (销售排行榜计数), #编码_UTF_8, #编码_GBK, )))
+        窗口_主窗口.超级列表框EX1.置项目文本 (超级列表框EX3索引, 5, 到文本 (编码转换 (到字节集 (销售排行榜金额), #编码_UTF_8, #编码_GBK, )))
+        到下一行 (月销售排行榜集句柄)
+    .计次循环尾 ()
+    释放记录集 (月销售排行榜集句柄)
+.如果真结束
+返回 ()
+
+
+.子程序 _首页任务_窗口仍有效, 逻辑型, , 
+
+返回 (是否已创建 (窗口_主窗口))
+
+.子程序 _首页任务_文本到整数, 整数型, , 
+.参数 数值文本, 文本型, , 
+.局部变量 小数值, 双精度小数型, , , 
+
+.如果真 (等于 (数值文本, “”))
+    返回 (0)
+.如果真结束
+赋值 (小数值, 到数值 (数值文本))
+.如果真 (小于或等于 (小数值, 0))
+    返回 (0)
+.如果真结束
+返回 (到整数 (小数值))
+
+.子程序 _首页任务_调整曲线纵轴, , , 
+.参数 销售金额文本, 文本型, , 
+.参数 回收金额文本, 文本型, , 
+.局部变量 销售整数, 整数型, , , 
+.局部变量 回收整数, 整数型, , , 
+.局部变量 新最大值, 整数型, , , 
+
+.如果真 (等于 (_首页任务_窗口仍有效 (), 假))
+    返回 ()
+.如果真结束
+赋值 (销售整数, _首页任务_文本到整数 (销售金额文本))
+赋值 (回收整数, _首页任务_文本到整数 (回收金额文本))
+.如果 (大于 (销售整数, 回收整数))
+    赋值 (新最大值, 相加 (销售整数, 相除 (销售整数, 10)))
+.否则
+    赋值 (新最大值, 相加 (回收整数, 相除 (回收整数, 10)))
+.如果结束
+.如果真 (并且 (大于 (新最大值, 0), 小于 (窗口_主窗口.曲线图Ex1.纵轴最大值, 新最大值)))
+    赋值 (窗口_主窗口.曲线图Ex1.纵轴最大值, 新最大值)
+.如果真结束
+
+

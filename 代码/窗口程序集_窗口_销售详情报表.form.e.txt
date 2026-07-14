@@ -1,0 +1,1069 @@
+﻿.程序集 窗口程序集_窗口_销售详情报表, , , 
+.程序集变量 店铺名称_超级列表框组件句柄, 整数型, , , 
+.程序集变量 材质名称_超级列表框组件句柄, 整数型, , , 
+.程序集变量 报表数据_高级表格组件句柄, 整数型, , , 
+.程序集变量 查找开始日期, 文本型, , , 
+.程序集变量 查找结束日期, 文本型, , , 
+.程序集变量 查找信息库房, 文本型, , , 
+.程序集变量 查找信息材质, 文本型, , , 
+.程序集变量 查找库房名称, 文本型, , , 
+.程序集变量 查找材质数据, 文本型, , , 
+.程序集变量 查找信息批零, 文本型, , , 
+.程序集变量 查找信息金重, 文本型, , , 
+
+.子程序 _窗口_销售详情报表_创建完毕, , , 
+
+赋值 (店铺名称_超级列表框组件句柄, 组件取窗口绑定组件 (窗口_销售详情报表.店铺名称_超级列表框EX.取窗口句柄 ()))
+赋值 (材质名称_超级列表框组件句柄, 组件取窗口绑定组件 (窗口_销售详情报表.材质名称_超级列表框EX.取窗口句柄 ()))
+赋值 (报表数据_高级表格组件句柄, 组件取窗口绑定组件 (窗口_销售详情报表.报表数据_高级表格Ex.取窗口句柄 ()))
+
+赋值 (窗口_销售详情报表.窗口Ex1.图标, 读入文件 (相加 (取运行目录 (), “\img\tubiao.jpg”)))
+窗口_销售详情报表._查询条件_初始化 ()
+赋值 (窗口_销售详情报表.窗口Ex1.标题, 相加 (“销售详情报表 时间:”, 窗口_销售详情报表.编辑框_起始时间.内容, “至”, 窗口_销售详情报表.编辑框_结束时间.内容))
+窗口_销售详情报表._子程序_加载表头 ()
+窗口_销售详情报表._超级按钮EX_查询_鼠标左键单击 (0, 0, 0, 0)
+返回 ()
+
+
+.子程序 _子程序_加载表头, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 局部_数据宽, 文本型, , "0", 
+.局部变量 局部_对齐方式, 文本型, , "0", 
+.局部变量 表格字体, 字节集, , , 
+.局部变量 表头计次, 整数型, , , 
+
+赋值 (局部_表格头, {“序号”, “出库单号”, “商品编码”, “销售时间”, “商品名称”, “款号”, “库房”, “品类”, “规格”, “材质”, “圈口/长度”, “成色”, “单件重”, “金重”, “重量”, “单位”, “料价”, “成本工费”, “参考工费”, “成本附加费”, “成本价”, “销售单价”, “销售金额”, “数量”, “原附加费”, “销售克价”, “销售工费”, “销售附加费”, “折扣”, “应收金额”, “工费利润”, “成本工费合计”, “销售工费合计”, “批零”, “状态”})
+赋值 (局部_数据宽, {“45”, “150”, “100”, “100”, “140”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”, “100”})
+赋值 (局部_对齐方式, {“1”, “1”, “1”, “1”, “1”, “1”, “1”, “1”, “1”, “1”, “1”, “1”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “2”, “1”, “2”, “1”, “1”, “1”, “1”})
+
+窗口_销售详情报表.报表数据_高级表格Ex.删除项目 (-1, -1)  ' 删除全部
+窗口_销售详情报表.报表数据_高级表格Ex.删除列 (-1, )  ' 删除全部
+组件暂停重画 (报表数据_高级表格组件句柄)
+窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (0, 1, 0, 40, 40, 40, , , )
+.如果真 (等于 (窗口_销售详情报表.报表数据_高级表格Ex.取列数量 (), 0))
+    .计次循环首 (取数组成员数 (局部_表格头), 表头计次)
+        窗口_销售详情报表.报表数据_高级表格Ex.插入列 (-1, 1, 到数值 (局部_数据宽[表头计次]), 65, 相加 (到数值 (局部_数据宽[表头计次]), 50), 生成字体Ex数据 (“微软雅黑”, 14, 0, 3, 0, -14868183), 30, 30, 1, 生成字体Ex数据 (“微软雅黑”, 12, 0, 3, 0, -14868183), 16, 16, 到数值 (局部_对齐方式[表头计次]), 生成字体Ex数据 (“微软雅黑”, 13, 0, 3, 0, -3593686), 16, 16, 到数值 (局部_对齐方式[表头计次]), , , , , , , )
+        
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (0, 相减 (表头计次, 1), 0, 相减 (表头计次, 1), 局部_表格头[表头计次])
+        组件插入元素 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), -1, 10)
+        组件置文本元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 0, -1, 0, 位或 (#布局模式_宽度_父宽, #布局模式_高度_父高), 10, 0, -20, 0, 0, {}, 46)
+    .计次循环尾 ()
+.如果真结束
+组件允许重画 (报表数据_高级表格组件句柄)
+
+
+
+.子程序 _编辑框_起始时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+赋值 (窗口_销售详情报表.编辑框_起始时间.内容, _主窗口_弹出日期框 ())
+返回 (0)
+
+.子程序 _编辑框_结束时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 查询结束时间, 文本型, , , 
+
+赋值 (查询结束时间, _主窗口_弹出日期框 ())
+.如果 (小于 (到时间 (查询结束时间), 到时间 (窗口_销售详情报表.编辑框_起始时间.内容)))
+    赋值 (窗口_销售详情报表.编辑框_结束时间.内容, 窗口_销售详情报表.编辑框_起始时间.内容)
+.否则
+    赋值 (窗口_销售详情报表.编辑框_结束时间.内容, 查询结束时间)
+.如果结束
+返回 (0)
+
+.子程序 _查询条件_初始化, , , 
+.局部变量 库房列表集句柄, 整数型, , , 
+.局部变量 库房数量, 整数型, , , 
+.局部变量 库房计次, 整数型, , , 
+.局部变量 库房列表数据id, 文本型, , , 
+.局部变量 库房列表数据名称, 文本型, , , 
+.局部变量 材质列表集句柄, 整数型, , , 
+.局部变量 材质数量, 整数型, , , 
+.局部变量 材质计次, 整数型, , , 
+.局部变量 材质列表数据名称, 文本型, , , 
+
+赋值 (窗口_销售详情报表.编辑框_起始时间.内容, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真)))
+赋值 (窗口_销售详情报表.编辑框_起始时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+赋值 (窗口_销售详情报表.编辑框_结束时间.内容, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真)))
+赋值 (窗口_销售详情报表.编辑框_结束时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+赋值 (窗口_销售详情报表.选择框金重.选中, 假)
+赋值 (窗口_销售详情报表.编辑框_查找金重1.内容, “”)
+赋值 (窗口_销售详情报表.编辑框_查找金重2.内容, “”)
+赋值 (窗口_销售详情报表.编辑框_查找金重1.输入方式, 位或 (#输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母))
+赋值 (窗口_销售详情报表.编辑框_查找金重2.输入方式, 位或 (#输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母))
+赋值 (窗口_销售详情报表.单选框_全部.选中, 真)
+赋值 (窗口_销售详情报表.单选框_批发.选中, 假)
+赋值 (窗口_销售详情报表.单选框_零售.选中, 假)
+赋值 (窗口_销售详情报表.单选框_品类.选中, 真)
+赋值 (窗口_销售详情报表.单选框_自定义.选中, 假)
+
+组件暂停重画 (店铺名称_超级列表框组件句柄)
+组件插入元素 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 1)
+组件置选择框元素属性 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 到整数 (&_销售详情报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 0, 1, 0, , 0, 1)
+组件插入元素 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 1)
+组件置选择框元素属性 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0, 到整数 (&_销售详情报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+窗口_销售详情报表.店铺名称_超级列表框EX.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT id AS akufang,CASE WHEN id = '0' THEN '总库' ELSE title END AS btitle FROM xipunum_erp_type WHERE type = '商铺' AND superior = '0' AND id in (”, 全局_店铺权限操作, “) UNION ALL SELECT '0' AS akufang, '总库' AS btitle FROM dual WHERE '0' IN (”, 全局_店铺权限操作, “) ORDER BY akufang = '0' DESC, akufang”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (库房列表集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (库房数量, 取记录集行数 (库房列表集句柄))
+窗口_销售详情报表.店铺名称_超级列表框EX.插入项目 (-1, 库房数量, , 30)
+.计次循环首 (库房数量, 库房计次)
+    赋值 (库房列表数据id, “”)
+    赋值 (库房列表数据名称, “”)
+    读字段值 (库房列表集句柄, “akufang”, 库房列表数据id)
+    读字段值 (库房列表集句柄, “btitle”, 库房列表数据名称)
+    .如果 (等于 (库房计次, 1))
+        组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 1)
+    .否则
+        组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 0)
+    .如果结束
+    
+    窗口_销售详情报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 1, 取文本右边 (相加 (“000”, 到文本 (库房计次)), 取文本长度 (到文本 (库房数量))))
+    窗口_销售详情报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 2, 到文本 (编码转换 (到字节集 (库房列表数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 3, 到文本 (编码转换 (到字节集 (库房列表数据id), #编码_UTF_8, #编码_GBK, )))
+    到下一行 (库房列表集句柄)
+.计次循环尾 ()
+释放记录集 (库房列表集句柄)
+组件允许重画 (店铺名称_超级列表框组件句柄)
+.如果真 (小于或等于 (库房数量, 1))
+    赋值 (窗口_销售详情报表.店铺名称_超级列表框EX.禁止, 真)
+.如果真结束
+
+
+组件暂停重画 (材质名称_超级列表框组件句柄)
+组件插入元素 (材质名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 1)
+组件置选择框元素属性 (材质名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 到整数 (&_销售详情报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+组件置选择框元素数据 (材质名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 0, 1, 0, , 0, 0)
+组件插入元素 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 1)
+组件置选择框元素属性 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0, 到整数 (&_销售详情报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+窗口_销售详情报表.材质名称_超级列表框EX.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (“SELECT caizhi FROM xipunum_erp_shop WHERE 1=1 GROUP BY caizhi ORDER BY id ASC”), #编码_GBK, #编码_UTF_8, )))
+赋值 (材质列表集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (材质数量, 取记录集行数 (材质列表集句柄))
+窗口_销售详情报表.材质名称_超级列表框EX.插入项目 (-1, 材质数量, , 30)
+.计次循环首 (材质数量, 材质计次)
+    赋值 (材质列表数据名称, “”)
+    读字段值 (材质列表集句柄, “caizhi”, 材质列表数据名称)
+    组件置选择框元素数据 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (材质计次, 1), 0, 0, 0, 1, 0, , 0, 1)
+    窗口_销售详情报表.材质名称_超级列表框EX.置项目文本 (相减 (材质计次, 1), 1, 取文本右边 (相加 (“000”, 到文本 (材质计次)), 取文本长度 (到文本 (材质数量))))
+    窗口_销售详情报表.材质名称_超级列表框EX.置项目文本 (相减 (材质计次, 1), 2, 到文本 (编码转换 (到字节集 (材质列表数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.材质名称_超级列表框EX.置项目文本 (相减 (材质计次, 1), 3, 到文本 (材质计次))
+    到下一行 (材质列表集句柄)
+.计次循环尾 ()
+释放记录集 (材质列表集句柄)
+组件允许重画 (材质名称_超级列表框组件句柄)
+
+.子程序 _销售详情报表_表头回调, 整数型, , 
+.参数 组件句柄, 整数型, , 
+.参数 元素事件, 整数型, , 
+.参数 元素归属, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+.局部变量 局_状态, 整数型, , , 
+.局部变量 局_计次, 整数型, , , 
+
+.如果真 (等于 (组件句柄, 店铺名称_超级列表框组件句柄))
+    .如果真 (并且 (等于 (元素事件, #元素事件_左键单击), 等于 (元素归属, #元素归属_超列表头)))
+        赋值 (局_状态, 到整数 (组件取选择框元素数据 (组件句柄, 元素归属, 项目索引, 列索引, 元素索引, 16)))
+        .计次循环首 (窗口_销售详情报表.店铺名称_超级列表框EX.取项目数量 (), 局_计次)
+            组件置选择框元素数据 (组件句柄, #元素归属_超列项目, 相减 (局_计次, 1), 0, 0, 0, 1, 0, “”, 0, 局_状态)
+        .计次循环尾 ()
+    .如果真结束
+    
+.如果真结束
+
+.如果真 (等于 (组件句柄, 材质名称_超级列表框组件句柄))
+    .如果真 (并且 (等于 (元素事件, #元素事件_左键单击), 等于 (元素归属, #元素归属_超列表头)))
+        赋值 (局_状态, 到整数 (组件取选择框元素数据 (组件句柄, 元素归属, 项目索引, 列索引, 元素索引, 16)))
+        .计次循环首 (窗口_销售详情报表.材质名称_超级列表框EX.取项目数量 (), 局_计次)
+            组件置选择框元素数据 (组件句柄, #元素归属_超列项目, 相减 (局_计次, 1), 0, 0, 0, 1, 0, “”, 0, 局_状态)
+        .计次循环尾 ()
+    .如果真结束
+    
+.如果真结束
+
+
+返回 (0)
+
+
+.子程序 _店铺名称_超级列表框EX_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果真 (大于 (窗口_销售详情报表.店铺名称_超级列表框EX.取项目数量 (), 0))
+        .如果 (等于 (到整数 (组件取选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 16)), 0))
+            组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 1)
+        .否则
+            组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 0)
+        .如果结束
+        
+    .如果真结束
+    
+.如果真结束
+返回 (0)
+
+
+
+.子程序 _材质名称_超级列表框EX_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果真 (大于 (窗口_销售详情报表.材质名称_超级列表框EX.取项目数量 (), 0))
+        .如果 (等于 (到整数 (组件取选择框元素数据 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 16)), 0))
+            组件置选择框元素数据 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 1)
+        .否则
+            组件置选择框元素数据 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 0)
+        .如果结束
+        
+    .如果真结束
+    
+.如果真结束
+返回 (0)
+
+.子程序 _超级按钮EX_重置_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+窗口_销售详情报表._窗口_销售详情报表_创建完毕 ()
+返回 ()
+
+.子程序 _按钮EX_导出数据_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 导出表格, 类_导出EXCEL表格, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 高级表格行数, 整数型, , , 
+.局部变量 高级表格列数, 整数型, , , 
+.局部变量 表行_计次, 整数型, , , 
+.局部变量 表列_计次, 整数型, , , 
+.局部变量 导出报表名称, 文本型, , , 
+
+赋值 (高级表格行数, 窗口_销售详情报表.报表数据_高级表格Ex.取项目数量 ())
+赋值 (高级表格列数, 窗口_销售详情报表.报表数据_高级表格Ex.取列数量 ())
+导出表格.置行数 (相加 (高级表格行数, 1))
+导出表格.置列数 (高级表格列数)
+.计次循环首 (高级表格行数, 表行_计次)
+    .计次循环首 (高级表格列数, 表列_计次)
+        导出表格.置数据 (表行_计次, 表列_计次, 窗口_销售详情报表.报表数据_高级表格Ex.取项目文本 (相减 (表行_计次, 1), 相减 (表列_计次, 1)))
+    .计次循环尾 ()
+.计次循环尾 ()
+赋值 (导出报表名称, “销售详情报表表.xlsx”)
+创建目录 (相加 (取运行目录 (), “\biaoge”))
+删除文件 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+导出表格.导出 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+执行 (4, 相加 (取运行目录 (), “\biaoge\”, 导出报表名称), , , )
+返回 ()
+
+
+.子程序 _超级按钮EX_查询_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 店铺名称权限, 文本型, , , 
+.局部变量 店铺名称数量, 整数型, , , 
+.局部变量 店铺名称计次, 整数型, , , 
+.局部变量 材质查看权限, 文本型, , , 
+.局部变量 材质查看数量, 整数型, , , 
+.局部变量 材质查看计次, 整数型, , , 
+
+
+赋值 (窗口_销售详情报表.超级按钮EX_查询.禁止, 真)
+赋值 (窗口_销售详情报表.超级按钮EX_重置.禁止, 真)
+赋值 (窗口_销售详情报表.按钮EX_导出数据.禁止, 真)
+赋值 (窗口_销售详情报表.窗口Ex1.标题, 相加 (“销售详情报表 时间:”, 窗口_销售详情报表.编辑框_起始时间.内容, “至”, 窗口_销售详情报表.编辑框_结束时间.内容))
+
+赋值 (店铺名称权限, “”)
+赋值 (店铺名称数量, 0)
+.计次循环首 (窗口_销售详情报表.店铺名称_超级列表框EX.取项目数量 (), 店铺名称计次)
+    .如果真 (等于 (到整数 (组件取选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (店铺名称计次, 1), 0, 0, 16)), 1))
+        赋值 (店铺名称权限, 相加 (店铺名称权限, “'”, 窗口_销售详情报表.店铺名称_超级列表框EX.取项目文本 (相减 (店铺名称计次, 1), 3), 到文本 (“',”)))
+        赋值 (店铺名称数量, 相加 (店铺名称数量, 1))
+    .如果真结束
+    
+.计次循环尾 ()
+
+赋值 (材质查看权限, “”)
+赋值 (材质查看数量, 0)
+.计次循环首 (窗口_销售详情报表.材质名称_超级列表框EX.取项目数量 (), 材质查看计次)
+    .如果真 (等于 (到整数 (组件取选择框元素数据 (材质名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (材质查看计次, 1), 0, 0, 16)), 1))
+        赋值 (材质查看权限, 相加 (材质查看权限, “'”, 窗口_销售详情报表.材质名称_超级列表框EX.取项目文本 (相减 (材质查看计次, 1), 2), 到文本 (“',”)))
+        赋值 (材质查看数量, 相加 (材质查看数量, 1))
+    .如果真结束
+    
+.计次循环尾 ()
+
+赋值 (查找开始日期, 相加 (窗口_销售详情报表.编辑框_起始时间.内容, “ 00:00:00”))
+赋值 (查找结束日期, 到文本 (时间_格式化 (增减时间 (到时间 (窗口_销售详情报表.编辑框_结束时间.内容), #日, 1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+
+赋值 (查找库房名称, “”)
+.如果 (不等于 (店铺名称数量, 0))
+    赋值 (查找库房名称, 相加 (“ and a.kufang in (”, 到文本 (取文本左边 (店铺名称权限, 相减 (取文本长度 (店铺名称权限), 1))), “)”))
+.否则
+    赋值 (查找库房名称, “”)
+.如果结束
+
+.如果真 (等于 (窗口_销售详情报表.单选框_全部.选中, 真))
+    赋值 (查找信息批零, “ ”)
+.如果真结束
+.如果真 (等于 (窗口_销售详情报表.单选框_批发.选中, 真))
+    赋值 (查找信息批零, “ and a.pling =  '批发'”)
+.如果真结束
+.如果真 (等于 (窗口_销售详情报表.单选框_零售.选中, 真))
+    赋值 (查找信息批零, “ and a.pling =  '零售'”)
+.如果真结束
+
+.如果 (等于 (窗口_销售详情报表.选择框金重.选中, 真))
+    赋值 (查找信息金重, 相加 (“ and a.net_weight >= '”, 窗口_销售详情报表.编辑框_查找金重1.内容, “' and b.net_weight <= '”, 窗口_销售详情报表.编辑框_查找金重2.内容, “'”))
+.否则
+    赋值 (查找信息金重, “”)
+.如果结束
+
+
+赋值 (查找材质数据, “”)
+.如果 (不等于 (材质查看数量, 0))
+    赋值 (查找材质数据, 相加 (“ and e.caizhi in (”, 到文本 (取文本左边 (材质查看权限, 相减 (取文本长度 (材质查看权限), 1))), “)”))
+.否则
+    赋值 (查找材质数据, “”)
+.如果结束
+
+.如果真 (等于 (窗口_销售详情报表.单选框_品类.选中, 真))
+    窗口_销售详情报表._报表数据详情_展示 ()
+.如果真结束
+
+.如果真 (等于 (窗口_销售详情报表.单选框_自定义.选中, 真))
+    窗口_销售详情报表._报表数据自定义_展示 ()
+.如果真结束
+
+赋值 (窗口_销售详情报表.超级按钮EX_查询.禁止, 假)
+赋值 (窗口_销售详情报表.超级按钮EX_重置.禁止, 假)
+赋值 (窗口_销售详情报表.按钮EX_导出数据.禁止, 假)
+返回 ()
+
+.子程序 _报表数据详情_展示, , , 
+.局部变量 销售店铺集句柄, 整数型, , , 
+.局部变量 销售店铺数量, 整数型, , , 
+.局部变量 信息循环计次, 整数型, , , 
+.局部变量 销售店铺计次, 整数型, , , 
+.局部变量 销售店铺id, 文本型, , , 
+.局部变量 销售店铺名称, 文本型, , , 
+.局部变量 销售店铺金重, 文本型, , , 
+.局部变量 销售店铺重量, 文本型, , , 
+.局部变量 销售店铺销售数量, 文本型, , , 
+.局部变量 销售店铺销售, 文本型, , , 
+.局部变量 销售店铺实收, 文本型, , , 
+.局部变量 销售店铺成本价, 文本型, , , 
+.局部变量 销售品类集句柄, 整数型, , , 
+.局部变量 销售品类数量, 整数型, , , 
+.局部变量 商品品类计次, 整数型, , , 
+.局部变量 销售品类id, 文本型, , , 
+.局部变量 销售品类名称, 文本型, , , 
+.局部变量 销售品类金重, 文本型, , , 
+.局部变量 销售品类重量, 文本型, , , 
+.局部变量 销售品类销售数量, 文本型, , , 
+.局部变量 销售品类销售, 文本型, , , 
+.局部变量 销售品类实收, 文本型, , , 
+.局部变量 销售品类成本价, 文本型, , , 
+.局部变量 销售详情集句柄, 整数型, , , 
+.局部变量 销售详情数量, 整数型, , , 
+.局部变量 销售详情计次, 整数型, , , 
+.局部变量 销售详情出库单号, 文本型, , , 
+.局部变量 销售详情商品编码, 文本型, , , 
+.局部变量 销售详情商品名称, 文本型, , , 
+.局部变量 销售详情款号, 文本型, , , 
+.局部变量 销售详情库房, 文本型, , , 
+.局部变量 销售详情品类, 文本型, , , 
+.局部变量 销售详情规格, 文本型, , , 
+.局部变量 销售详情材质, 文本型, , , 
+.局部变量 销售详情圈口长度, 文本型, , , 
+.局部变量 销售详情成色, 文本型, , , 
+.局部变量 销售详情单件重, 文本型, , , 
+.局部变量 销售详情金重, 文本型, , , 
+.局部变量 销售详情重量, 文本型, , , 
+.局部变量 销售详情单位, 文本型, , , 
+.局部变量 销售详情料价, 文本型, , , 
+.局部变量 销售详情成本工费, 文本型, , , 
+.局部变量 销售详情参考工费, 文本型, , , 
+.局部变量 销售详情成本附加费, 文本型, , , 
+.局部变量 销售详情成本价, 文本型, , , 
+.局部变量 销售详情销售单价, 文本型, , , 
+.局部变量 销售详情销售金额, 文本型, , , 
+.局部变量 销售详情销售数量, 文本型, , , 
+.局部变量 销售详情原附加费, 文本型, , , 
+.局部变量 销售详情销售克价, 文本型, , , 
+.局部变量 销售详情销售工费, 文本型, , , 
+.局部变量 销售详情销售附加费, 文本型, , , 
+.局部变量 销售详情折扣, 文本型, , , 
+.局部变量 销售详情实收金额, 文本型, , , 
+.局部变量 销售详情批零, 文本型, , , 
+.局部变量 销售详情状态, 文本型, , , 
+.局部变量 销售详情工费利润, 文本型, , , 
+.局部变量 销售品类工费利润, 文本型, , , 
+.局部变量 销售店铺工费利润, 文本型, , , 
+.局部变量 销售详情销售时间, 文本型, , , 
+.局部变量 销售店铺成本工费, 文本型, , , 
+.局部变量 销售店铺销售工费, 文本型, , , 
+.局部变量 销售品类成本工费, 文本型, , , 
+.局部变量 销售品类销售工费, 文本型, , , 
+.局部变量 销售详情成本工费1, 文本型, , , 
+.局部变量 销售详情销售工费1, 文本型, , , 
+
+窗口_销售详情报表.报表数据_高级表格Ex.删除项目 (1, 相减 (窗口_销售详情报表.报表数据_高级表格Ex.取项目数量 (), 1))
+组件暂停重画 (报表数据_高级表格组件句柄)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT sum.kufangid AS kufangid,sum.kufang AS kufang,sum.pinleiid AS pinleiid,sum.pinlei AS pinlei,CAST(ROUND(sum(sum.jinzhong), 3) AS DECIMAL (20, 3)) AS jinzhong,CAST(ROUND(sum(sum.xiao_amount ), 2) AS DECIMAL (20, 2)) AS xiao_amount,CAST(ROUND(sum(sum.zhongliang), 3) AS DECIMAL (20, 3)) AS zhongliang,CAST(ROUND(sum(sum.xsshuliang ), 2) AS DECIMAL (20, 2)) AS xsshuliang,CAST(ROUND(sum(sum.shishou), 2) AS DECIMAL (20, 2))  AS shishou,CAST(ROUND( sum( sum.chengben ), 2 ) AS DECIMAL ( 20, 2 )) AS chengben,CAST(ROUND(sum(sum.gongfeilr), 2) AS DECIMAL (20, 2)) AS gongfeilr,CAST(ROUND(sum(sum.chegbengfhj), 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(sum(sum.xiaoshougfhj), 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM (SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 查找库房名称, 查找信息批零, 查找信息金重, “ ORDER BY a.id DESC) AS sum GROUP BY sum.kufangid ORDER BY sum.kufangid asc”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (销售店铺集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (销售店铺数量, 取记录集行数 (销售店铺集句柄))
+载入 (窗口_进度条, 窗口_销售详情报表, 假)
+赋值 (窗口_进度条.标题, “数据正在加载中...”)
+赋值 (窗口_进度条.进度条1.最大位置, 销售店铺数量)
+赋值 (信息循环计次, 0)
+.计次循环首 (销售店铺数量, 销售店铺计次)
+    赋值 (窗口_进度条.标题, 相加 (“正在获取数据...(”, 取文本左边 (到文本 (相乘 (相除 (到数值 (销售店铺计次), 销售店铺数量), 100)), 4), “%)”))
+    赋值 (销售店铺id, “”)
+    赋值 (销售店铺名称, “”)
+    赋值 (销售店铺金重, “”)
+    赋值 (销售店铺重量, “”)
+    赋值 (销售店铺销售数量, “”)
+    赋值 (销售店铺销售, “”)
+    赋值 (销售店铺实收, “”)
+    赋值 (销售店铺成本价, “”)
+    赋值 (销售店铺工费利润, “”)
+    赋值 (销售店铺成本工费, “”)
+    赋值 (销售店铺销售工费, “”)
+    读字段值 (销售店铺集句柄, “kufangid”, 销售店铺id)
+    读字段值 (销售店铺集句柄, “kufang”, 销售店铺名称)
+    读字段值 (销售店铺集句柄, “jinzhong”, 销售店铺金重)
+    读字段值 (销售店铺集句柄, “zhongliang”, 销售店铺重量)
+    读字段值 (销售店铺集句柄, “xsshuliang”, 销售店铺销售数量)
+    读字段值 (销售店铺集句柄, “xiao_amount”, 销售店铺销售)
+    读字段值 (销售店铺集句柄, “shishou”, 销售店铺实收)
+    读字段值 (销售店铺集句柄, “chengben”, 销售店铺成本价)
+    读字段值 (销售店铺集句柄, “gongfeilr”, 销售店铺工费利润)
+    读字段值 (销售店铺集句柄, “chegbengfhj”, 销售店铺成本工费)
+    读字段值 (销售店铺集句柄, “xiaoshougfhj”, 销售店铺销售工费)
+    执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT sum.kufangid AS kufangid,sum.kufang AS kufang,sum.pinleiid AS pinleiid,sum.pinlei AS pinlei,CAST(ROUND(sum(sum.jinzhong), 3) AS DECIMAL (20, 3)) AS jinzhong,CAST(ROUND(sum(sum.xiao_amount ), 2) AS DECIMAL (20, 2)) AS xiao_amount,CAST(ROUND(sum(sum.zhongliang), 3) AS DECIMAL (20, 3)) AS zhongliang,CAST(ROUND(sum(sum.xsshuliang ), 2) AS DECIMAL (20, 2)) AS xsshuliang,CAST(ROUND(sum(sum.shishou), 2) AS DECIMAL (20, 2))  AS shishou,CAST(ROUND( sum( sum.chengben ), 2 ) AS DECIMAL ( 20, 2 )) AS chengben,CAST(ROUND(sum(sum.gongfeilr), 2) AS DECIMAL (20, 2)) AS gongfeilr,CAST(ROUND(sum(sum.chegbengfhj), 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(sum(sum.xiaoshougfhj), 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM (SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' AND a.kufang='”, 销售店铺id, “'”, 查找信息批零, 查找信息金重, “ ORDER BY a.id DESC) AS sum GROUP BY sum.kufangid,sum.pinleiid ORDER BY sum.kufangid asc”)), #编码_GBK, #编码_UTF_8, )))
+    赋值 (销售品类集句柄, 取记录集 (全_MySQL读取_报表))
+    赋值 (销售品类数量, 取记录集行数 (销售品类集句柄))
+    .计次循环首 (销售品类数量, 商品品类计次)
+        赋值 (销售品类id, “”)
+        赋值 (销售品类名称, “”)
+        赋值 (销售品类金重, “”)
+        赋值 (销售品类重量, “”)
+        赋值 (销售品类销售数量, “”)
+        赋值 (销售品类销售, “”)
+        赋值 (销售品类实收, “”)
+        赋值 (销售品类成本价, “”)
+        赋值 (销售品类工费利润, “”)
+        赋值 (销售品类成本工费, “”)
+        赋值 (销售品类销售工费, “”)
+        读字段值 (销售品类集句柄, “pinleiid”, 销售品类id)
+        读字段值 (销售品类集句柄, “pinlei”, 销售品类名称)
+        读字段值 (销售品类集句柄, “jinzhong”, 销售品类金重)
+        读字段值 (销售品类集句柄, “zhongliang”, 销售品类重量)
+        读字段值 (销售品类集句柄, “xsshuliang”, 销售品类销售数量)
+        读字段值 (销售品类集句柄, “xiao_amount”, 销售品类销售)
+        读字段值 (销售品类集句柄, “shishou”, 销售品类实收)
+        读字段值 (销售品类集句柄, “chengben”, 销售品类成本价)
+        读字段值 (销售品类集句柄, “gongfeilr”, 销售品类工费利润)
+        读字段值 (销售品类集句柄, “chegbengfhj”, 销售品类成本工费)
+        读字段值 (销售品类集句柄, “xiaoshougfhj”, 销售品类销售工费)
+        
+        执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT LEFT(a.creationtime, 10) as acreationtime,CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj,x.gold_price as gold_price FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL INNER JOIN xipunum_erp_store_order AS x ON x.id = c.order_id WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' AND a.kufang='”, 销售店铺id, “'”, 查找信息批零, 查找信息金重, “ and COALESCE ( e1.category_id, e2.category_id, '0' )='”, 销售品类id, “' ORDER BY a.id DESC”)), #编码_GBK, #编码_UTF_8, )))
+        赋值 (销售详情集句柄, 取记录集 (全_MySQL读取_报表))
+        赋值 (销售详情数量, 取记录集行数 (销售详情集句柄))
+        .计次循环首 (销售详情数量, 销售详情计次)
+            赋值 (销售详情出库单号, “”)
+            赋值 (销售详情商品编码, “”)
+            赋值 (销售详情商品名称, “”)
+            赋值 (销售详情款号, “”)
+            赋值 (销售详情库房, “”)
+            赋值 (销售详情品类, “”)
+            赋值 (销售详情规格, “”)
+            赋值 (销售详情材质, “”)
+            赋值 (销售详情圈口长度, “”)
+            赋值 (销售详情成色, “”)
+            赋值 (销售详情单件重, “”)
+            赋值 (销售详情金重, “”)
+            赋值 (销售详情重量, “”)
+            赋值 (销售详情单位, “”)
+            赋值 (销售详情料价, “”)
+            赋值 (销售详情成本工费, “”)
+            赋值 (销售详情参考工费, “”)
+            赋值 (销售详情成本附加费, “”)
+            赋值 (销售详情成本价, “”)
+            赋值 (销售详情销售单价, “”)
+            赋值 (销售详情销售金额, “”)
+            赋值 (销售详情销售数量, “”)
+            赋值 (销售详情原附加费, “”)
+            赋值 (销售详情销售克价, “”)
+            赋值 (销售详情销售工费, “”)
+            赋值 (销售详情销售附加费, “”)
+            赋值 (销售详情折扣, “”)
+            赋值 (销售详情实收金额, “”)
+            赋值 (销售详情批零, “”)
+            赋值 (销售详情状态, “”)
+            赋值 (销售详情工费利润, “”)
+            赋值 (销售详情成本工费1, “”)
+            赋值 (销售详情销售工费1, “”)
+            赋值 (销售详情销售时间, “”)
+            
+            读字段值 (销售详情集句柄, “fsettlement_number”, 销售详情出库单号)
+            读字段值 (销售详情集句柄, “outbound_product_code”, 销售详情商品编码)
+            读字段值 (销售详情集句柄, “acreationtime”, 销售详情销售时间)
+            读字段值 (销售详情集句柄, “shop_product_name”, 销售详情商品名称)
+            读字段值 (销售详情集句柄, “shop_item_number”, 销售详情款号)
+            读字段值 (销售详情集句柄, “kufang”, 销售详情库房)
+            读字段值 (销售详情集句柄, “pinlei”, 销售详情品类)
+            读字段值 (销售详情集句柄, “specification_title”, 销售详情规格)
+            读字段值 (销售详情集句柄, “material”, 销售详情材质)
+            读字段值 (销售详情集句柄, “quandu”, 销售详情圈口长度)
+            读字段值 (销售详情集句柄, “company_condition”, 销售详情成色)
+            读字段值 (销售详情集句柄, “danjian”, 销售详情单件重)
+            读字段值 (销售详情集句柄, “jinzhong”, 销售详情金重)
+            读字段值 (销售详情集句柄, “zhongliang”, 销售详情重量)
+            读字段值 (销售详情集句柄, “danwei”, 销售详情单位)
+            读字段值 (销售详情集句柄, “gold_price”, 销售详情料价)
+            读字段值 (销售详情集句柄, “chengbengf”, 销售详情成本工费)
+            读字段值 (销售详情集句柄, “cankaogf”, 销售详情参考工费)
+            读字段值 (销售详情集句柄, “chengbenfj”, 销售详情成本附加费)
+            读字段值 (销售详情集句柄, “chengben”, 销售详情成本价)
+            读字段值 (销售详情集句柄, “xiaodan_amount”, 销售详情销售单价)
+            读字段值 (销售详情集句柄, “xiao_amount”, 销售详情销售金额)
+            读字段值 (销售详情集句柄, “xsshuliang”, 销售详情销售数量)
+            读字段值 (销售详情集句柄, “yxiaoshoufj”, 销售详情原附加费)
+            读字段值 (销售详情集句柄, “kejia”, 销售详情销售克价)
+            读字段值 (销售详情集句柄, “xiaoshougf”, 销售详情销售工费)
+            读字段值 (销售详情集句柄, “xiaoshoufj”, 销售详情销售附加费)
+            读字段值 (销售详情集句柄, “zhekou”, 销售详情折扣)
+            读字段值 (销售详情集句柄, “shishou”, 销售详情实收金额)
+            读字段值 (销售详情集句柄, “piling”, 销售详情批零)
+            读字段值 (销售详情集句柄, “sales_return”, 销售详情状态)
+            读字段值 (销售详情集句柄, “gongfeilr”, 销售详情工费利润)
+            读字段值 (销售详情集句柄, “chegbengfhj”, 销售详情成本工费1)
+            读字段值 (销售详情集句柄, “xiaoshougfhj”, 销售详情销售工费1)
+            赋值 (信息循环计次, 相加 (信息循环计次, 1))
+            窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 0, 信息循环计次, 0, 到文本 (信息循环计次))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 1, 信息循环计次, 1, 到文本 (编码转换 (到字节集 (销售详情出库单号), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 2, 信息循环计次, 2, 到文本 (编码转换 (到字节集 (销售详情商品编码), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 3, 信息循环计次, 3, 到文本 (编码转换 (到字节集 (销售详情销售时间), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 4, 信息循环计次, 4, 到文本 (编码转换 (到字节集 (销售详情商品名称), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 5, 信息循环计次, 5, 到文本 (编码转换 (到字节集 (销售详情款号), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 6, 信息循环计次, 6, 到文本 (编码转换 (到字节集 (销售详情库房), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 7, 信息循环计次, 7, 到文本 (编码转换 (到字节集 (销售详情品类), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 8, 信息循环计次, 8, 到文本 (编码转换 (到字节集 (销售详情规格), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 9, 信息循环计次, 9, 到文本 (编码转换 (到字节集 (销售详情材质), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 10, 信息循环计次, 10, 到文本 (编码转换 (到字节集 (销售详情圈口长度), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 11, 信息循环计次, 11, 到文本 (编码转换 (到字节集 (销售详情成色), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 12, 信息循环计次, 12, 到文本 (编码转换 (到字节集 (销售详情单件重), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 13, 信息循环计次, 13, 到文本 (编码转换 (到字节集 (销售详情金重), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 14, 信息循环计次, 14, 到文本 (编码转换 (到字节集 (销售详情重量), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 15, 信息循环计次, 15, 到文本 (编码转换 (到字节集 (销售详情单位), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 16, 信息循环计次, 16, 到文本 (编码转换 (到字节集 (销售详情料价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 17, 信息循环计次, 17, 到文本 (编码转换 (到字节集 (销售详情成本工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 18, 信息循环计次, 18, 到文本 (编码转换 (到字节集 (销售详情参考工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 19, 信息循环计次, 19, 到文本 (编码转换 (到字节集 (销售详情成本附加费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 20, 信息循环计次, 20, 到文本 (编码转换 (到字节集 (销售详情成本价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 21, 信息循环计次, 21, 到文本 (编码转换 (到字节集 (销售详情销售单价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 22, 信息循环计次, 22, 到文本 (编码转换 (到字节集 (销售详情销售金额), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 23, 信息循环计次, 23, 到文本 (编码转换 (到字节集 (销售详情销售数量), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 24, 信息循环计次, 24, 到文本 (编码转换 (到字节集 (销售详情原附加费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 25, 信息循环计次, 25, 到文本 (编码转换 (到字节集 (销售详情销售克价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 26, 信息循环计次, 26, 到文本 (编码转换 (到字节集 (销售详情销售工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 27, 信息循环计次, 27, 到文本 (编码转换 (到字节集 (销售详情销售附加费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 28, 信息循环计次, 28, 到文本 (编码转换 (到字节集 (销售详情折扣), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 29, 信息循环计次, 29, 到文本 (编码转换 (到字节集 (销售详情实收金额), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 30, 信息循环计次, 30, 到文本 (编码转换 (到字节集 (销售详情工费利润), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 31, 信息循环计次, 31, 到文本 (编码转换 (到字节集 (销售详情成本工费1), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 32, 信息循环计次, 32, 到文本 (编码转换 (到字节集 (销售详情销售工费1), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 33, 信息循环计次, 33, 到文本 (编码转换 (到字节集 (销售详情批零), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 34, 信息循环计次, 34, 到文本 (编码转换 (到字节集 (销售详情状态), #编码_UTF_8, #编码_GBK, )))
+            到下一行 (销售详情集句柄)
+        .计次循环尾 ()
+        释放记录集 (销售详情集句柄)
+        赋值 (信息循环计次, 相加 (信息循环计次, 1))
+        窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 0, 信息循环计次, 0, 到文本 (信息循环计次))
+        
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 8, 信息循环计次, 8, 到文本 (“品类合计”))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 13, 信息循环计次, 13, 到文本 (编码转换 (到字节集 (销售品类金重), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 14, 信息循环计次, 14, 到文本 (编码转换 (到字节集 (销售品类重量), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 20, 信息循环计次, 20, 到文本 (编码转换 (到字节集 (销售品类成本价), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 22, 信息循环计次, 22, 到文本 (编码转换 (到字节集 (销售品类销售), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 23, 信息循环计次, 23, 到文本 (编码转换 (到字节集 (销售品类销售数量), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 29, 信息循环计次, 29, 到文本 (编码转换 (到字节集 (销售品类实收), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 30, 信息循环计次, 30, 到文本 (编码转换 (到字节集 (销售品类工费利润), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 31, 信息循环计次, 31, 到文本 (编码转换 (到字节集 (销售品类成本工费), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 32, 信息循环计次, 32, 到文本 (编码转换 (到字节集 (销售品类销售工费), #编码_UTF_8, #编码_GBK, )))
+        窗口_销售详情报表.报表数据_高级表格Ex.置字体色 (信息循环计次, 0, 信息循环计次, 30, -16625078)
+        到下一行 (销售品类集句柄)
+    .计次循环尾 ()
+    释放记录集 (销售品类集句柄)
+    
+    赋值 (信息循环计次, 相加 (信息循环计次, 1))
+    窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 0, 信息循环计次, 0, 到文本 (信息循环计次))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 6, 信息循环计次, 6, 到文本 (编码转换 (到字节集 (销售店铺名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 8, 信息循环计次, 8, 到文本 (“合计”))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 13, 信息循环计次, 13, 到文本 (编码转换 (到字节集 (销售店铺金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 14, 信息循环计次, 14, 到文本 (编码转换 (到字节集 (销售店铺重量), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 20, 信息循环计次, 20, 到文本 (编码转换 (到字节集 (销售店铺成本价), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 22, 信息循环计次, 22, 到文本 (编码转换 (到字节集 (销售店铺销售), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 23, 信息循环计次, 23, 到文本 (编码转换 (到字节集 (销售店铺销售数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 29, 信息循环计次, 29, 到文本 (编码转换 (到字节集 (销售店铺实收), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 30, 信息循环计次, 30, 到文本 (编码转换 (到字节集 (销售店铺工费利润), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 31, 信息循环计次, 31, 到文本 (编码转换 (到字节集 (销售店铺成本工费), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 32, 信息循环计次, 32, 到文本 (编码转换 (到字节集 (销售店铺销售工费), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置字体色 (信息循环计次, 0, 信息循环计次, 30, -2084559)
+    赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+    到下一行 (销售店铺集句柄)
+.计次循环尾 ()
+释放记录集 (销售店铺集句柄)
+
+.如果真 (是否已创建 (窗口_进度条))
+    窗口_进度条.销毁 ()
+.如果真结束
+组件允许重画 (报表数据_高级表格组件句柄)
+返回 ()
+
+.子程序 _复制单元格_被选择, , , 
+
+置剪辑板文本 (窗口_销售详情报表.报表数据_高级表格Ex.取项目文本 (窗口_销售详情报表.报表数据_高级表格Ex.现行选中项, 窗口_销售详情报表.报表数据_高级表格Ex.现行选中列))
+提示框Ex_添加消息 (相加 (“复制:”, 窗口_销售详情报表.报表数据_高级表格Ex.取项目文本 (窗口_销售详情报表.报表数据_高级表格Ex.现行选中项, 窗口_销售详情报表.报表数据_高级表格Ex.现行选中列), “ 到剪切板成功！”), 5, 1000, , 假, )
+返回 ()
+
+
+.子程序 _报表数据_高级表格Ex_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果真 (并且 (大于 (项目索引, 0), 大于 (列索引, 0)))
+        .如果真 (不等于 (窗口_销售详情报表.报表数据_高级表格Ex.取项目文本 (项目索引, 列索引), “”))
+            弹出菜单 (窗口_销售详情报表.菜单, , )
+        .如果真结束
+        
+    .如果真结束
+    
+    返回 (0)
+.如果真结束
+
+
+
+.子程序 _单选框_全部_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售详情报表.单选框_全部.选中, 真)
+赋值 (窗口_销售详情报表.单选框_批发.选中, 假)
+赋值 (窗口_销售详情报表.单选框_零售.选中, 假)
+返回 (0)
+
+.子程序 _单选框_批发_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售详情报表.单选框_全部.选中, 假)
+赋值 (窗口_销售详情报表.单选框_批发.选中, 真)
+赋值 (窗口_销售详情报表.单选框_零售.选中, 假)
+返回 (0)
+
+
+.子程序 _单选框_零售_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售详情报表.单选框_全部.选中, 假)
+赋值 (窗口_销售详情报表.单选框_批发.选中, 假)
+赋值 (窗口_销售详情报表.单选框_零售.选中, 真)
+返回 (0)
+
+
+.子程序 _单选框_品类_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售详情报表.单选框_品类.选中, 真)
+赋值 (窗口_销售详情报表.单选框_自定义.选中, 假)
+返回 (0)
+
+
+.子程序 _单选框_自定义_选中状态改变, 整数型, , 
+.参数 新状态, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+
+赋值 (窗口_销售详情报表.单选框_品类.选中, 假)
+赋值 (窗口_销售详情报表.单选框_自定义.选中, 真)
+返回 (0)
+
+
+.子程序 _报表数据自定义_展示, , , 
+.局部变量 销售店铺集句柄, 整数型, , , 
+.局部变量 销售店铺数量, 整数型, , , 
+.局部变量 信息循环计次, 整数型, , , 
+.局部变量 销售店铺计次, 整数型, , , 
+.局部变量 销售店铺id, 文本型, , , 
+.局部变量 销售店铺名称, 文本型, , , 
+.局部变量 自定义品类集句柄, 整数型, , , 
+.局部变量 自定义品类数量, 整数型, , , 
+.局部变量 自定义品类计次, 整数型, , , 
+.局部变量 自定义品类id, 文本型, , , 
+.局部变量 自定义品类名称, 文本型, , , 
+.局部变量 局部_自定义品类id, 文本型, , , 
+.局部变量 局部_自定义品类id文本, 文本型, , , 
+.局部变量 销售自定义店铺集句柄, 整数型, , , 
+.局部变量 销售店铺金重, 文本型, , , 
+.局部变量 销售店铺重量, 文本型, , , 
+.局部变量 销售店铺销售数量, 文本型, , , 
+.局部变量 销售店铺销售, 文本型, , , 
+.局部变量 销售店铺实收, 文本型, , , 
+.局部变量 销售店铺成本价, 文本型, , , 
+.局部变量 销售店铺工费利润, 文本型, , , 
+.局部变量 销售品类集句柄, 整数型, , , 
+.局部变量 销售品类金重, 文本型, , , 
+.局部变量 销售品类重量, 文本型, , , 
+.局部变量 销售品类销售数量, 文本型, , , 
+.局部变量 销售品类销售, 文本型, , , 
+.局部变量 销售品类实收, 文本型, , , 
+.局部变量 销售品类成本价, 文本型, , , 
+.局部变量 销售品类工费利润, 文本型, , , 
+.局部变量 销售详情集句柄, 整数型, , , 
+.局部变量 销售详情数量, 整数型, , , 
+.局部变量 销售详情计次, 整数型, , , 
+.局部变量 销售详情出库单号, 文本型, , , 
+.局部变量 销售详情商品编码, 文本型, , , 
+.局部变量 销售详情商品名称, 文本型, , , 
+.局部变量 销售详情款号, 文本型, , , 
+.局部变量 销售详情库房, 文本型, , , 
+.局部变量 销售详情品类, 文本型, , , 
+.局部变量 销售详情规格, 文本型, , , 
+.局部变量 销售详情材质, 文本型, , , 
+.局部变量 销售详情圈口长度, 文本型, , , 
+.局部变量 销售详情成色, 文本型, , , 
+.局部变量 销售详情单件重, 文本型, , , 
+.局部变量 销售详情金重, 文本型, , , 
+.局部变量 销售详情重量, 文本型, , , 
+.局部变量 销售详情单位, 文本型, , , 
+.局部变量 销售详情料价, 文本型, , , 
+.局部变量 销售详情成本工费, 文本型, , , 
+.局部变量 销售详情参考工费, 文本型, , , 
+.局部变量 销售详情成本附加费, 文本型, , , 
+.局部变量 销售详情成本价, 文本型, , , 
+.局部变量 销售详情销售单价, 文本型, , , 
+.局部变量 销售详情销售金额, 文本型, , , 
+.局部变量 销售详情销售数量, 文本型, , , 
+.局部变量 销售详情原附加费, 文本型, , , 
+.局部变量 销售详情销售克价, 文本型, , , 
+.局部变量 销售详情销售工费, 文本型, , , 
+.局部变量 销售详情销售附加费, 文本型, , , 
+.局部变量 销售详情折扣, 文本型, , , 
+.局部变量 销售详情实收金额, 文本型, , , 
+.局部变量 销售详情批零, 文本型, , , 
+.局部变量 销售详情状态, 文本型, , , 
+.局部变量 销售详情工费利润, 文本型, , , 
+.局部变量 销售详情销售时间, 文本型, , , 
+.局部变量 销售店铺成本工费, 文本型, , , 
+.局部变量 销售店铺销售工费, 文本型, , , 
+.局部变量 销售品类成本工费, 文本型, , , 
+.局部变量 销售品类销售工费, 文本型, , , 
+.局部变量 销售详情成本工费1, 文本型, , , 
+.局部变量 销售详情销售工费1, 文本型, , , 
+
+窗口_销售详情报表.报表数据_高级表格Ex.删除项目 (1, 相减 (窗口_销售详情报表.报表数据_高级表格Ex.取项目数量 (), 1))
+组件暂停重画 (报表数据_高级表格组件句柄)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT sum.kufangid AS kufangid,sum.kufang AS kufang,sum.pinleiid AS pinleiid,sum.pinlei AS pinlei,CAST(ROUND(sum(sum.jinzhong), 3) AS DECIMAL (20, 3)) AS jinzhong,CAST(ROUND(sum(sum.xiao_amount ), 2) AS DECIMAL (20, 2)) AS xiao_amount,CAST(ROUND(sum(sum.zhongliang), 3) AS DECIMAL (20, 3)) AS zhongliang,CAST(ROUND(sum(sum.xsshuliang ), 2) AS DECIMAL (20, 2)) AS xsshuliang,CAST(ROUND(sum(sum.shishou), 2) AS DECIMAL (20, 2))  AS shishou,CAST(ROUND( sum( sum.chengben ), 2 ) AS DECIMAL ( 20, 2 )) AS chengben,CAST(ROUND(sum(sum.gongfeilr), 2) AS DECIMAL (20, 2)) AS gongfeilr,CAST(ROUND(sum(sum.chegbengfhj), 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(sum(sum.xiaoshougfhj), 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM (SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 查找库房名称, 查找信息批零, 查找信息金重, “ ORDER BY a.id DESC) AS sum GROUP BY sum.kufangid ORDER BY sum.kufangid asc”)), #编码_GBK, #编码_UTF_8, )))
+
+赋值 (销售店铺集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (销售店铺数量, 取记录集行数 (销售店铺集句柄))
+载入 (窗口_进度条, 窗口_销售详情报表, 假)
+赋值 (窗口_进度条.标题, “数据正在加载中...”)
+赋值 (窗口_进度条.进度条1.最大位置, 销售店铺数量)
+赋值 (信息循环计次, 0)
+.计次循环首 (销售店铺数量, 销售店铺计次)
+    赋值 (窗口_进度条.标题, 相加 (“正在获取数据...(”, 取文本左边 (到文本 (相乘 (相除 (到数值 (销售店铺计次), 销售店铺数量), 100)), 4), “%)”))
+    赋值 (销售店铺id, “”)
+    赋值 (销售店铺名称, “”)
+    读字段值 (销售店铺集句柄, “kufangid”, 销售店铺id)
+    读字段值 (销售店铺集句柄, “kufang”, 销售店铺名称)
+    
+    赋值 (局部_自定义品类id文本, “”)
+    执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (“SELECT title,category_list FROM xipunum_erp_category_stat_config WHERE id in ('2','4','9','13') ORDER BY id asc;”), #编码_GBK, #编码_UTF_8, )))
+    赋值 (自定义品类集句柄, 取记录集 (全_MySQL读取_报表))
+    赋值 (自定义品类数量, 取记录集行数 (自定义品类集句柄))
+    .计次循环首 (自定义品类数量, 自定义品类计次)
+        赋值 (自定义品类id, “”)
+        赋值 (自定义品类名称, “”)
+        赋值 (局部_自定义品类id, “”)
+        读字段值 (自定义品类集句柄, “category_list”, 自定义品类id)
+        读字段值 (自定义品类集句柄, “title”, 自定义品类名称)
+        
+        .如果真 (不等于 (自定义品类id, “”))
+            赋值 (局部_自定义品类id, 到文本 (编码转换 (到字节集 (自定义品类id), #编码_UTF_8, #编码_GBK, )))
+            赋值 (局部_自定义品类id, 子文本替换 (局部_自定义品类id, “[”, “'”, , , 真))
+            赋值 (局部_自定义品类id, 子文本替换 (局部_自定义品类id, “]”, “'”, , , 真))
+            赋值 (局部_自定义品类id, 子文本替换 (局部_自定义品类id, “,”, “','”, , , 真))
+            .如果真 (小于 (自定义品类计次, 自定义品类数量))
+                赋值 (局部_自定义品类id, 相加 (局部_自定义品类id, “,”))
+            .如果真结束
+            赋值 (局部_自定义品类id文本, 相加 (局部_自定义品类id文本, 局部_自定义品类id))
+        .如果真结束
+        到下一行 (自定义品类集句柄)
+    .计次循环尾 ()
+    释放记录集 (自定义品类集句柄)
+    .如果真 (等于 (局部_自定义品类id文本, “”))
+        赋值 (局部_自定义品类id文本, “''”)
+    .如果真结束
+    
+    赋值 (销售店铺金重, “”)
+    赋值 (销售店铺重量, “”)
+    赋值 (销售店铺销售数量, “”)
+    赋值 (销售店铺销售, “”)
+    赋值 (销售店铺实收, “”)
+    赋值 (销售店铺成本价, “”)
+    赋值 (销售店铺工费利润, “”)
+    赋值 (销售店铺成本工费, “”)
+    赋值 (销售店铺销售工费, “”)
+    执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT sum.kufangid AS kufangid,sum.kufang AS kufang,sum.pinleiid AS pinleiid,sum.pinlei AS pinlei,CAST(ROUND(sum(sum.jinzhong), 3) AS DECIMAL (20, 3)) AS jinzhong,CAST(ROUND(sum(sum.xiao_amount ), 2) AS DECIMAL (20, 2)) AS xiao_amount,CAST(ROUND(sum(sum.zhongliang), 3) AS DECIMAL (20, 3)) AS zhongliang,CAST(ROUND(sum(sum.xsshuliang ), 2) AS DECIMAL (20, 2)) AS xsshuliang,CAST(ROUND(sum(sum.shishou), 2) AS DECIMAL (20, 2))  AS shishou,CAST(ROUND( sum( sum.chengben ), 2 ) AS DECIMAL ( 20, 2 )) AS chengben,CAST(ROUND(sum(sum.gongfeilr), 2) AS DECIMAL (20, 2)) AS gongfeilr,CAST(ROUND(sum(sum.chegbengfhj), 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(sum(sum.xiaoshougfhj), 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM (SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' AND a.kufang='”, 销售店铺id, “'”, 查找信息批零, 查找信息金重, “ and COALESCE ( e1.category_id, e2.category_id, '0' ) in (”, 局部_自定义品类id文本, “) ORDER BY a.id DESC) AS sum;”)), #编码_GBK, #编码_UTF_8, )))
+    赋值 (销售自定义店铺集句柄, 取记录集 (全_MySQL读取_报表))
+    读字段值 (销售自定义店铺集句柄, “jinzhong”, 销售店铺金重)
+    读字段值 (销售自定义店铺集句柄, “zhongliang”, 销售店铺重量)
+    读字段值 (销售自定义店铺集句柄, “xsshuliang”, 销售店铺销售数量)
+    读字段值 (销售自定义店铺集句柄, “xiao_amount”, 销售店铺销售)
+    读字段值 (销售自定义店铺集句柄, “shishou”, 销售店铺实收)
+    读字段值 (销售自定义店铺集句柄, “chengben”, 销售店铺成本价)
+    读字段值 (销售自定义店铺集句柄, “gongfeilr”, 销售店铺工费利润)
+    读字段值 (销售自定义店铺集句柄, “chegbengfhj”, 销售店铺成本工费)
+    读字段值 (销售自定义店铺集句柄, “xiaoshougfhj”, 销售店铺销售工费)
+    释放记录集 (销售自定义店铺集句柄)
+    
+    执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (“SELECT title,category_list FROM xipunum_erp_category_stat_config WHERE id in ('2','4','9','13') ORDER BY id asc;”), #编码_GBK, #编码_UTF_8, )))
+    赋值 (自定义品类集句柄, 取记录集 (全_MySQL读取_报表))
+    赋值 (自定义品类数量, 取记录集行数 (自定义品类集句柄))
+    .计次循环首 (自定义品类数量, 自定义品类计次)
+        赋值 (自定义品类id, “”)
+        赋值 (自定义品类名称, “”)
+        赋值 (局部_自定义品类id, “”)
+        读字段值 (自定义品类集句柄, “category_list”, 自定义品类id)
+        读字段值 (自定义品类集句柄, “title”, 自定义品类名称)
+        .如果真 (不等于 (自定义品类id, “”))
+            赋值 (局部_自定义品类id, 到文本 (编码转换 (到字节集 (自定义品类id), #编码_UTF_8, #编码_GBK, )))
+            赋值 (局部_自定义品类id, 子文本替换 (局部_自定义品类id, “[”, “'”, , , 真))
+            赋值 (局部_自定义品类id, 子文本替换 (局部_自定义品类id, “]”, “'”, , , 真))
+            赋值 (局部_自定义品类id, 子文本替换 (局部_自定义品类id, “,”, “','”, , , 真))
+        .如果真结束
+        
+        赋值 (销售品类金重, “”)
+        赋值 (销售品类重量, “”)
+        赋值 (销售品类销售数量, “”)
+        赋值 (销售品类销售, “”)
+        赋值 (销售品类实收, “”)
+        赋值 (销售品类成本价, “”)
+        赋值 (销售品类工费利润, “”)
+        赋值 (销售品类成本工费, “”)
+        赋值 (销售品类销售工费, “”)
+        执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT sum.kufangid AS kufangid,sum.kufang AS kufang,sum.pinleiid AS pinleiid,sum.pinlei AS pinlei,CAST(ROUND(sum(sum.jinzhong), 3) AS DECIMAL (20, 3)) AS jinzhong,CAST(ROUND(sum(sum.xiao_amount ), 2) AS DECIMAL (20, 2)) AS xiao_amount,CAST(ROUND(sum(sum.zhongliang), 3) AS DECIMAL (20, 3)) AS zhongliang,CAST(ROUND(sum(sum.xsshuliang ), 2) AS DECIMAL (20, 2)) AS xsshuliang,CAST(ROUND(sum(sum.shishou), 2) AS DECIMAL (20, 2))  AS shishou,CAST(ROUND( sum( sum.chengben ), 2 ) AS DECIMAL ( 20, 2 )) AS chengben,CAST(ROUND(sum(sum.gongfeilr), 2) AS DECIMAL (20, 2)) AS gongfeilr,CAST(ROUND(sum(sum.chegbengfhj), 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(sum(sum.xiaoshougfhj), 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM (SELECT CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' AND a.kufang='”, 销售店铺id, “'”, 查找信息批零, 查找信息金重, “ and COALESCE ( e1.category_id, e2.category_id, '0' ) in (”, 局部_自定义品类id, “) ORDER BY a.id DESC) AS sum;”)), #编码_GBK, #编码_UTF_8, )))
+        赋值 (销售品类集句柄, 取记录集 (全_MySQL读取_报表))
+        读字段值 (销售品类集句柄, “jinzhong”, 销售品类金重)
+        读字段值 (销售品类集句柄, “zhongliang”, 销售品类重量)
+        读字段值 (销售品类集句柄, “xsshuliang”, 销售品类销售数量)
+        读字段值 (销售品类集句柄, “xiao_amount”, 销售品类销售)
+        读字段值 (销售品类集句柄, “shishou”, 销售品类实收)
+        读字段值 (销售品类集句柄, “chengben”, 销售品类成本价)
+        读字段值 (销售品类集句柄, “gongfeilr”, 销售品类工费利润)
+        读字段值 (销售品类集句柄, “chegbengfhj”, 销售品类成本工费)
+        读字段值 (销售品类集句柄, “xiaoshougfhj”, 销售品类销售工费)
+        释放记录集 (销售品类集句柄)
+        
+        执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT LEFT(a.creationtime, 10) as acreationtime,CASE WHEN a.kufang = '0' THEN '0' ELSE a.kufang END AS kufangid,CASE WHEN COALESCE( f.id, '' ) = '' THEN '0' ELSE f.id END AS pinleiid,COALESCE ( e1.category_id, e2.category_id, '0' ) AS guigeid,CASE WHEN a.kufang = '0' THEN '总库' ELSE h.title END AS kufang,b.settlement_number as fsettlement_number,a.poduct_code as outbound_product_code,e.product_name as shop_product_name,e.item_number as shop_item_number,CASE WHEN COALESCE( f.title, '' ) = '' THEN '未匹配' ELSE f.title END AS pinlei,COALESCE ( e1.title, e2.title, '未匹配' ) AS specification_title,e.caizhi as material,e.quandu as quandu,c.factory_condition as company_condition,e.single as danjian,a.net_weight as jinzhong,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN a.net_weight ELSE CAST(ROUND( e.weight / e.quantity * a.quantity, 3 ) AS DECIMAL ( 10, 3 )) END AS zhongliang,e.sales_unit as danwei,CASE WHEN a.sales_return = '0' THEN c.basic_cost ELSE - c.basic_cost END AS chengbengf,CASE WHEN a.sales_return = '0' THEN c.premium_cost ELSE - c.premium_cost END AS cankaogf,CASE WHEN a.sales_return = '0' THEN c.company_surcharge ELSE - c.company_surcharge END AS chengbenfj,CASE WHEN COALESCE ( i.lingxiao, '' ) = '是' THEN CAST(ROUND( c.cost_price / e.jin_zhong * a.net_weight, 2 ) AS DECIMAL ( 30, 2 )) ELSE CAST(ROUND( c.cost_price * a.quantity, 2 ) AS DECIMAL ( 30, 2 )) END AS chengben,a.xiaodan_amount as xiaodan_amount,a.xiao_amount as xiao_amount,a.quantity as xsshuliang,CASE WHEN a.sales_return = '0' THEN c.sales_surcharge ELSE - c.sales_surcharge END AS yxiaoshoufj,a.gold_price AS kejia,a.sales_cost AS xiaoshougf,a.sales_surcharge AS xiaoshoufj,a.zhekou AS zhekou,a.settlement AS shishou,a.pling AS piling,CASE WHEN a.sales_return = '0' THEN '客销' ELSE '客退' END AS sales_return,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END-CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END,2) AS DECIMAL (30, 2)) AS gongfeilr,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN c.basic_cost * a.net_weight-c.company_surcharge ELSE c.basic_cost * a.net_weight+c.company_surcharge END, 2) AS DECIMAL (20, 2)) AS chegbengfhj,CAST(ROUND(CASE WHEN a.sales_return = 1 THEN -a.sales_cost * a.net_weight+a.sales_surcharge ELSE a.sales_cost * a.net_weight+a.sales_surcharge END, 2) AS DECIMAL (20, 2)) AS xiaoshougfhj,x.gold_price as gold_price FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order as b ON b.id=a.order_id INNER JOIN xipunum_erp_shop AS e ON e.poduct_code = a.poduct_code ”, 查找材质数据, “ INNER JOIN xipunum_erp_store AS c ON c.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = e.item_number AND e.item_number != '' LEFT JOIN xipunum_erp_type AS h ON h.id = a.kufang LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND e.item_number IS NOT NULL AND e.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = e.specification_id AND e.specification_id IS NOT NULL AND e.specification_id != '' LEFT JOIN xipunum_erp_category AS f ON f.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL INNER JOIN xipunum_erp_store_order AS x ON x.id = c.order_id WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' AND a.kufang='”, 销售店铺id, “'”, 查找信息批零, 查找信息金重, “ and COALESCE ( e1.category_id, e2.category_id, '0' ) in (”, 局部_自定义品类id, “) ORDER BY COALESCE ( e1.category_id, e2.category_id, '0' ) asc”)), #编码_GBK, #编码_UTF_8, )))
+        赋值 (销售详情集句柄, 取记录集 (全_MySQL读取_报表))
+        赋值 (销售详情数量, 取记录集行数 (销售详情集句柄))
+        .计次循环首 (销售详情数量, 销售详情计次)
+            赋值 (销售详情出库单号, “”)
+            赋值 (销售详情商品编码, “”)
+            赋值 (销售详情商品名称, “”)
+            赋值 (销售详情款号, “”)
+            赋值 (销售详情库房, “”)
+            赋值 (销售详情品类, “”)
+            赋值 (销售详情规格, “”)
+            赋值 (销售详情材质, “”)
+            赋值 (销售详情圈口长度, “”)
+            赋值 (销售详情成色, “”)
+            赋值 (销售详情单件重, “”)
+            赋值 (销售详情金重, “”)
+            赋值 (销售详情重量, “”)
+            赋值 (销售详情单位, “”)
+            赋值 (销售详情料价, “”)
+            赋值 (销售详情成本工费, “”)
+            赋值 (销售详情参考工费, “”)
+            赋值 (销售详情成本附加费, “”)
+            赋值 (销售详情成本价, “”)
+            赋值 (销售详情销售单价, “”)
+            赋值 (销售详情销售金额, “”)
+            赋值 (销售详情销售数量, “”)
+            赋值 (销售详情原附加费, “”)
+            赋值 (销售详情销售克价, “”)
+            赋值 (销售详情销售工费, “”)
+            赋值 (销售详情销售附加费, “”)
+            赋值 (销售详情折扣, “”)
+            赋值 (销售详情实收金额, “”)
+            赋值 (销售详情批零, “”)
+            赋值 (销售详情状态, “”)
+            赋值 (销售详情工费利润, “”)
+            赋值 (销售详情成本工费1, “”)
+            赋值 (销售详情销售工费1, “”)
+            赋值 (销售详情销售时间, “”)
+            读字段值 (销售详情集句柄, “fsettlement_number”, 销售详情出库单号)
+            读字段值 (销售详情集句柄, “outbound_product_code”, 销售详情商品编码)
+            读字段值 (销售详情集句柄, “acreationtime”, 销售详情销售时间)
+            读字段值 (销售详情集句柄, “shop_product_name”, 销售详情商品名称)
+            读字段值 (销售详情集句柄, “shop_item_number”, 销售详情款号)
+            读字段值 (销售详情集句柄, “kufang”, 销售详情库房)
+            读字段值 (销售详情集句柄, “pinlei”, 销售详情品类)
+            读字段值 (销售详情集句柄, “specification_title”, 销售详情规格)
+            读字段值 (销售详情集句柄, “material”, 销售详情材质)
+            读字段值 (销售详情集句柄, “quandu”, 销售详情圈口长度)
+            读字段值 (销售详情集句柄, “company_condition”, 销售详情成色)
+            读字段值 (销售详情集句柄, “danjian”, 销售详情单件重)
+            读字段值 (销售详情集句柄, “jinzhong”, 销售详情金重)
+            读字段值 (销售详情集句柄, “zhongliang”, 销售详情重量)
+            读字段值 (销售详情集句柄, “danwei”, 销售详情单位)
+            读字段值 (销售详情集句柄, “gold_price”, 销售详情料价)
+            读字段值 (销售详情集句柄, “chengbengf”, 销售详情成本工费)
+            读字段值 (销售详情集句柄, “cankaogf”, 销售详情参考工费)
+            读字段值 (销售详情集句柄, “chengbenfj”, 销售详情成本附加费)
+            读字段值 (销售详情集句柄, “chengben”, 销售详情成本价)
+            读字段值 (销售详情集句柄, “xiaodan_amount”, 销售详情销售单价)
+            读字段值 (销售详情集句柄, “xiao_amount”, 销售详情销售金额)
+            读字段值 (销售详情集句柄, “xsshuliang”, 销售详情销售数量)
+            读字段值 (销售详情集句柄, “yxiaoshoufj”, 销售详情原附加费)
+            读字段值 (销售详情集句柄, “kejia”, 销售详情销售克价)
+            读字段值 (销售详情集句柄, “xiaoshougf”, 销售详情销售工费)
+            读字段值 (销售详情集句柄, “xiaoshoufj”, 销售详情销售附加费)
+            读字段值 (销售详情集句柄, “zhekou”, 销售详情折扣)
+            读字段值 (销售详情集句柄, “shishou”, 销售详情实收金额)
+            读字段值 (销售详情集句柄, “piling”, 销售详情批零)
+            读字段值 (销售详情集句柄, “sales_return”, 销售详情状态)
+            读字段值 (销售详情集句柄, “gongfeilr”, 销售详情工费利润)
+            读字段值 (销售详情集句柄, “chegbengfhj”, 销售详情成本工费1)
+            读字段值 (销售详情集句柄, “xiaoshougfhj”, 销售详情销售工费1)
+            赋值 (信息循环计次, 相加 (信息循环计次, 1))
+            窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 0, 信息循环计次, 0, 到文本 (销售详情计次))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 1, 信息循环计次, 1, 到文本 (编码转换 (到字节集 (销售详情出库单号), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 2, 信息循环计次, 2, 到文本 (编码转换 (到字节集 (销售详情商品编码), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 3, 信息循环计次, 3, 到文本 (编码转换 (到字节集 (销售详情销售时间), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 4, 信息循环计次, 4, 到文本 (编码转换 (到字节集 (销售详情商品名称), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 5, 信息循环计次, 5, 到文本 (编码转换 (到字节集 (销售详情款号), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 6, 信息循环计次, 6, 到文本 (编码转换 (到字节集 (销售详情库房), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 7, 信息循环计次, 7, 到文本 (编码转换 (到字节集 (销售详情品类), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 8, 信息循环计次, 8, 到文本 (编码转换 (到字节集 (销售详情规格), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 9, 信息循环计次, 9, 到文本 (编码转换 (到字节集 (销售详情材质), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 10, 信息循环计次, 10, 到文本 (编码转换 (到字节集 (销售详情圈口长度), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 11, 信息循环计次, 11, 到文本 (编码转换 (到字节集 (销售详情成色), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 12, 信息循环计次, 12, 到文本 (编码转换 (到字节集 (销售详情单件重), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 13, 信息循环计次, 13, 到文本 (编码转换 (到字节集 (销售详情金重), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 14, 信息循环计次, 14, 到文本 (编码转换 (到字节集 (销售详情重量), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 15, 信息循环计次, 15, 到文本 (编码转换 (到字节集 (销售详情单位), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 16, 信息循环计次, 16, 到文本 (编码转换 (到字节集 (销售详情料价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 17, 信息循环计次, 17, 到文本 (编码转换 (到字节集 (销售详情成本工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 18, 信息循环计次, 18, 到文本 (编码转换 (到字节集 (销售详情参考工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 19, 信息循环计次, 19, 到文本 (编码转换 (到字节集 (销售详情成本附加费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 20, 信息循环计次, 20, 到文本 (编码转换 (到字节集 (销售详情成本价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 21, 信息循环计次, 21, 到文本 (编码转换 (到字节集 (销售详情销售单价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 22, 信息循环计次, 22, 到文本 (编码转换 (到字节集 (销售详情销售金额), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 23, 信息循环计次, 23, 到文本 (编码转换 (到字节集 (销售详情销售数量), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 24, 信息循环计次, 24, 到文本 (编码转换 (到字节集 (销售详情原附加费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 25, 信息循环计次, 25, 到文本 (编码转换 (到字节集 (销售详情销售克价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 26, 信息循环计次, 26, 到文本 (编码转换 (到字节集 (销售详情销售工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 27, 信息循环计次, 27, 到文本 (编码转换 (到字节集 (销售详情销售附加费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 28, 信息循环计次, 28, 到文本 (编码转换 (到字节集 (销售详情折扣), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 29, 信息循环计次, 29, 到文本 (编码转换 (到字节集 (销售详情实收金额), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 30, 信息循环计次, 30, 到文本 (编码转换 (到字节集 (销售详情工费利润), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 31, 信息循环计次, 31, 到文本 (编码转换 (到字节集 (销售详情成本工费1), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 32, 信息循环计次, 32, 到文本 (编码转换 (到字节集 (销售详情销售工费1), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 33, 信息循环计次, 33, 到文本 (编码转换 (到字节集 (销售详情批零), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 34, 信息循环计次, 34, 到文本 (编码转换 (到字节集 (销售详情状态), #编码_UTF_8, #编码_GBK, )))
+            到下一行 (销售详情集句柄)
+        .计次循环尾 ()
+        释放记录集 (销售详情集句柄)
+        .如果真 (或者 (不等于 (销售品类金重, “”), 不等于 (销售品类重量, “”), 不等于 (销售品类成本价, “”), 不等于 (销售品类销售, “”), 不等于 (销售品类销售数量, “”), 不等于 (销售品类实收, “”), 不等于 (销售品类工费利润, “”), 不等于 (销售品类成本工费, “”), 不等于 (销售品类销售工费, “”)))
+            赋值 (信息循环计次, 相加 (信息循环计次, 1))
+            窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 8, 信息循环计次, 8, 相加 (到文本 (编码转换 (到字节集 (自定义品类名称), #编码_UTF_8, #编码_GBK, )), 到文本 (“合计”)))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 13, 信息循环计次, 13, 到文本 (编码转换 (到字节集 (销售品类金重), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 14, 信息循环计次, 14, 到文本 (编码转换 (到字节集 (销售品类重量), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 20, 信息循环计次, 20, 到文本 (编码转换 (到字节集 (销售品类成本价), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 22, 信息循环计次, 22, 到文本 (编码转换 (到字节集 (销售品类销售), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 23, 信息循环计次, 23, 到文本 (编码转换 (到字节集 (销售品类销售数量), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 29, 信息循环计次, 29, 到文本 (编码转换 (到字节集 (销售品类实收), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 30, 信息循环计次, 30, 到文本 (编码转换 (到字节集 (销售品类工费利润), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 31, 信息循环计次, 31, 到文本 (编码转换 (到字节集 (销售品类成本工费), #编码_UTF_8, #编码_GBK, )))
+            窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 32, 信息循环计次, 32, 到文本 (编码转换 (到字节集 (销售品类销售工费), #编码_UTF_8, #编码_GBK, )))
+            
+            
+        .如果真结束
+        
+        到下一行 (自定义品类集句柄)
+    .计次循环尾 ()
+    释放记录集 (自定义品类集句柄)
+    
+    赋值 (信息循环计次, 相加 (信息循环计次, 1))
+    窗口_销售详情报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 30, 30, 30, , , )
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 6, 信息循环计次, 6, 到文本 (编码转换 (到字节集 (销售店铺名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 8, 信息循环计次, 8, 到文本 (“合计”))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 13, 信息循环计次, 13, 到文本 (编码转换 (到字节集 (销售店铺金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 14, 信息循环计次, 14, 到文本 (编码转换 (到字节集 (销售店铺重量), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 20, 信息循环计次, 20, 到文本 (编码转换 (到字节集 (销售店铺成本价), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 22, 信息循环计次, 22, 到文本 (编码转换 (到字节集 (销售店铺销售), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 23, 信息循环计次, 23, 到文本 (编码转换 (到字节集 (销售店铺销售数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 29, 信息循环计次, 29, 到文本 (编码转换 (到字节集 (销售店铺实收), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 30, 信息循环计次, 30, 到文本 (编码转换 (到字节集 (销售店铺工费利润), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 31, 信息循环计次, 31, 到文本 (编码转换 (到字节集 (销售店铺成本工费), #编码_UTF_8, #编码_GBK, )))
+    窗口_销售详情报表.报表数据_高级表格Ex.置项目文本 (信息循环计次, 32, 信息循环计次, 32, 到文本 (编码转换 (到字节集 (销售店铺销售工费), #编码_UTF_8, #编码_GBK, )))
+    
+    窗口_销售详情报表.报表数据_高级表格Ex.置字体色 (信息循环计次, 0, 信息循环计次, 30, -2084559)
+    赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+    到下一行 (销售店铺集句柄)
+.计次循环尾 ()
+释放记录集 (销售店铺集句柄)
+
+.如果真 (是否已创建 (窗口_进度条))
+    窗口_进度条.销毁 ()
+.如果真结束
+组件允许重画 (报表数据_高级表格组件句柄)
+返回 ()
+
+
