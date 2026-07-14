@@ -1,0 +1,1457 @@
+﻿.程序集 窗口程序集_窗口_报表对照报表, , , 
+.程序集变量 店铺名称_超级列表框组件句柄, 整数型, , , 
+.程序集变量 品类名称_超级列表框组件句柄, 整数型, , , 
+.程序集变量 报表数据_高级表格组件句柄, 整数型, , , 
+.程序集变量 工具条EX1句柄, 整数型, , , 
+.程序集变量 局部_查找类型文本, 文本型, , , 
+.程序集变量 查找昨日日期, 文本型, , , 
+.程序集变量 查找开始日期, 文本型, , , 
+.程序集变量 查找结束日期, 文本型, , , 
+.程序集变量 查找信息库房, 文本型, , , 
+.程序集变量 查找信息品类, 文本型, , , 
+
+.子程序 _窗口_报表对照报表_创建完毕, , , 
+
+赋值 (局部_查找类型文本, “报表对照报表”)
+赋值 (店铺名称_超级列表框组件句柄, 组件取窗口绑定组件 (窗口_报表对照报表.店铺名称_超级列表框EX.取窗口句柄 ()))
+赋值 (品类名称_超级列表框组件句柄, 组件取窗口绑定组件 (窗口_报表对照报表.品类名称_超级列表框EX.取窗口句柄 ()))
+赋值 (报表数据_高级表格组件句柄, 组件取窗口绑定组件 (窗口_报表对照报表.报表数据_高级表格Ex.取窗口句柄 ()))
+赋值 (工具条EX1句柄, 组件取窗口绑定组件 (窗口_报表对照报表.工具条EX1.取窗口句柄 ()))
+
+赋值 (窗口_报表对照报表.窗口Ex1.图标, 读入文件 (相加 (取运行目录 (), “\img\tubiao.jpg”)))
+窗口_报表对照报表._查询条件_初始化 ()
+赋值 (窗口_报表对照报表.窗口Ex1.标题, 相加 (“报表对照报表 业务时间:”, 窗口_报表对照报表.编辑框_起始时间.内容))
+窗口_报表对照报表._子程序_基础数据加载 ()
+窗口_报表对照报表._超级按钮EX_查询_鼠标左键单击 (0, 0, 0, 0)
+返回 ()
+
+
+.子程序 _窗口_报表对照报表_尺寸被改变, , , 
+.局部变量 工具条计次, 整数型, , , 
+
+.计次循环首 (7, 工具条计次)
+    窗口_报表对照报表.工具条EX1.置按钮尺寸 (相减 (工具条计次, 1), 相除 (窗口_报表对照报表.工具条EX1.宽度, 7))
+.计次循环尾 ()
+
+
+.子程序 _子程序_基础数据加载, , , 
+.局部变量 局部_工具条内容, 文本型, , , 
+.局部变量 工具条计次, 整数型, , , 
+.局部变量 局部_工具条内容数组, 文本型, , "0", 
+.局部变量 局部_单元宽度, 文本型, , "0", 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 局部_对齐方式, 文本型, , "0", 
+.局部变量 局部_表格头1, 文本型, , "0", 
+.局部变量 表头计次, 整数型, , , 
+
+
+赋值 (局部_工具条内容, “当日入库重量|当日销售重量|当日回收重量|当日调出重量|当日调入重量|当日退货重量|当前库存重量”)
+赋值 (局部_工具条内容数组, 分割文本 (局部_工具条内容, “|”, ))
+组件暂停重画 (工具条EX1句柄)
+.计次循环首 (7, 工具条计次)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 相减 (工具条计次, 1), -1, 0, 4, 1, 0, 局部_工具条内容数组[工具条计次], -14868183)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 相减 (工具条计次, 1), -1, 1, 4, 1, 0, “0.000”, -16777216)
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 相减 (工具条计次, 1), -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 相减 (工具条计次, 1), -1, 3, 4, 1, 0, “0.00%”, -3593686)
+.计次循环尾 ()
+组件允许重画 (工具条EX1句柄)
+
+赋值 (局部_表格头, {“昨日VS今日对照明细”, “”, “”, “”, “”, “”, “”})
+赋值 (局部_对齐方式, {“1”, “2”, “2”, “2”, “2”, “2”, “2”})
+赋值 (局部_单元宽度, {“85”, “140”, “-1”, “140”, “-1”, “-1”, “250”})
+赋值 (局部_表格头1, {“项目”, “昨日数量”, “昨日重量(g)”, “当日数量”, “当日重量(g)”, “重量变化(g)”, “趋势”})
+窗口_报表对照报表.报表数据_高级表格Ex.删除项目 (-1, -1)  ' 删除全部
+窗口_报表对照报表.报表数据_高级表格Ex.删除列 (-1, )  ' 删除全部
+组件暂停重画 (报表数据_高级表格组件句柄)
+.如果真 (等于 (窗口_报表对照报表.报表数据_高级表格Ex.取列数量 (), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.插入项目 (0, 1, 0, 65, 65, 65, , , )
+    .计次循环首 (取数组成员数 (局部_表格头), 表头计次)
+        窗口_报表对照报表.报表数据_高级表格Ex.插入列 (-1, 1, 到数值 (局部_单元宽度[表头计次]), 到数值 (局部_单元宽度[表头计次]), 到数值 (局部_单元宽度[表头计次]), 生成字体Ex数据 (“微软雅黑”, 17, 0, 3, 0, -7958890), , , 1, 生成字体Ex数据 (“微软雅黑”, 16, 0, 3, 0, -7958890), , , 到数值 (局部_对齐方式[表头计次]), , , , , , , , , , , )
+        窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (0, 相减 (表头计次, 1), 0, 相减 (表头计次, 1), 局部_表格头[表头计次])
+        .如果真 (等于 (取数组成员数 (局部_表格头), 表头计次))
+            组件插入元素 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), -1, 6)
+            组件置文本元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 0, -1, 0, , 5, 5, 20, 25, 0, 生成字体Ex数据 (“微软雅黑”, 13, 0, 3, 0, -7958890), 1)
+            组件置进度条元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 1, -1, 0, , 30, 8, 115, 20, 0, {}, 0, 0)
+            组件置文本元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 2, -1, 0, , 150, 5, 95, 25, 0, 生成字体Ex数据 (“微软雅黑”, 13, 0, 3, 0, -7958890), 7)
+            组件置文本元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 3, -1, 0, , 5, 35, 20, 25, 0, 生成字体Ex数据 (“微软雅黑”, 13, 0, 3, 0, -7958890), 1)
+            组件置进度条元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 4, -1, 0, , 30, 38, 115, 20, 0, {}, 0, 0)
+            组件置文本元素属性 (报表数据_高级表格组件句柄, #元素归属_超列项目, 相减 (表头计次, 1), 5, -1, 0, , 150, 35, 95, 25, 0, 生成字体Ex数据 (“微软雅黑”, 13, 0, 3, 0, -7958890), 7)
+            
+        .如果真结束
+        
+    .计次循环尾 ()
+    窗口_报表对照报表.报表数据_高级表格Ex.插入项目 (-1, 1, 0, 65, 65, 65, , , )
+    .计次循环首 (取数组成员数 (局部_表格头1), 表头计次)
+        窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (1, 相减 (表头计次, 1), 1, 相减 (表头计次, 1), 局部_表格头1[表头计次])
+    .计次循环尾 ()
+.如果真结束
+
+组件允许重画 (报表数据_高级表格组件句柄)
+
+.子程序 _编辑框_起始时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+赋值 (窗口_报表对照报表.编辑框_起始时间.内容, _主窗口_弹出日期框 ())
+返回 (0)
+
+.子程序 _查询条件_初始化, , , 
+.局部变量 库房列表集句柄, 整数型, , , 
+.局部变量 库房数量, 整数型, , , 
+.局部变量 库房计次, 整数型, , , 
+.局部变量 库房列表数据id, 文本型, , , 
+.局部变量 库房列表数据名称, 文本型, , , 
+.局部变量 品类列表集句柄, 整数型, , , 
+.局部变量 品类数量, 整数型, , , 
+.局部变量 品类计次, 整数型, , , 
+.局部变量 品类列表数据id, 文本型, , , 
+.局部变量 品类列表数据名称, 文本型, , , 
+
+赋值 (窗口_报表对照报表.编辑框_起始时间.内容, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真)))
+赋值 (窗口_报表对照报表.编辑框_起始时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+
+组件暂停重画 (店铺名称_超级列表框组件句柄)
+组件插入元素 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 1)
+组件置选择框元素属性 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 到整数 (&_报表对照报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 0, 1, 0, , 0, 1)
+组件插入元素 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0)
+组件置选择框元素属性 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0, 到整数 (&_报表对照报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+窗口_报表对照报表.店铺名称_超级列表框EX.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT id AS akufang,CASE WHEN id = '0' THEN '总库' ELSE title END AS btitle FROM xipunum_erp_type WHERE type = '商铺' AND superior = '0' AND id in (”, 全局_店铺权限操作, “) UNION ALL SELECT '0' AS akufang, '总库' AS btitle FROM dual WHERE '0' IN (”, 全局_店铺权限操作, “) ORDER BY akufang = '0' DESC, akufang”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (库房列表集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (库房数量, 取记录集行数 (库房列表集句柄))
+窗口_报表对照报表.店铺名称_超级列表框EX.插入项目 (-1, 库房数量, , 30)
+.计次循环首 (库房数量, 库房计次)
+    赋值 (库房列表数据id, “”)
+    赋值 (库房列表数据名称, “”)
+    读字段值 (库房列表集句柄, “akufang”, 库房列表数据id)
+    读字段值 (库房列表集句柄, “btitle”, 库房列表数据名称)
+    .如果 (等于 (库房计次, 1))
+        组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 1)
+    .否则
+        组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 0)
+    .如果结束
+    
+    窗口_报表对照报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 1, 取文本右边 (相加 (“000”, 到文本 (库房计次)), 取文本长度 (到文本 (库房数量))))
+    窗口_报表对照报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 2, 到文本 (编码转换 (到字节集 (库房列表数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表对照报表.店铺名称_超级列表框EX.置项目文本 (相减 (库房计次, 1), 3, 到文本 (编码转换 (到字节集 (库房列表数据id), #编码_UTF_8, #编码_GBK, )))
+    到下一行 (库房列表集句柄)
+.计次循环尾 ()
+释放记录集 (库房列表集句柄)
+组件允许重画 (店铺名称_超级列表框组件句柄)
+.如果真 (小于或等于 (库房数量, 1))
+    赋值 (窗口_报表对照报表.店铺名称_超级列表框EX.禁止, 真)
+.如果真结束
+
+
+组件暂停重画 (品类名称_超级列表框组件句柄)
+组件插入元素 (品类名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 1)
+组件置选择框元素属性 (品类名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 到整数 (&_报表对照报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+组件置选择框元素数据 (品类名称_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 0, 1, 0, , 0, 0)
+组件插入元素 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 1)
+组件置选择框元素属性 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0, 到整数 (&_报表对照报表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+窗口_报表对照报表.品类名称_超级列表框EX.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (“SELECT id,title FROM xipunum_erp_category WHERE 1=1 UNION ALL SELECT '0' AS id, '未匹配' AS title FROM dual ORDER BY CASE WHEN id = '0' THEN 0 ELSE 1 END,CAST(id AS UNSIGNED) asc;”), #编码_GBK, #编码_UTF_8, )))
+赋值 (品类列表集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (品类数量, 取记录集行数 (品类列表集句柄))
+窗口_报表对照报表.品类名称_超级列表框EX.插入项目 (-1, 品类数量, , 30)
+.计次循环首 (品类数量, 品类计次)
+    赋值 (品类列表数据id, “”)
+    赋值 (品类列表数据名称, “”)
+    读字段值 (品类列表集句柄, “id”, 品类列表数据id)
+    读字段值 (品类列表集句柄, “title”, 品类列表数据名称)
+    组件置选择框元素数据 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (品类计次, 1), 0, 0, 0, 1, 0, , 0, 1)
+    窗口_报表对照报表.品类名称_超级列表框EX.置项目文本 (相减 (品类计次, 1), 1, 取文本右边 (相加 (“000”, 到文本 (品类计次)), 取文本长度 (到文本 (品类数量))))
+    窗口_报表对照报表.品类名称_超级列表框EX.置项目文本 (相减 (品类计次, 1), 2, 到文本 (编码转换 (到字节集 (品类列表数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表对照报表.品类名称_超级列表框EX.置项目文本 (相减 (品类计次, 1), 3, 到文本 (编码转换 (到字节集 (品类列表数据id), #编码_UTF_8, #编码_GBK, )))
+    到下一行 (品类列表集句柄)
+.计次循环尾 ()
+释放记录集 (品类列表集句柄)
+组件允许重画 (品类名称_超级列表框组件句柄)
+
+
+.子程序 _报表对照报表_表头回调, 整数型, , 
+.参数 组件句柄, 整数型, , 
+.参数 元素事件, 整数型, , 
+.参数 元素归属, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+.局部变量 局_状态, 整数型, , , 
+.局部变量 局_计次, 整数型, , , 
+
+.如果真 (等于 (组件句柄, 店铺名称_超级列表框组件句柄))
+    .如果真 (并且 (等于 (元素事件, #元素事件_左键单击), 等于 (元素归属, #元素归属_超列表头)))
+        赋值 (局_状态, 到整数 (组件取选择框元素数据 (组件句柄, 元素归属, 项目索引, 列索引, 元素索引, 16)))
+        .计次循环首 (窗口_报表对照报表.店铺名称_超级列表框EX.取项目数量 (), 局_计次)
+            组件置选择框元素数据 (组件句柄, #元素归属_超列项目, 相减 (局_计次, 1), 0, 0, 0, 1, 0, “”, 0, 局_状态)
+        .计次循环尾 ()
+    .如果真结束
+    
+.如果真结束
+
+.如果真 (等于 (组件句柄, 品类名称_超级列表框组件句柄))
+    .如果真 (并且 (等于 (元素事件, #元素事件_左键单击), 等于 (元素归属, #元素归属_超列表头)))
+        赋值 (局_状态, 到整数 (组件取选择框元素数据 (组件句柄, 元素归属, 项目索引, 列索引, 元素索引, 16)))
+        .计次循环首 (窗口_报表对照报表.品类名称_超级列表框EX.取项目数量 (), 局_计次)
+            组件置选择框元素数据 (组件句柄, #元素归属_超列项目, 相减 (局_计次, 1), 0, 0, 0, 1, 0, “”, 0, 局_状态)
+        .计次循环尾 ()
+    .如果真结束
+    
+.如果真结束
+
+
+返回 (0)
+
+.子程序 _店铺名称_超级列表框EX_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果真 (大于 (窗口_报表对照报表.店铺名称_超级列表框EX.取项目数量 (), 0))
+        .如果 (等于 (到整数 (组件取选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 16)), 0))
+            组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 1)
+        .否则
+            组件置选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 0)
+        .如果结束
+        
+    .如果真结束
+    
+.如果真结束
+返回 (0)
+
+
+
+.子程序 _品类名称_超级列表框EX_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果真 (大于 (窗口_报表对照报表.品类名称_超级列表框EX.取项目数量 (), 0))
+        .如果 (等于 (到整数 (组件取选择框元素数据 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 16)), 0))
+            组件置选择框元素数据 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 1)
+        .否则
+            组件置选择框元素数据 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 0)
+        .如果结束
+        
+    .如果真结束
+    
+.如果真结束
+返回 (0)
+
+
+.子程序 _超级按钮EX_重置_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+窗口_报表对照报表._窗口_报表对照报表_创建完毕 ()
+返回 ()
+
+.子程序 _按钮EX_导出数据_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 导出表格, 类_导出EXCEL表格, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 高级表格行数, 整数型, , , 
+.局部变量 高级表格列数, 整数型, , , 
+.局部变量 表行_计次, 整数型, , , 
+.局部变量 表列_计次, 整数型, , , 
+.局部变量 导出报表名称, 文本型, , , 
+
+赋值 (高级表格行数, 窗口_报表对照报表.报表数据_高级表格Ex.取项目数量 ())
+赋值 (高级表格列数, 相减 (窗口_报表对照报表.报表数据_高级表格Ex.取列数量 (), 1))
+导出表格.置行数 (相加 (高级表格行数, 1))
+导出表格.置列数 (高级表格列数)
+.计次循环首 (高级表格行数, 表行_计次)
+    .计次循环首 (高级表格列数, 表列_计次)
+        导出表格.置数据 (表行_计次, 表列_计次, 窗口_报表对照报表.报表数据_高级表格Ex.取项目文本 (相减 (表行_计次, 1), 相减 (表列_计次, 1)))
+    .计次循环尾 ()
+.计次循环尾 ()
+赋值 (导出报表名称, “报表对照报表表.xlsx”)
+创建目录 (相加 (取运行目录 (), “\biaoge”))
+删除文件 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+导出表格.导出 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+执行 (4, 相加 (取运行目录 (), “\biaoge\”, 导出报表名称), , , )
+返回 ()
+
+
+.子程序 _超级按钮EX_查询_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 店铺名称权限, 文本型, , , 
+.局部变量 店铺名称数量, 整数型, , , 
+.局部变量 店铺名称计次, 整数型, , , 
+.局部变量 品类查看权限, 文本型, , , 
+.局部变量 品类查看数量, 整数型, , , 
+.局部变量 品类查看计次, 整数型, , , 
+
+赋值 (窗口_报表对照报表.超级按钮EX_查询.禁止, 真)
+赋值 (窗口_报表对照报表.超级按钮EX_重置.禁止, 真)
+赋值 (窗口_报表对照报表.按钮EX_导出数据.禁止, 真)
+赋值 (窗口_报表对照报表.窗口Ex1.标题, 相加 (“报表对照报表 业务时间:”, 窗口_报表对照报表.编辑框_起始时间.内容))
+
+赋值 (店铺名称权限, “”)
+赋值 (店铺名称数量, 0)
+.计次循环首 (窗口_报表对照报表.店铺名称_超级列表框EX.取项目数量 (), 店铺名称计次)
+    .如果真 (等于 (到整数 (组件取选择框元素数据 (店铺名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (店铺名称计次, 1), 0, 0, 16)), 1))
+        赋值 (店铺名称权限, 相加 (店铺名称权限, “'”, 窗口_报表对照报表.店铺名称_超级列表框EX.取项目文本 (相减 (店铺名称计次, 1), 3), 到文本 (“',”)))
+        赋值 (店铺名称数量, 相加 (店铺名称数量, 1))
+    .如果真结束
+    
+.计次循环尾 ()
+
+
+赋值 (品类查看权限, “”)
+赋值 (品类查看数量, 0)
+.计次循环首 (窗口_报表对照报表.品类名称_超级列表框EX.取项目数量 (), 品类查看计次)
+    .如果真 (等于 (到整数 (组件取选择框元素数据 (品类名称_超级列表框组件句柄, #元素归属_超列项目, 相减 (品类查看计次, 1), 0, 0, 16)), 1))
+        赋值 (品类查看权限, 相加 (品类查看权限, “'”, 窗口_报表对照报表.品类名称_超级列表框EX.取项目文本 (相减 (品类查看计次, 1), 3), 到文本 (“',”)))
+        赋值 (品类查看数量, 相加 (品类查看数量, 1))
+    .如果真结束
+    
+.计次循环尾 ()
+
+赋值 (查找昨日日期, 到文本 (时间_格式化 (增减时间 (到时间 (窗口_报表对照报表.编辑框_起始时间.内容), #日, -1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+赋值 (查找开始日期, 相加 (窗口_报表对照报表.编辑框_起始时间.内容, “ 00:00:00”))
+赋值 (查找结束日期, 到文本 (时间_格式化 (增减时间 (到时间 (窗口_报表对照报表.编辑框_起始时间.内容), #日, 1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+
+.如果 (不等于 (店铺名称数量, 0))
+    赋值 (查找信息库房, 相加 (“ (”, 到文本 (取文本左边 (店铺名称权限, 相减 (取文本长度 (店铺名称权限), 1))), “)”))
+.否则
+    
+    提示框Ex_添加消息 (“请选择需要查询的店铺！”, 9, 1000, , 假, )
+    窗口_报表对照报表.店铺名称_超级列表框EX.获取焦点 ()
+    赋值 (窗口_报表对照报表.超级按钮EX_查询.禁止, 假)
+    赋值 (窗口_报表对照报表.超级按钮EX_重置.禁止, 假)
+    赋值 (窗口_报表对照报表.按钮EX_导出数据.禁止, 假)
+    返回 ()
+.如果结束
+
+
+.如果 (大于 (品类查看数量, 0))
+    赋值 (查找信息品类, 相加 (“ (”, 到文本 (取文本左边 (品类查看权限, 相减 (取文本长度 (品类查看权限), 1))), “)”))
+.否则
+    赋值 (查找信息品类, “ ('')”)
+.如果结束
+
+窗口_报表对照报表._报表对照报表_报表数据详情_展示 ()
+赋值 (窗口_报表对照报表.超级按钮EX_查询.禁止, 假)
+赋值 (窗口_报表对照报表.超级按钮EX_重置.禁止, 假)
+赋值 (窗口_报表对照报表.按钮EX_导出数据.禁止, 假)
+返回 ()
+
+.子程序 _报表对照报表_报表数据详情_展示, , , 
+.局部变量 三位数处理文本, 文本型, , , 
+.局部变量 三位数处理文本数组, 文本型, , "0", 
+.局部变量 三位数处理内容, 文本型, , , 
+.局部变量 二位数处理文本, 文本型, , , 
+.局部变量 二位数处理文本数组, 文本型, , "0", 
+.局部变量 二位数处理内容, 文本型, , , 
+.局部变量 昨日库存集句柄, 整数型, , , 
+.局部变量 昨日库存数量, 文本型, , , 
+.局部变量 昨日库存金重, 文本型, , , 
+.局部变量 当日库存集句柄, 整数型, , , 
+.局部变量 当日库存数量, 文本型, , , 
+.局部变量 当日库存金重, 文本型, , , 
+.局部变量 插入数据行数, 整数型, , , 
+.局部变量 查询重量变化, 文本型, , , 
+.局部变量 查询重量趋势, 文本型, , , 
+.局部变量 昨日查询占比, 整数型, , , 
+.局部变量 当日查询占比, 整数型, , , 
+.局部变量 昨日数据集句柄, 整数型, , , 
+.局部变量 昨日数据入库数量, 文本型, , , 
+.局部变量 昨日数据入库金重, 文本型, , , 
+.局部变量 昨日数据销售数量, 文本型, , , 
+.局部变量 昨日数据销售金重, 文本型, , , 
+.局部变量 昨日数据回收数量, 文本型, , , 
+.局部变量 昨日数据回收金重, 文本型, , , 
+.局部变量 昨日数据调出数量, 文本型, , , 
+.局部变量 昨日数据调出金重, 文本型, , , 
+.局部变量 昨日数据调入数量, 文本型, , , 
+.局部变量 昨日数据调入金重, 文本型, , , 
+.局部变量 昨日数据退库数量, 文本型, , , 
+.局部变量 昨日数据退库金重, 文本型, , , 
+.局部变量 昨日数据合计数量, 文本型, , , 
+.局部变量 昨日数据合计金重, 文本型, , , 
+.局部变量 当日数据集句柄, 整数型, , , 
+.局部变量 当日数据入库数量, 文本型, , , 
+.局部变量 当日数据入库金重, 文本型, , , 
+.局部变量 当日数据销售数量, 文本型, , , 
+.局部变量 当日数据销售金重, 文本型, , , 
+.局部变量 当日数据回收数量, 文本型, , , 
+.局部变量 当日数据回收金重, 文本型, , , 
+.局部变量 当日数据调出数量, 文本型, , , 
+.局部变量 当日数据调出金重, 文本型, , , 
+.局部变量 当日数据调入数量, 文本型, , , 
+.局部变量 当日数据调入金重, 文本型, , , 
+.局部变量 当日数据退库数量, 文本型, , , 
+.局部变量 当日数据退库金重, 文本型, , , 
+.局部变量 当日数据合计数量, 文本型, , , 
+.局部变量 当日数据合计金重, 文本型, , , 
+.局部变量 理论库存重量, 文本型, , , 
+.局部变量 差异库存重量, 文本型, , , 
+
+赋值 (插入数据行数, 1)
+窗口_报表对照报表.报表数据_高级表格Ex.删除项目 (2, 相减 (窗口_报表对照报表.报表数据_高级表格Ex.取项目数量 (), 2))
+载入 (窗口_进度条, 窗口_报表对照报表, 假)
+赋值 (窗口_进度条.标题, “数据正在加载中...”)
+赋值 (窗口_进度条.进度条1.最大位置, 6)
+窗口_报表对照报表.报表数据_高级表格Ex.插入项目 (-1, 9, 0, 60, 60, 60, , , )
+组件暂停重画 (报表数据_高级表格组件句柄)
+组件暂停重画 (工具条EX1句柄)
+赋值 (昨日数据入库数量, “”)
+赋值 (昨日数据入库金重, “”)
+赋值 (昨日数据销售数量, “”)
+赋值 (昨日数据销售金重, “”)
+赋值 (昨日数据回收数量, “”)
+赋值 (昨日数据回收金重, “”)
+赋值 (昨日数据调出数量, “”)
+赋值 (昨日数据调出金重, “”)
+赋值 (昨日数据调入数量, “”)
+赋值 (昨日数据调入金重, “”)
+赋值 (昨日数据退库数量, “”)
+赋值 (昨日数据退库金重, “”)
+赋值 (昨日数据合计数量, “”)
+赋值 (昨日数据合计金重, “”)
+赋值 (窗口_进度条.标题, 相加 (“正在获取所需数据...(”, 取文本左边 (到文本 (相乘 (相除 (1, 6), 100)), 4), “%)”))
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND(COALESCE(rk.quantity-xs.quantity+hs.quantity-dc.quantity+dr.quantity-tk.quantity+tr.quantity,0), 2 ) AS DECIMAL ( 30, 2 )) as hjquantity,CAST(ROUND(COALESCE(rk.jinzhong-xs.jinzhong+hs.jinzhong-dc.jinzhong+dr.jinzhong-tk.jinzhong+tr.jinzhong,0), 3 ) AS DECIMAL ( 30, 3 )) as hjjinzhong,rk.quantity as rkquantity,rk.jinzhong as rkjinzhong,xs.quantity as xsquantity,xs.jinzhong as xsjinzhong,hs.quantity as hsquantity,hs.jinzhong as hsjinzhong,dc.quantity as dcquantity,dc.jinzhong as dcjinzhong,CAST(ROUND(COALESCE(dr.quantity+tr.quantity,0), 2 ) AS DECIMAL ( 30, 2 )) as drquantity,CAST(ROUND(COALESCE(dr.jinzhong+tr.jinzhong,0), 3 ) AS DECIMAL ( 30, 3 )) as drjinzhong,tk.quantity as tkquantity,tk.jinzhong as tkjinzhong FROM (SELECT ruku.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(ruku.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(ruku.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(a.quantity,0) AS quantity,COALESCE(a.jin_zhong,0) AS jinzhong FROM xipunum_erp_store as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND a.kufang IN ”, 查找信息库房, “) as ruku WHERE ruku.pinleiid in ”, 查找信息品类, “) as rk,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.net_weight,0) AS jinzhong FROM xipunum_erp_outbound as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND b.kufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as xs,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_transfer as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND b.ykufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as dc,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_transfer as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND b.xkufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as dr,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_tuiku AS b INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = b.order_id and c.state='正常' INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND b.ykufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as tk,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_tuiku AS b INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = b.order_id and c.state='正常' INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND b.xkufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as tr,(SELECT CAST(ROUND(COALESCE(sum(b.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(b.jin_zhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM xipunum_erp_retreat AS b INNER JOIN xipunum_erp_retreat_title AS a ON a.id = b.product_name WHERE b.creationtime >= '”, 查找昨日日期, “' AND b.creationtime < '”, 查找开始日期, “' AND b.cjuser IN (SELECT z.user FROM xipunum_erp_user AS z WHERE z.department in ”, 查找信息库房, “) and a.category_id in ”, 查找信息品类, “) as hs;”)), #编码_GBK, #编码_UTF_8, )))
+
+赋值 (昨日数据集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (昨日数据集句柄, “rkquantity”, 昨日数据入库数量)
+读字段值 (昨日数据集句柄, “rkjinzhong”, 昨日数据入库金重)
+读字段值 (昨日数据集句柄, “xsquantity”, 昨日数据销售数量)
+读字段值 (昨日数据集句柄, “xsjinzhong”, 昨日数据销售金重)
+读字段值 (昨日数据集句柄, “hsquantity”, 昨日数据回收数量)
+读字段值 (昨日数据集句柄, “hsjinzhong”, 昨日数据回收金重)
+读字段值 (昨日数据集句柄, “dcquantity”, 昨日数据调出数量)
+读字段值 (昨日数据集句柄, “dcjinzhong”, 昨日数据调出金重)
+读字段值 (昨日数据集句柄, “drquantity”, 昨日数据调入数量)
+读字段值 (昨日数据集句柄, “drjinzhong”, 昨日数据调入金重)
+读字段值 (昨日数据集句柄, “tkquantity”, 昨日数据退库数量)
+读字段值 (昨日数据集句柄, “tkjinzhong”, 昨日数据退库金重)
+读字段值 (昨日数据集句柄, “hjquantity”, 昨日数据合计数量)
+读字段值 (昨日数据集句柄, “hjjinzhong”, 昨日数据合计金重)
+释放记录集 (昨日数据集句柄)
+
+
+
+赋值 (当日数据入库数量, “”)
+赋值 (当日数据入库金重, “”)
+赋值 (当日数据销售数量, “”)
+赋值 (当日数据销售金重, “”)
+赋值 (当日数据回收数量, “”)
+赋值 (当日数据回收金重, “”)
+赋值 (当日数据调出数量, “”)
+赋值 (当日数据调出金重, “”)
+赋值 (当日数据调入数量, “”)
+赋值 (当日数据调入金重, “”)
+赋值 (当日数据退库数量, “”)
+赋值 (当日数据退库金重, “”)
+赋值 (当日数据合计数量, “”)
+赋值 (当日数据合计金重, “”)
+赋值 (窗口_进度条.标题, 相加 (“正在获取所需数据...(”, 取文本左边 (到文本 (相乘 (相除 (2, 6), 100)), 4), “%)”))
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND(COALESCE(rk.quantity-xs.quantity+hs.quantity-dc.quantity+dr.quantity-tk.quantity+tr.quantity,0), 2 ) AS DECIMAL ( 30, 2 )) as hjquantity,CAST(ROUND(COALESCE(rk.jinzhong-xs.jinzhong+hs.jinzhong-dc.jinzhong+dr.jinzhong-tk.jinzhong+tr.jinzhong,0), 3 ) AS DECIMAL ( 30, 3 )) as hjjinzhong,rk.quantity as rkquantity,rk.jinzhong as rkjinzhong,xs.quantity as xsquantity,xs.jinzhong as xsjinzhong,hs.quantity as hsquantity,hs.jinzhong as hsjinzhong,dc.quantity as dcquantity,dc.jinzhong as dcjinzhong,CAST(ROUND(COALESCE(dr.quantity+tr.quantity,0), 2 ) AS DECIMAL ( 30, 2 )) as drquantity,CAST(ROUND(COALESCE(dr.jinzhong+tr.jinzhong,0), 3 ) AS DECIMAL ( 30, 3 )) as drjinzhong,tk.quantity as tkquantity,tk.jinzhong as tkjinzhong FROM (SELECT ruku.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(ruku.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(ruku.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(a.quantity,0) AS quantity,COALESCE(a.jin_zhong,0) AS jinzhong FROM xipunum_erp_store as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND a.kufang IN ”, 查找信息库房, “) as ruku WHERE ruku.pinleiid in ”, 查找信息品类, “) as rk,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.net_weight,0) AS jinzhong FROM xipunum_erp_outbound as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND b.kufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as xs,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_transfer as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND b.ykufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as dc,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_transfer as b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND b.xkufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as dr,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_tuiku AS b INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = b.order_id and c.state='正常' INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND b.ykufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as tk,(SELECT xiaoshou.pinleiid as pinleiid,CAST(ROUND(COALESCE(sum(xiaoshou.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(xiaoshou.jinzhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM (SELECT CASE WHEN COALESCE(d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,COALESCE(b.quantity,0) AS quantity,COALESCE(b.jinzhong,0) AS jinzhong FROM xipunum_erp_tuiku AS b INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = b.order_id and c.state='正常' INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL  WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND b.xkufang IN ”, 查找信息库房, “) as xiaoshou WHERE xiaoshou.pinleiid in ”, 查找信息品类, “) as tr,(SELECT CAST(ROUND(COALESCE(sum(b.quantity),0), 2 ) AS DECIMAL ( 30, 2 )) as quantity,CAST(ROUND(COALESCE(sum(b.jin_zhong),0), 3 ) AS DECIMAL ( 30, 3 )) as jinzhong FROM xipunum_erp_retreat AS b INNER JOIN xipunum_erp_retreat_title AS a ON a.id = b.product_name WHERE b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' AND b.cjuser IN (SELECT z.user FROM xipunum_erp_user AS z WHERE z.department in ”, 查找信息库房, “) and a.category_id in ”, 查找信息品类, “) as hs;”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (当日数据集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (当日数据集句柄, “rkquantity”, 当日数据入库数量)
+读字段值 (当日数据集句柄, “rkjinzhong”, 当日数据入库金重)
+读字段值 (当日数据集句柄, “xsquantity”, 当日数据销售数量)
+读字段值 (当日数据集句柄, “xsjinzhong”, 当日数据销售金重)
+读字段值 (当日数据集句柄, “hsquantity”, 当日数据回收数量)
+读字段值 (当日数据集句柄, “hsjinzhong”, 当日数据回收金重)
+读字段值 (当日数据集句柄, “dcquantity”, 当日数据调出数量)
+读字段值 (当日数据集句柄, “dcjinzhong”, 当日数据调出金重)
+读字段值 (当日数据集句柄, “drquantity”, 当日数据调入数量)
+读字段值 (当日数据集句柄, “drjinzhong”, 当日数据调入金重)
+读字段值 (当日数据集句柄, “tkquantity”, 当日数据退库数量)
+读字段值 (当日数据集句柄, “tkjinzhong”, 当日数据退库金重)
+读字段值 (当日数据集句柄, “hjquantity”, 当日数据合计数量)
+读字段值 (当日数据集句柄, “hjjinzhong”, 当日数据合计金重)
+释放记录集 (当日数据集句柄)
+
+赋值 (窗口_进度条.标题, 相加 (“正在获取所需数据...(”, 取文本左边 (到文本 (相乘 (相除 (3, 6), 100)), 4), “%)”))
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据入库金重), 到数值 (昨日数据入库金重))))
+.如果 (等于 (到数值 (昨日数据入库金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据入库金重), 到数值 (昨日数据入库金重)), 到数值 (昨日数据入库金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据入库金重), 到数值 (当日数据入库金重)))
+    .如果 (不等于 (到数值 (昨日数据入库金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据入库金重), 到数值 (昨日数据入库金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据入库金重), 到数值 (当日数据入库金重)))
+    .如果 (不等于 (到数值 (当日数据入库金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据入库金重), 到数值 (当日数据入库金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “入库”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据入库数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据入库金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据入库数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据入库金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据入库金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据入库金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 0, -1, 1, 4, 1, 0, 当日数据入库金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 0, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 0, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 0, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 0, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据销售金重), 到数值 (昨日数据销售金重))))
+.如果 (等于 (到数值 (昨日数据销售金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据销售金重), 到数值 (昨日数据销售金重)), 到数值 (昨日数据销售金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据销售金重), 到数值 (当日数据销售金重)))
+    .如果 (不等于 (到数值 (昨日数据销售金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据销售金重), 到数值 (昨日数据销售金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据销售金重), 到数值 (当日数据销售金重)))
+    .如果 (不等于 (到数值 (当日数据销售金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据销售金重), 到数值 (当日数据销售金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “销售”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据销售数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据销售金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据销售数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据销售金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据销售金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据销售金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 1, -1, 1, 4, 1, 0, 当日数据销售金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 1, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 1, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 1, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 1, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据回收金重), 到数值 (昨日数据回收金重))))
+.如果 (等于 (到数值 (昨日数据回收金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据回收金重), 到数值 (昨日数据回收金重)), 到数值 (昨日数据回收金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据回收金重), 到数值 (当日数据回收金重)))
+    .如果 (不等于 (到数值 (昨日数据回收金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据回收金重), 到数值 (昨日数据回收金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据回收金重), 到数值 (当日数据回收金重)))
+    .如果 (不等于 (到数值 (当日数据回收金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据回收金重), 到数值 (当日数据回收金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “回收”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据回收数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据回收金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据回收数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据回收金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据回收金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据回收金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 2, -1, 1, 4, 1, 0, 当日数据回收金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 2, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 2, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 2, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 2, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据调出金重), 到数值 (昨日数据调出金重))))
+.如果 (等于 (到数值 (昨日数据调出金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据调出金重), 到数值 (昨日数据调出金重)), 到数值 (昨日数据调出金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据调出金重), 到数值 (当日数据调出金重)))
+    .如果 (不等于 (到数值 (昨日数据调出金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据调出金重), 到数值 (昨日数据调出金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据调出金重), 到数值 (当日数据调出金重)))
+    .如果 (不等于 (到数值 (当日数据调出金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据调出金重), 到数值 (当日数据调出金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “调出”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据调出数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据调出金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据调出数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据调出金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据调出金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据调出金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 3, -1, 1, 4, 1, 0, 当日数据调出金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 3, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 3, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 3, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 3, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据调入金重), 到数值 (昨日数据调入金重))))
+.如果 (等于 (到数值 (昨日数据调入金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据调入金重), 到数值 (昨日数据调入金重)), 到数值 (昨日数据调入金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据调入金重), 到数值 (当日数据调入金重)))
+    .如果 (不等于 (到数值 (昨日数据调入金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据调入金重), 到数值 (昨日数据调入金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据调入金重), 到数值 (当日数据调入金重)))
+    .如果 (不等于 (到数值 (当日数据调入金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据调入金重), 到数值 (当日数据调入金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “调入”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据调入数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据调入金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据调入数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据调入金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据调入金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据调入金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 4, -1, 1, 4, 1, 0, 当日数据调入金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 4, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 4, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 4, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 4, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据退库金重), 到数值 (昨日数据退库金重))))
+.如果 (等于 (到数值 (昨日数据退库金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据退库金重), 到数值 (昨日数据退库金重)), 到数值 (昨日数据退库金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据退库金重), 到数值 (当日数据退库金重)))
+    .如果 (不等于 (到数值 (昨日数据退库金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据退库金重), 到数值 (昨日数据退库金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据退库金重), 到数值 (当日数据退库金重)))
+    .如果 (不等于 (到数值 (当日数据退库金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据退库金重), 到数值 (当日数据退库金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “退库”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据退库数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据退库金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据退库数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据退库金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据退库金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据退库金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 5, -1, 1, 4, 1, 0, 当日数据退库金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 5, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 5, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 5, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 5, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日数据合计金重), 到数值 (昨日数据合计金重))))
+.如果 (等于 (到数值 (昨日数据合计金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日数据合计金重), 到数值 (昨日数据合计金重)), 到数值 (昨日数据合计金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日数据合计金重), 到数值 (当日数据合计金重)))
+    .如果 (不等于 (到数值 (昨日数据合计金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日数据合计金重), 到数值 (昨日数据合计金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日数据合计金重), 到数值 (当日数据合计金重)))
+    .如果 (不等于 (到数值 (当日数据合计金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日数据合计金重), 到数值 (当日数据合计金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “合计”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日数据合计数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日数据合计金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日数据合计数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日数据合计金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日数据合计金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日数据合计金重, -7958890)
+
+赋值 (窗口_进度条.标题, 相加 (“正在获取所需数据...(”, 取文本左边 (到文本 (相乘 (相除 (4, 6), 100)), 4), “%)”))
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+赋值 (昨日库存数量, “0.00”)
+赋值 (昨日库存金重, “0.000”)
+
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND( COALESCE(sum( rktol.kucun), 0), 2 ) AS DECIMAL ( 30, 2 )) AS kcnum,CAST(ROUND( COALESCE(sum( rktol.jinzhong), 0), 3 ) AS DECIMAL ( 30, 3 )) AS kcjinzhong FROM ( SELECT CASE WHEN b.kufang = '0' THEN '0' ELSE b.kufang END AS kufangid, CASE WHEN COALESCE ( d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid, COALESCE ( e1.id, e2.id, '0' ) AS guigeid, CASE WHEN b.kufang = '0' THEN '总库' ELSE h.title END AS kufang, CASE WHEN COALESCE ( d.title, '' ) = '' THEN '未匹配' ELSE d.title END AS pinlei, COALESCE ( e1.title, e2.title, '未匹配' ) AS guige, b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 )-COALESCE ( n.quantity, 0 ) AS kucun, b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 )- COALESCE ( n.jinzhong, 0 ) AS jinzhong FROM xipunum_erp_shop_kucun AS b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store AS c ON c.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store_order AS f ON f.id = c.order_id AND f.creationtime < '”, 查找开始日期, “' LEFT JOIN xipunum_erp_type AS h ON h.id = b.kufang LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL LEFT JOIN (SELECT poduct_code,kufang,sum( quantity ) AS quantity,sum( net_weight ) AS jinzhong FROM xipunum_erp_outbound WHERE creationtime >= '”, 查找开始日期, “' AND kufang IN ”, 查找信息库房, “ GROUP BY poduct_code,kufang) AS j ON j.poduct_code = b.poduct_code AND j.kufang = b.kufang LEFT JOIN (SELECT poduct_code,ykufang,sum( quantity ) AS quantity,sum( jinzhong ) AS jinzhong FROM xipunum_erp_transfer WHERE creationtime >= '”, 查找开始日期, “'  AND ykufang IN ”, 查找信息库房, “ GROUP BY poduct_code,ykufang ) AS k ON k.poduct_code = b.poduct_code AND k.ykufang = b.kufang LEFT JOIN (SELECT poduct_code,xkufang,sum( quantity ) AS quantity,sum( jinzhong ) AS jinzhong FROM xipunum_erp_transfer WHERE creationtime >= '”, 查找开始日期, “'  AND xkufang IN ”, 查找信息库房, “ GROUP BY poduct_code,xkufang ) AS l ON l.poduct_code = b.poduct_code AND l.xkufang = b.kufang LEFT JOIN (SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS b ON b.id = a.order_id WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.ykufang IN ”, 查找信息库房, “ and b.state='正常' GROUP BY a.poduct_code,a.ykufang ) AS m ON m.poduct_code = b.poduct_code AND m.ykufang = b.kufang LEFT JOIN (SELECT a.poduct_code as poduct_code,a.xkufang as xkufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS b ON b.id = a.order_id WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.xkufang IN  ”, 查找信息库房, “ and b.state='正常' GROUP BY a.poduct_code,a.xkufang ) AS n ON n.poduct_code = b.poduct_code AND n.xkufang = b.kufang WHERE b.kufang IN ”, 查找信息库房, “ AND (b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) -COALESCE ( n.quantity, 0 ) > 0 OR b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 )-COALESCE ( n.jinzhong, 0 ) > 0) GROUP BY b.poduct_code,b.kufang) AS rktol WHERE rktol.pinleiid IN ”, 查找信息品类, “ ORDER BY rktol.kufangid ASC;”)), #编码_GBK, #编码_UTF_8, )))
+
+赋值 (昨日库存集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (昨日库存集句柄, “kcnum”, 昨日库存数量)
+读字段值 (昨日库存集句柄, “kcjinzhong”, 昨日库存金重)
+释放记录集 (昨日库存集句柄)
+
+赋值 (窗口_进度条.标题, 相加 (“正在获取所需数据...(”, 取文本左边 (到文本 (相乘 (相除 (5, 6), 100)), 4), “%)”))
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+赋值 (当日库存数量, “0.00”)
+赋值 (当日库存金重, “0.000”)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND( COALESCE(sum( rktol.kucun), 0), 2 ) AS DECIMAL ( 30, 2 )) AS kcnum,CAST(ROUND( COALESCE(sum( rktol.jinzhong), 0), 3 ) AS DECIMAL ( 30, 3 )) AS kcjinzhong FROM ( SELECT CASE WHEN b.kufang = '0' THEN '0' ELSE b.kufang END AS kufangid, CASE WHEN COALESCE ( d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid, COALESCE ( e1.id, e2.id, '0' ) AS guigeid, CASE WHEN b.kufang = '0' THEN '总库' ELSE h.title END AS kufang, CASE WHEN COALESCE ( d.title, '' ) = '' THEN '未匹配' ELSE d.title END AS pinlei, COALESCE ( e1.title, e2.title, '未匹配' ) AS guige, b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 )-COALESCE ( n.quantity, 0 ) AS kucun, b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 )- COALESCE ( n.jinzhong, 0 ) AS jinzhong FROM xipunum_erp_shop_kucun AS b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store AS c ON c.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store_order AS f ON f.id = c.order_id AND f.creationtime < '”, 查找结束日期, “' LEFT JOIN xipunum_erp_type AS h ON h.id = b.kufang LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id AND a.item_number IS NOT NULL AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id AND a.specification_id IS NOT NULL AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id ) AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL LEFT JOIN (SELECT poduct_code,kufang,sum( quantity ) AS quantity,sum( net_weight ) AS jinzhong FROM xipunum_erp_outbound WHERE creationtime >= '”, 查找结束日期, “' AND kufang IN ”, 查找信息库房, “ GROUP BY poduct_code,kufang) AS j ON j.poduct_code = b.poduct_code AND j.kufang = b.kufang LEFT JOIN (SELECT poduct_code,ykufang,sum( quantity ) AS quantity,sum( jinzhong ) AS jinzhong FROM xipunum_erp_transfer WHERE creationtime >= '”, 查找结束日期, “'  AND ykufang IN ”, 查找信息库房, “ GROUP BY poduct_code,ykufang ) AS k ON k.poduct_code = b.poduct_code AND k.ykufang = b.kufang LEFT JOIN (SELECT poduct_code,xkufang,sum( quantity ) AS quantity,sum( jinzhong ) AS jinzhong FROM xipunum_erp_transfer WHERE creationtime >= '”, 查找结束日期, “'  AND xkufang IN ”, 查找信息库房, “ GROUP BY poduct_code,xkufang ) AS l ON l.poduct_code = b.poduct_code AND l.xkufang = b.kufang LEFT JOIN (SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS b ON b.id = a.order_id WHERE a.creationtime >= '”, 查找结束日期, “'  AND a.ykufang IN ”, 查找信息库房, “ and b.state='正常' GROUP BY a.poduct_code,a.ykufang ) AS m ON m.poduct_code = b.poduct_code AND m.ykufang = b.kufang LEFT JOIN (SELECT a.poduct_code as poduct_code,a.xkufang as xkufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS b ON b.id = a.order_id WHERE a.creationtime >= '”, 查找结束日期, “'  AND a.xkufang IN  ”, 查找信息库房, “ and b.state='正常' GROUP BY a.poduct_code,a.xkufang ) AS n ON n.poduct_code = b.poduct_code AND n.xkufang = b.kufang WHERE b.kufang IN ”, 查找信息库房, “ AND (b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) -COALESCE ( n.quantity, 0 ) > 0 OR b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 )-COALESCE ( n.jinzhong, 0 ) > 0) GROUP BY b.poduct_code,b.kufang) AS rktol WHERE rktol.pinleiid IN ”, 查找信息品类, “ ORDER BY rktol.kufangid ASC;”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (当日库存集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (当日库存集句柄, “kcnum”, 当日库存数量)
+读字段值 (当日库存集句柄, “kcjinzhong”, 当日库存金重)
+释放记录集 (当日库存集句柄)
+
+赋值 (窗口_进度条.标题, 相加 (“正在获取所需数据...(”, 取文本左边 (到文本 (相乘 (相除 (6, 6), 100)), 4), “%)”))
+赋值 (窗口_进度条.进度条1.位置, 相加 (窗口_进度条.进度条1.位置, 1))
+
+赋值 (查询重量变化, “”)
+赋值 (查询重量变化, 到文本 (相减 (到数值 (当日库存金重), 到数值 (昨日库存金重))))
+.如果 (等于 (到数值 (昨日库存金重), 0))
+    赋值 (查询重量趋势, “100”)
+.否则
+    赋值 (查询重量趋势, 到文本 (相乘 (相除 (相减 (到数值 (当日库存金重), 到数值 (昨日库存金重)), 到数值 (昨日库存金重)), 100)))
+.如果结束
+
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (查询重量变化), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量变化, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (查询重量趋势), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (二位数处理文本), #编码_GBK, #编码_UTF_8, )))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (相加 (二位数处理文本, “.00”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (编码转换 (到字节集 (“0.00”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (查询重量趋势, 二位数处理内容)
+赋值 (昨日查询占比, 100)
+赋值 (当日查询占比, 100)
+.如果真 (大于 (到数值 (昨日库存金重), 到数值 (当日库存金重)))
+    .如果 (不等于 (到数值 (昨日库存金重), 0))
+        赋值 (当日查询占比, 四舍五入 (相乘 (相除 (到数值 (当日库存金重), 到数值 (昨日库存金重)), 100), 0))
+    .否则
+        赋值 (当日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+.如果真 (小于 (到数值 (昨日库存金重), 到数值 (当日库存金重)))
+    .如果 (不等于 (到数值 (当日库存金重), 0))
+        赋值 (昨日查询占比, 四舍五入 (相乘 (相除 (到数值 (昨日库存金重), 到数值 (当日库存金重)), 100), 0))
+    .否则
+        赋值 (昨日查询占比, 0)
+    .如果结束
+    
+.如果真结束
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, “库存”)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 1, 插入数据行数, 1, 昨日库存数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 2, 插入数据行数, 2, 昨日库存金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 3, 插入数据行数, 3, 当日库存数量)
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 4, 插入数据行数, 4, 当日库存金重)
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 3, 插入数据行数, 4, -15311361)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (“+”, 查询重量变化, “(+”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -3593686)
+.否则
+    窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 5, 插入数据行数, 5, 相加 (查询重量变化, “(”, 查询重量趋势, “%)”))
+    窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 5, 插入数据行数, 5, -16744448)
+.如果结束
+
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 0, 0, 1, 0, “昨”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 1, 0, 1, 0, 昨日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 2, 0, 1, 0, 昨日库存金重, -7958890)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 3, 0, 1, 0, “今”, -7958890)
+组件置进度条元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 4, 0, 1, 0, 当日查询占比, 0, 100)
+组件置文本元素数据 (报表数据_高级表格组件句柄, #元素归属_超列项目, 插入数据行数, 6, 5, 0, 1, 0, 当日库存金重, -7958890)
+
+组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 6, -1, 1, 4, 1, 0, 当日库存金重, -16777216)
+.如果 (大于或等于 (到数值 (查询重量变化), 0))
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 6, -1, 2, , 1, 0, #上升, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 6, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -3593686)
+.否则
+    
+    组件置图片元素数据 (工具条EX1句柄, #元素归属_普列项目, 6, -1, 2, , 1, 0, #下降, 0, 0)
+    组件置文本元素数据 (工具条EX1句柄, #元素归属_普列项目, 6, -1, 3, 4, 1, 0, 相加 (查询重量趋势, “%”), -16744448)
+.如果结束
+
+
+
+赋值 (理论库存重量, 到文本 (相减 (相加 (相减 (相加 (到数值 (昨日库存金重), 到数值 (当日数据入库金重)), 到数值 (当日数据销售金重), 到数值 (当日数据调出金重)), 到数值 (当日数据调入金重)), 到数值 (当日数据退库金重))))
+赋值 (差异库存重量, 到文本 (相减 (到数值 (当日库存金重), 到数值 (理论库存重量))))
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (理论库存重量), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (理论库存重量, 三位数处理内容)
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (差异库存重量), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “00”)), #编码_GBK, #编码_UTF_8, )))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “0”)), #编码_GBK, #编码_UTF_8, )))
+            .否则
+                赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (三位数处理文本), #编码_GBK, #编码_UTF_8, )))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (相加 (三位数处理文本, “.000”)), #编码_GBK, #编码_UTF_8, )))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (编码转换 (到字节集 (“0.000”), #编码_GBK, #编码_UTF_8, )))
+.如果结束
+赋值 (差异库存重量, 三位数处理内容)
+
+赋值 (插入数据行数, 相加 (插入数据行数, 1))
+窗口_报表对照报表.报表数据_高级表格Ex.置项目文本 (插入数据行数, 0, 插入数据行数, 0, 相加 (“理论库存:”, 理论库存重量, “g  实际库存:”, 当日库存金重, “g  差异库存:”, 差异库存重量, “g”))
+窗口_报表对照报表.报表数据_高级表格Ex.置字体色 (插入数据行数, 0, 插入数据行数, 6, -3593686)
+
+窗口_报表对照报表.报表数据_高级表格Ex.合并单元格 (0, 0, 0, 6)
+窗口_报表对照报表.报表数据_高级表格Ex.合并单元格 (插入数据行数, 0, 插入数据行数, 6)
+
+.如果真 (是否已创建 (窗口_进度条))
+    窗口_进度条.销毁 ()
+.如果真结束
+
+
+组件允许重画 (报表数据_高级表格组件句柄)
+组件允许重画 (工具条EX1句柄)
+
+

@@ -1,0 +1,38 @@
+﻿.程序集 窗口程序集_窗口_款号管理图片预览, , , 
+
+.子程序 _窗口_款号管理图片预览_创建完毕, , , 
+.局部变量 查找款号id信息, 文本型, , , 
+.局部变量 款号数据集句柄, 整数型, , , 
+.局部变量 局部_款号数据名称原始图, 文本型, , , 
+.局部变量 款号数据款号信息, 文本型, , , 
+
+赋值 (查找款号id信息, 窗口_款号管理.局部_选中图片id)
+执行SQL语句 (全_MySQL读取, 到文本 (编码转换 (到字节集 (相加 (“SELECT a.id as aid,a.title as atitle,a.kuanhao as akuanhao,a.category_id as acategory_id,a.specification_id as aspecification_id,a.caizhi as caizhi,a.images as aimages,a.yimage as ayimage,c.title AS cpinlei,d.title AS dguige,a.xiangqian as axiangqian,a.lingxiao as alingxiao FROM xipunum_erp_ksiamges as a INNER JOIN xipunum_erp_category AS c ON c.id = a.category_id INNER JOIN xipunum_erp_specs AS d ON d.id = a.specification_id where a.id='”, 查找款号id信息, “' LIMIT 1”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (款号数据集句柄, 取记录集 (全_MySQL读取))
+读字段值 (款号数据集句柄, “ayimage”, 局部_款号数据名称原始图)
+读字段值 (款号数据集句柄, “akuanhao”, 款号数据款号信息)
+释放记录集 (款号数据集句柄)
+赋值 (窗口_款号管理图片预览.添加修改_分组框.标题, 相加 (到文本 (编码转换 (到字节集 (款号数据款号信息), #编码_UTF_8, #编码_GBK, )), “款号图片预览”))
+赋值 (窗口_款号管理图片预览.图片框Ex1.图片, HTTP读文件 (局部_款号数据名称原始图))
+返回 ()
+
+.子程序 _窗口_款号管理图片预览_尺寸被改变, , , 
+.局部变量 nWidth, 整数型, , , 
+.局部变量 nHeight, 整数型, , , 
+
+赋值 (nWidth, 取用户区宽度 ())
+赋值 (nHeight, 取用户区高度 ())
+赋值 (窗口_款号管理图片预览.添加修改_分组框.高度, 相减 (nHeight, 180))
+赋值 (窗口_款号管理图片预览.添加修改_分组框.宽度, 相减 (窗口_款号管理图片预览.添加修改_分组框.高度, 45))
+赋值 (窗口_款号管理图片预览.添加修改_分组框.左边, 相除 (相减 (窗口_款号管理图片预览.宽度, 窗口_款号管理图片预览.添加修改_分组框.宽度), 2))
+赋值 (窗口_款号管理图片预览.添加修改_分组框.顶边, 相除 (相减 (窗口_款号管理图片预览.高度, 窗口_款号管理图片预览.添加修改_分组框.高度), 2))
+
+.子程序 _图片框EX4_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+窗口_款号管理图片预览.销毁 ()
+返回 ()
+

@@ -1,0 +1,838 @@
+﻿.程序集 窗口程序集_窗口_报表收银汇总表, , , 
+.程序集变量 店铺查看_超级列表框组件句柄, 整数型, , , 
+
+.子程序 _窗口_报表收银汇总表_创建完毕, , , 
+
+赋值 (窗口_报表收银汇总表.编辑框_起始时间.内容, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真)))
+赋值 (窗口_报表收银汇总表.编辑框_起始时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+赋值 (窗口_报表收银汇总表.编辑框_结束时间.内容, 到文本 (时间_格式化 (取现行时间 (), “yyyy-MM-dd”, “”, 真)))
+赋值 (窗口_报表收银汇总表.编辑框_结束时间.输入方式, 位或 (#输入模式_禁止输入, #输入模式_禁止小写字母, #输入模式_禁止输入法, #输入模式_禁止大写字母, #输入模式_禁止其他ASCII))
+
+赋值 (窗口_报表收银汇总表.窗口Ex1.图标, 读入文件 (相加 (取运行目录 (), “\img\tubiao.jpg”)))
+窗口_报表收银汇总表._查询条件_初始化 ()
+赋值 (窗口_报表收银汇总表.窗口Ex1.标题, 相加 (“报表收银汇总表 时间:”, 窗口_报表收银汇总表.编辑框_起始时间.内容, “至”, 窗口_报表收银汇总表.编辑框_结束时间.内容))
+窗口_报表收银汇总表._报表数据_初始化 ()
+返回 ()
+
+.子程序 _窗口_报表收银汇总表_尺寸被改变, , , 
+
+赋值 (窗口_报表收银汇总表.高级表格1.左边, 5)
+赋值 (窗口_报表收银汇总表.高级表格1.宽度, 相减 (窗口_报表收银汇总表.宽度, 340))
+赋值 (窗口_报表收银汇总表.高级表格1.高度, 相减 (窗口_报表收银汇总表.高度, 40))
+赋值 (窗口_报表收银汇总表.高级表格1.顶边, 35)
+
+
+.子程序 子程序_删除表格, 逻辑型, , 
+
+.判断循环首 (大于 (窗口_报表收银汇总表.高级表格1.行数, 1))
+    窗口_报表收银汇总表.高级表格1.删除行 (1)
+.判断循环尾 ()
+返回 (真)
+
+.子程序 _编辑框_起始时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+赋值 (窗口_报表收银汇总表.编辑框_起始时间.内容, _主窗口_弹出日期框 ())
+返回 (0)
+
+.子程序 _编辑框_结束时间_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 查询结束时间, 文本型, , , 
+
+赋值 (查询结束时间, _主窗口_弹出日期框 ())
+.如果 (小于 (到时间 (查询结束时间), 到时间 (窗口_报表收银汇总表.编辑框_起始时间.内容)))
+    赋值 (窗口_报表收银汇总表.编辑框_结束时间.内容, 窗口_报表收银汇总表.编辑框_起始时间.内容)
+.否则
+    赋值 (窗口_报表收银汇总表.编辑框_结束时间.内容, 查询结束时间)
+.如果结束
+返回 (0)
+
+.子程序 _查询条件_初始化, , , 
+.局部变量 库房列表集句柄, 整数型, , , 
+.局部变量 库房数量, 整数型, , , 
+.局部变量 库房计次, 整数型, , , 
+.局部变量 库房列表数据id, 文本型, , , 
+.局部变量 库房列表数据名称, 文本型, , , 
+
+赋值 (店铺查看_超级列表框组件句柄, 组件取窗口绑定组件 (窗口_报表收银汇总表.店铺查看_超级列表框EX.取窗口句柄 ()))
+组件暂停重画 (店铺查看_超级列表框组件句柄)
+组件插入元素 (店铺查看_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 1)
+组件置选择框元素属性 (店铺查看_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 到整数 (&_报表收银汇总表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+组件置选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列表头, 0, 0, 0, 0, 1, 0, , 0, 0)
+组件插入元素 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 1)
+组件置选择框元素属性 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 0, 0, 0, 到整数 (&_报表收银汇总表_表头回调), 位或 (#布局模式_左边_居中, #布局模式_顶边_居中), , , 16, 16, 0, #复选框, , 16, 16, )
+窗口_报表收银汇总表.店铺查看_超级列表框EX.删除项目 (-1, )
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT id AS akufang,CASE WHEN id = '0' THEN '总库' ELSE title END AS btitle FROM xipunum_erp_type WHERE type = '商铺' AND superior = '0' AND id in (”, 全局_店铺权限操作, “) UNION ALL SELECT '0' AS akufang, '总库' AS btitle FROM dual WHERE '0' IN (”, 全局_店铺权限操作, “) ORDER BY akufang = '0' DESC, akufang”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (库房列表集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (库房数量, 取记录集行数 (库房列表集句柄))
+窗口_报表收银汇总表.店铺查看_超级列表框EX.插入项目 (-1, 库房数量, , 30)
+.计次循环首 (库房数量, 库房计次)
+    赋值 (库房列表数据id, “”)
+    赋值 (库房列表数据名称, “”)
+    读字段值 (库房列表集句柄, “akufang”, 库房列表数据id)
+    读字段值 (库房列表集句柄, “btitle”, 库房列表数据名称)
+    
+    .如果 (等于 (库房计次, 1))
+        组件置选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 1)
+    .否则
+        组件置选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 相减 (库房计次, 1), 0, 0, 0, 1, 0, , 0, 0)
+    .如果结束
+    
+    窗口_报表收银汇总表.店铺查看_超级列表框EX.置项目文本 (相减 (库房计次, 1), 1, 取文本右边 (相加 (“000”, 到文本 (库房计次)), 取文本长度 (到文本 (库房数量))))
+    窗口_报表收银汇总表.店铺查看_超级列表框EX.置项目文本 (相减 (库房计次, 1), 2, 到文本 (编码转换 (到字节集 (库房列表数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.店铺查看_超级列表框EX.置项目文本 (相减 (库房计次, 1), 3, 到文本 (编码转换 (到字节集 (库房列表数据id), #编码_UTF_8, #编码_GBK, )))
+    到下一行 (库房列表集句柄)
+.计次循环尾 ()
+释放记录集 (库房列表集句柄)
+组件允许重画 (店铺查看_超级列表框组件句柄)
+.如果真 (小于或等于 (库房数量, 1))
+    赋值 (窗口_报表收银汇总表.店铺查看_超级列表框EX.禁止, 真)
+.如果真结束
+
+
+.子程序 _报表收银汇总表_表头回调, 整数型, , 
+.参数 组件句柄, 整数型, , 
+.参数 元素事件, 整数型, , 
+.参数 元素归属, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 附加参数1, 整数型, , 
+.参数 附加参数2, 整数型, , 
+.参数 附加参数3, 整数型, , 
+.局部变量 局_状态, 整数型, , , 
+.局部变量 局_计次, 整数型, , , 
+
+.如果真 (等于 (组件句柄, 店铺查看_超级列表框组件句柄))
+    .如果真 (并且 (等于 (元素事件, #元素事件_左键单击), 等于 (元素归属, #元素归属_超列表头)))
+        赋值 (局_状态, 到整数 (组件取选择框元素数据 (组件句柄, 元素归属, 项目索引, 列索引, 元素索引, 16)))
+        .计次循环首 (窗口_报表收银汇总表.店铺查看_超级列表框EX.取项目数量 (), 局_计次)
+            组件置选择框元素数据 (组件句柄, #元素归属_超列项目, 相减 (局_计次, 1), 0, 0, 0, 1, 0, “”, 0, 局_状态)
+        .计次循环尾 ()
+    .如果真结束
+    
+.如果真结束
+
+返回 (0)
+
+
+.子程序 _店铺查看_超级列表框EX_项目左键单击, 整数型, , 
+.参数 项目索引, 整数型, , 
+.参数 列索引, 整数型, , 
+.参数 元素索引, 整数型, , 
+.参数 事件来源, 整数型, , 
+
+.如果真 (等于 (事件来源, 3))
+    .如果 (等于 (到整数 (组件取选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 16)), 0))
+        组件置选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 1)
+    .否则
+        组件置选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 项目索引, 0, 0, 0, 1, 0, “”, 0, 0)
+    .如果结束
+    
+.如果真结束
+
+
+.子程序 _超级按钮EX_查询_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+赋值 (超级按钮EX_查询.禁止, 真)
+赋值 (超级按钮EX_重置.禁止, 真)
+赋值 (按钮EX_导出数据.禁止, 真)
+窗口_报表收银汇总表._报表数据_初始化 ()
+赋值 (窗口_报表收银汇总表.窗口Ex1.标题, 相加 (“报表收银汇总表 时间:”, 窗口_报表收银汇总表.编辑框_起始时间.内容, “至”, 窗口_报表收银汇总表.编辑框_结束时间.内容))
+赋值 (超级按钮EX_查询.禁止, 假)
+赋值 (超级按钮EX_重置.禁止, 假)
+赋值 (按钮EX_导出数据.禁止, 假)
+返回 ()
+
+.子程序 _超级按钮EX_重置_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+
+赋值 (超级按钮EX_查询.禁止, 真)
+赋值 (超级按钮EX_重置.禁止, 真)
+赋值 (按钮EX_导出数据.禁止, 真)
+窗口_报表收银汇总表._窗口_报表收银汇总表_创建完毕 ()
+赋值 (超级按钮EX_查询.禁止, 假)
+赋值 (超级按钮EX_重置.禁止, 假)
+赋值 (按钮EX_导出数据.禁止, 假)
+
+返回 ()
+
+.子程序 _按钮EX_导出数据_鼠标左键单击, 整数型, , 
+.参数 坐标x, 整数型, , 
+.参数 坐标y, 整数型, , 
+.参数 保留参数1, 整数型, , 
+.参数 保留参数2, 整数型, , 
+.局部变量 导出表格, 类_导出EXCEL表格, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 高级表格行数, 整数型, , , 
+.局部变量 高级表格列数, 整数型, , , 
+.局部变量 表行_计次, 整数型, , , 
+.局部变量 表列_计次, 整数型, , , 
+.局部变量 导出报表名称, 文本型, , , 
+
+赋值 (高级表格行数, 窗口_报表收银汇总表.高级表格1.行数)
+赋值 (高级表格列数, 窗口_报表收银汇总表.高级表格1.列数)
+导出表格.置行数 (相加 (高级表格行数, 1))
+导出表格.置列数 (高级表格列数)
+.计次循环首 (高级表格行数, 表行_计次)
+    .计次循环首 (高级表格列数, 表列_计次)
+        导出表格.置数据 (表行_计次, 表列_计次, 窗口_报表收银汇总表.高级表格1.取数据 (相减 (表行_计次, 1), 相减 (表列_计次, 1)))
+    .计次循环尾 ()
+.计次循环尾 ()
+赋值 (导出报表名称, 相加 (“收银汇总表”, 到文本 (时间_格式化 (取现行时间 (), “yyyyMMdd”, “hhmmss”, 真)), “.xlsx”))
+创建目录 (相加 (取运行目录 (), “\biaoge”))
+删除文件 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+导出表格.导出 (相加 (取运行目录 (), “\biaoge\”, 导出报表名称))
+执行 (4, 相加 (取运行目录 (), “\biaoge\”, 导出报表名称), , , )
+返回 ()
+
+.子程序 _报表数据_初始化, , , 
+.局部变量 查找开始日期, 文本型, , , 
+.局部变量 查找结束日期, 文本型, , , 
+.局部变量 店铺查看计次, 整数型, , , 
+.局部变量 店铺查看权限, 文本型, , , 
+.局部变量 店铺查看数量, 整数型, , , 
+
+.局部变量 查找信息库房, 文本型, , , 
+.局部变量 查找出库库房, 文本型, , , 
+.局部变量 查找库存库房, 文本型, , , 
+.局部变量 查找入库库房, 文本型, , , 
+.局部变量 查找调入id数据, 文本型, , , 
+.局部变量 查找调出id数据, 文本型, , , 
+.局部变量 查找回收id数据, 文本型, , , 
+.局部变量 三位数处理文本, 文本型, , , 
+.局部变量 三位数处理文本数组, 文本型, , "0", 
+.局部变量 三位数处理内容, 文本型, , , 
+.局部变量 二位数处理文本, 文本型, , , 
+.局部变量 二位数处理文本数组, 文本型, , "0", 
+.局部变量 二位数处理内容, 文本型, , , 
+.局部变量 插入表格行数, 整数型, , , 
+.局部变量 销售合计集句柄, 整数型, , , 
+.局部变量 零售合计销售数量, 文本型, , , 
+.局部变量 零售合计销售重量, 文本型, , , 
+.局部变量 零售合计销售金额, 文本型, , , 
+.局部变量 批发合计销售数量, 文本型, , , 
+.局部变量 批发合计销售重量, 文本型, , , 
+.局部变量 批发合计销售金额, 文本型, , , 
+.局部变量 销售合计销售数量, 文本型, , , 
+.局部变量 销售合计销售重量, 文本型, , , 
+.局部变量 销售合计销售金额, 文本型, , , 
+.局部变量 回收合计集句柄, 整数型, , , 
+.局部变量 回收合计回收重量, 文本型, , , 
+.局部变量 回收合计回收金额, 文本型, , , 
+.局部变量 回收合计批发集句柄, 整数型, , , 
+.局部变量 回收合计批发重量, 文本型, , , 
+.局部变量 回收合计批发金额, 文本型, , , 
+.局部变量 回收合计零售重量, 文本型, , , 
+.局部变量 回收合计零售金额, 文本型, , , 
+.局部变量 零售实收金额, 文本型, , , 
+.局部变量 批发实收金额, 文本型, , , 
+.局部变量 销售实收金额, 文本型, , , 
+
+.局部变量 商品品类数据集句柄, 整数型, , , 
+.局部变量 商品品类数量, 整数型, , , 
+.局部变量 商品品类计次, 整数型, , , 
+.局部变量 销售品类数据名称, 文本型, , , 
+.局部变量 销售品类数据数量, 文本型, , , 
+.局部变量 销售品类数据金重, 文本型, , , 
+.局部变量 销售品类应收金额, 文本型, , , 
+.局部变量 库存数据汇总总数, 文本型, , , 
+.局部变量 库存数据汇总金重, 文本型, , , 
+.局部变量 入库数据汇总总数, 文本型, , , 
+.局部变量 入库数据汇总金重, 文本型, , , 
+.局部变量 退库数据汇总数量, 文本型, , , 
+.局部变量 退库数据汇总金重, 文本型, , , 
+.局部变量 调入数据汇总数量, 文本型, , , 
+.局部变量 调入数据汇总金重, 文本型, , , 
+.局部变量 调出数据汇总数量, 文本型, , , 
+.局部变量 调出数据汇总金重, 文本型, , , 
+.局部变量 实际销售汇总金额, 文本型, , , 
+.局部变量 回收金重汇总数量, 文本型, , , 
+.局部变量 回收金额汇总金重, 文本型, , , 
+
+.局部变量 销售合计差异行数, 整数型, , , 
+.局部变量 数据汇总集句柄, 整数型, , , 
+.局部变量 数据汇总库存数据汇总总数, 文本型, , , 
+.局部变量 数据汇总库存数据汇总金重, 文本型, , , 
+.局部变量 数据汇总入库数据汇总总数, 文本型, , , 
+.局部变量 数据汇总入库数据汇总金重, 文本型, , , 
+.局部变量 数据汇总退库数据汇总数量, 文本型, , , 
+.局部变量 数据汇总退库数据汇总金重, 文本型, , , 
+.局部变量 数据汇总调入数据汇总数量, 文本型, , , 
+.局部变量 数据汇总调入数据汇总金重, 文本型, , , 
+.局部变量 数据汇总调出数据汇总数量, 文本型, , , 
+.局部变量 数据汇总调出数据汇总金重, 文本型, , , 
+.局部变量 收款方式集句柄, 整数型, , , 
+.局部变量 收款方式数量, 整数型, , , 
+.局部变量 收款方式计次, 整数型, , , 
+.局部变量 收款方式数据名称, 文本型, , , 
+.局部变量 收款方式数据金额, 文本型, , , 
+.局部变量 收款数据汇总集句柄, 整数型, , , 
+.局部变量 收款数据汇总金额, 文本型, , , 
+.局部变量 销售数据差异金额, 文本型, , , 
+.局部变量 单回收汇总集句柄, 整数型, , , 
+.局部变量 单回收汇总金额, 文本型, , , 
+.局部变量 预售汇总集句柄, 整数型, , , 
+.局部变量 预售汇总金额, 文本型, , , 
+.局部变量 局部_表格头, 文本型, , "0", 
+.局部变量 局部_数据宽, 文本型, , "0", 
+.局部变量 表头计次, 整数型, , , 
+.局部变量 数据汇总退入数据汇总数量, 文本型, , , 
+.局部变量 数据汇总退入数据汇总金重, 文本型, , , 
+.局部变量 调入数量合计汇总, 文本型, , , 
+.局部变量 调入重量合计汇总, 文本型, , , 
+.局部变量 销售合计优惠金额, 文本型, , , 
+.局部变量 销售优惠集句柄, 整数型, , , 
+
+窗口_报表收银汇总表.子程序_删除表格 ()
+赋值 (插入表格行数, 4)
+赋值 (窗口_报表收银汇总表.高级表格1.行数, 5)
+赋值 (局部_数据宽, {“75”, “100”, “100”, “100”, “100”, “100”, “100”, “75”, “75”, “75”, “75”, “75”, “75”, “75”, “75”, “75”, “75”})
+赋值 (窗口_报表收银汇总表.高级表格1.列数, 取数组成员数 (局部_数据宽))
+赋值 (窗口_报表收银汇总表.高级表格1.行高, 38)
+.计次循环首 (取数组成员数 (局部_数据宽), 表头计次)
+    窗口_报表收银汇总表.高级表格1.置列宽 (相减 (表头计次, 1), 到数值 (局部_数据宽[表头计次]))
+.计次循环尾 ()
+
+赋值 (店铺查看权限, “”)
+赋值 (店铺查看数量, 0)
+.计次循环首 (窗口_报表收银汇总表.店铺查看_超级列表框EX.取项目数量 (), 店铺查看计次)
+    .如果真 (等于 (到整数 (组件取选择框元素数据 (店铺查看_超级列表框组件句柄, #元素归属_超列项目, 相减 (店铺查看计次, 1), 0, 0, 16)), 1))
+        赋值 (店铺查看权限, 相加 (店铺查看权限, “'”, 窗口_报表收银汇总表.店铺查看_超级列表框EX.取项目文本 (相减 (店铺查看计次, 1), 3), 到文本 (“',”)))
+        赋值 (店铺查看数量, 相加 (店铺查看数量, 1))
+    .如果真结束
+    
+.计次循环尾 ()
+
+赋值 (查找开始日期, 相加 (窗口_报表收银汇总表.编辑框_起始时间.内容, “ 00:00:00”))
+赋值 (查找结束日期, 到文本 (时间_格式化 (增减时间 (到时间 (窗口_报表收银汇总表.编辑框_结束时间.内容), #日, 1), “yyyy-MM-dd”, “ 00:00:00”, 真)))
+
+
+.如果 (不等于 (店铺查看数量, 0))
+    赋值 (查找信息库房, 相加 (“ and a.cjuser in (SELECT z.user FROM xipunum_erp_user AS z WHERE z.department in (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “))”))
+    赋值 (查找出库库房, 相加 (“ and a.kufang in (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “)”))
+    赋值 (查找入库库房, 相加 (“ and b.kufang in (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “)”))
+    赋值 (查找调入id数据, 相加 (“ and a.xkufang in (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “)”))
+    赋值 (查找调出id数据, 相加 (“ and a.ykufang in (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “)”))
+    赋值 (查找回收id数据, 相加 (“ and a.shopping_guide IN (SELECT z.USER FROM xipunum_erp_user AS z WHERE z.department IN (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “))”))
+    赋值 (查找库存库房, 相加 (“ a.kufang in (”, 到文本 (取文本左边 (店铺查看权限, 相减 (取文本长度 (店铺查看权限), 1))), “)”))
+    
+.否则
+    
+    赋值 (查找信息库房, 相加 (“ and a.cjuser in (SELECT z.user FROM xipunum_erp_user AS z WHERE z.department in (”, 全局_店铺权限操作, “))”))
+    赋值 (查找出库库房, 相加 (“ and a.kufang in (”, 全局_店铺权限操作, “)”))
+    赋值 (查找入库库房, 相加 (“ and b.kufang in (”, 全局_店铺权限操作, “)”))
+    赋值 (查找调入id数据, 相加 (“ and a.xkufang in (”, 全局_店铺权限操作, “)”))
+    赋值 (查找调出id数据, 相加 (“ and a.ykufang in (”, 全局_店铺权限操作, “)”))
+    赋值 (查找回收id数据, 相加 (“ and a.shopping_guide IN (SELECT z.USER FROM xipunum_erp_user AS z WHERE z.department IN (”, 全局_店铺权限操作, “))”))
+    赋值 (查找库存库房, 相加 (“ a.kufang in (”, 全局_店铺权限操作, “)”))
+.如果结束
+
+
+窗口_报表收银汇总表.高级表格1.合并 (0, 0, 0, 16)
+窗口_报表收银汇总表.高级表格1.置数据 (0, 0, #表格常量.文本型, “收银汇总表”)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (0, 0, 0, 1, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置字体尺寸 (0, 0, 0, 12, 28)
+
+窗口_报表收银汇总表.高级表格1.置数据 (1, 0, #表格常量.文本型, “日期”)
+窗口_报表收银汇总表.高级表格1.合并 (1, 1, 1, 16)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (1, 0, 1, 0, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置数据 (1, 1, #表格常量.文本型, 相加 (窗口_报表收银汇总表.编辑框_起始时间.内容, “至”, 窗口_报表收银汇总表.编辑框_结束时间.内容))
+窗口_报表收银汇总表.高级表格1.置字体尺寸 (1, 0, 1, 16, 22)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 0, #表格常量.文本型, “名称”)
+窗口_报表收银汇总表.高级表格1.置数据 (3, 0, #表格常量.文本型, “零售”)
+窗口_报表收银汇总表.高级表格1.置数据 (4, 0, #表格常量.文本型, “批发”)
+
+窗口_报表收银汇总表.高级表格1.合并 (2, 7, 2, 8)
+窗口_报表收银汇总表.高级表格1.合并 (2, 9, 2, 10)
+窗口_报表收银汇总表.高级表格1.合并 (2, 11, 2, 12)
+窗口_报表收银汇总表.高级表格1.合并 (2, 13, 2, 14)
+窗口_报表收银汇总表.高级表格1.合并 (2, 15, 2, 16)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 1, #表格常量.文本型, “件数”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 2, #表格常量.文本型, “克数”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 3, #表格常量.文本型, “实销价”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 4, #表格常量.文本型, “实收(元)”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 5, #表格常量.文本型, “旧料克重(g)”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 6, #表格常量.文本型, “旧料金额”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 7, #表格常量.文本型, “库存(件/克数)”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 9, #表格常量.文本型, “入库上柜(件/克数)”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 11, #表格常量.文本型, “退货(件/克数)”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 13, #表格常量.文本型, “调入(件/克数)”)
+窗口_报表收银汇总表.高级表格1.置数据 (2, 15, #表格常量.文本型, “调出(件/克数)”)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (2, 0, 2, 16, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (3, 1, 4, 16, #表格常量.右对齐)
+窗口_报表收银汇总表.高级表格1.置字体尺寸 (2, 0, 2, 16, 20)
+
+赋值 (零售合计销售数量, “”)
+赋值 (零售合计销售重量, “”)
+赋值 (零售合计销售金额, “”)
+赋值 (批发合计销售数量, “”)
+赋值 (批发合计销售重量, “”)
+赋值 (批发合计销售金额, “”)
+赋值 (销售合计销售数量, “”)
+赋值 (销售合计销售重量, “”)
+赋值 (销售合计销售金额, “”)
+
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND(sum(tol.lsquantity)+sum(tol.pfquantity), 2) AS DECIMAL (30, 2)) AS quantity,CAST(ROUND(sum(tol.lsnet_weight)+sum(tol.pfnet_weight), 3) AS DECIMAL (30, 3)) AS net_weight,CAST(ROUND(sum(tol.lssettlement)+sum(tol.pfsettlement), 2) AS DECIMAL (30, 2)) AS settlement,CAST(ROUND(sum(tol.lsquantity), 2) AS DECIMAL (30, 2)) AS lsquantity,CAST(ROUND(sum(tol.lsnet_weight), 3) AS DECIMAL (30, 3)) AS lsnet_weight,CAST(ROUND(sum(tol.lssettlement), 2) AS DECIMAL (30, 2)) AS lssettlement,CAST(ROUND(sum(tol.pfquantity), 2) AS DECIMAL (30, 2)) AS pfquantity,CAST(ROUND(sum(tol.pfnet_weight), 3) AS DECIMAL (30, 3)) AS pfnet_weight,CAST(ROUND(sum(tol.pfsettlement), 2) AS DECIMAL (30, 2)) AS pfsettlement FROM (SELECT SUM( CASE WHEN a.pling = '零售' THEN a.quantity ELSE 0 END ) AS lsquantity,SUM( CASE WHEN a.pling = '零售'THEN a.net_weight ELSE 0 END ) AS lsnet_weight,SUM( CASE WHEN a.pling = '零售' THEN a.settlement ELSE 0 END ) AS lssettlement,SUM( CASE WHEN a.pling = '批发' THEN a.quantity ELSE 0 END ) AS pfquantity,SUM( CASE WHEN a.pling = '批发' THEN a.net_weight ELSE 0 END ) AS pfnet_weight,SUM( CASE WHEN a.pling = '批发' THEN a.settlement ELSE 0 END ) AS pfsettlement,a.pling AS apiling FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order AS f ON f.id = a.order_id WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “'”, 查找出库库房, “ GROUP BY a.pling) AS tol”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (销售合计集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (销售合计集句柄, “lsquantity”, 零售合计销售数量)
+读字段值 (销售合计集句柄, “lsnet_weight”, 零售合计销售重量)
+读字段值 (销售合计集句柄, “lssettlement”, 零售合计销售金额)
+读字段值 (销售合计集句柄, “pfquantity”, 批发合计销售数量)
+读字段值 (销售合计集句柄, “pfnet_weight”, 批发合计销售重量)
+读字段值 (销售合计集句柄, “pfsettlement”, 批发合计销售金额)
+读字段值 (销售合计集句柄, “quantity”, 销售合计销售数量)
+读字段值 (销售合计集句柄, “net_weight”, 销售合计销售重量)
+读字段值 (销售合计集句柄, “settlement”, 销售合计销售金额)
+释放记录集 (销售合计集句柄)
+
+赋值 (销售合计优惠金额, “”)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND( sum( tol.youhui ), 2 ) AS DECIMAL ( 30, 2 )) AS youhui FROM (SELECT CASE WHEN f.sales_return = 1 THEN -f.youhui ELSE f.youhui END AS youhui FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order AS f ON f.id = a.order_id WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “'”, 查找出库库房, “ GROUP BY a.order_id) AS tol”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (销售优惠集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (销售优惠集句柄, “youhui”, 销售合计优惠金额)
+释放记录集 (销售优惠集句柄)
+
+
+赋值 (回收合计回收重量, “”)
+赋值 (回收合计回收金额, “”)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND( COALESCE ( sum(a.jin_zhong), 0 ), 3 ) AS DECIMAL ( 30, 3 )) AS jinzhong,CAST(ROUND( COALESCE ( sum(a.retreat_amount), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS huishou FROM xipunum_erp_retreat AS a WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “' ”, 查找信息库房, “ ORDER BY a.creationtime DESC”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (回收合计集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (回收合计集句柄, “jinzhong”, 回收合计回收重量)
+读字段值 (回收合计集句柄, “huishou”, 回收合计回收金额)
+释放记录集 (回收合计集句柄)
+
+赋值 (回收合计批发重量, “”)
+赋值 (回收合计批发金额, “”)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CAST(ROUND( COALESCE ( sum(tol.jin_zhong), 0 ), 3 ) AS DECIMAL ( 30, 3 )) AS jinzhong,CAST(ROUND( COALESCE ( sum(tol.retreat_amount), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS huishou FROM (SELECT d.jin_zhong as jin_zhong,d.retreat_amount as retreat_amount FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_outbound_order AS b ON b.id = a.order_id INNER JOIN xipunum_erp_retreat_order AS c ON c.retrea_umber = b.retrea_umber INNER JOIN (SELECT a.order_id as order_id,sum(a.jin_zhong) as jin_zhong,sum(a.retreat_amount) as retreat_amount FROM xipunum_erp_retreat as a WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' GROUP BY a.order_id) AS d ON d.order_id = c.id WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “' ”, 查找出库库房, “ and a.pling='批发' and b.retrea_umber IS NOT NULL  and b.retrea_umber!='' GROUP BY a.order_id) as tol”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (回收合计批发集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (回收合计批发集句柄, “jinzhong”, 回收合计批发重量)
+读字段值 (回收合计批发集句柄, “huishou”, 回收合计批发金额)
+释放记录集 (回收合计批发集句柄)
+
+赋值 (回收合计零售重量, “0”)
+赋值 (回收合计零售金额, “0”)
+赋值 (回收合计零售重量, 到文本 (相减 (到数值 (回收合计回收重量), 到数值 (回收合计批发重量))))
+赋值 (回收合计零售金额, 到文本 (相减 (到数值 (回收合计回收金额), 到数值 (回收合计批发金额))))
+
+赋值 (零售实收金额, “0”)
+赋值 (批发实收金额, “0”)
+赋值 (销售实收金额, “0”)
+赋值 (零售实收金额, 到文本 (相减 (到数值 (零售合计销售金额), 到数值 (回收合计零售金额))))
+赋值 (批发实收金额, 到文本 (相减 (到数值 (批发合计销售金额), 到数值 (回收合计批发金额))))
+赋值 (销售实收金额, 到文本 (相减 (到数值 (销售合计销售金额), 到数值 (回收合计回收金额))))
+
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (回收合计零售重量), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (相加 (三位数处理文本, “00”)))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (相加 (三位数处理文本, “0”)))
+            .否则
+                赋值 (三位数处理内容, 到文本 (三位数处理文本))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (相加 (三位数处理文本, “.000”)))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (“0.000”))
+.如果结束
+赋值 (回收合计零售重量, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (回收合计零售金额), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “0”)))
+        .否则
+            赋值 (二位数处理内容, 到文本 (二位数处理文本))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “.00”)))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (“0.00”))
+.如果结束
+赋值 (回收合计零售金额, 二位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (零售实收金额), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “0”)))
+        .否则
+            赋值 (二位数处理内容, 到文本 (二位数处理文本))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “.00”)))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (“0.00”))
+.如果结束
+赋值 (零售实收金额, 二位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (批发实收金额), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “0”)))
+        .否则
+            赋值 (二位数处理内容, 到文本 (二位数处理文本))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “.00”)))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (“0.00”))
+.如果结束
+赋值 (批发实收金额, 二位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (销售实收金额), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “0”)))
+        .否则
+            赋值 (二位数处理内容, 到文本 (二位数处理文本))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “.00”)))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (“0.00”))
+.如果结束
+赋值 (销售实收金额, 二位数处理内容)
+
+
+窗口_报表收银汇总表.高级表格1.置数据 (3, 1, #表格常量.文本型, 零售合计销售数量)
+窗口_报表收银汇总表.高级表格1.置数据 (3, 2, #表格常量.文本型, 零售合计销售重量)
+窗口_报表收银汇总表.高级表格1.置数据 (3, 3, #表格常量.文本型, 零售合计销售金额)
+窗口_报表收银汇总表.高级表格1.置数据 (3, 4, #表格常量.文本型, 零售实收金额)
+窗口_报表收银汇总表.高级表格1.置数据 (3, 5, #表格常量.文本型, 回收合计零售重量)
+窗口_报表收银汇总表.高级表格1.置数据 (3, 6, #表格常量.文本型, 回收合计零售金额)
+
+窗口_报表收银汇总表.高级表格1.置数据 (4, 1, #表格常量.文本型, 批发合计销售数量)
+窗口_报表收银汇总表.高级表格1.置数据 (4, 2, #表格常量.文本型, 批发合计销售重量)
+窗口_报表收银汇总表.高级表格1.置数据 (4, 3, #表格常量.文本型, 批发合计销售金额)
+窗口_报表收银汇总表.高级表格1.置数据 (4, 4, #表格常量.文本型, 批发实收金额)
+窗口_报表收银汇总表.高级表格1.置数据 (4, 5, #表格常量.文本型, 回收合计批发重量)
+窗口_报表收银汇总表.高级表格1.置数据 (4, 6, #表格常量.文本型, 回收合计批发金额)
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT CASE WHEN a.pinleiid = '0' THEN '未匹配' ELSE b.title END AS pinlei,a.pinleiid as pinleiid,CAST(ROUND(chuku.quantity, 2) AS DECIMAL (30, 2)) AS ckquantity,CAST(ROUND(chuku.jinzhong, 3) AS DECIMAL (30, 3)) AS ckjinzhong,CAST(ROUND(chuku.settlement, 2) AS DECIMAL (30, 2)) AS cksettlement,CAST(ROUND(chuku.settlement-huishou.hsjine, 2) AS DECIMAL (30, 2)) AS ssjine,CAST(ROUND(huishou.hsjin_zhong, 3) AS DECIMAL (30, 3)) AS hsjin_zhong,CAST(ROUND(huishou.hsjine, 2) AS DECIMAL (30, 2)) AS hsjine,CAST(ROUND(kucun.kucunnum, 2) AS DECIMAL (30, 2)) AS kckucunnum,CAST(ROUND(kucun.kucunjinzhong, 3) AS DECIMAL (30, 3)) AS kckucunjinzhong,CAST(ROUND(ruku.rukunum, 2) AS DECIMAL (30, 2)) AS rukunum,CAST(ROUND(ruku.jinzhong, 3) AS DECIMAL (30, 3)) AS rkjinzhong,CAST(ROUND(tuihuo.thquantity, 2) AS DECIMAL (30, 2)) AS thquantity,CAST(ROUND(tuihuo.thjinzhong, 3) AS DECIMAL (30, 3)) AS thjinzhong,CAST(ROUND(COALESCE (diaoru.drquantity, 0 )+COALESCE (tuiru.trquantity, 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS drquantity,CAST(ROUND(COALESCE (diaoru.drjinzhong, 0 )+COALESCE (tuiru.trjinzhong, 0 ), 3 ) AS DECIMAL ( 30, 3 )) AS drjinzhong,CAST(ROUND(diaochu.dcquantity, 2) AS DECIMAL (30, 2)) AS dcquantity,CAST(ROUND(diaochu.dcjinzhong, 3) AS DECIMAL (30, 3)) AS dcjinzhong FROM (SELECT '0' AS pinleiid UNION ALL SELECT CAST(id AS CHAR) AS pinleiid FROM xipunum_erp_category WHERE 1 = 1 ) AS a LEFT JOIN xipunum_erp_category AS b ON b.id = a.pinleiid LEFT JOIN (SELECT CASE WHEN COALESCE (d.category_id, e.category_id,'') = '' THEN '0' ELSE COALESCE (d.category_id, e.category_id) END AS pinleiid,CAST(ROUND(COALESCE(sum(a.quantity), 0), 2) AS DECIMAL(30, 2)) AS quantity,CAST(ROUND(COALESCE(sum(a.net_weight), 0), 3) AS DECIMAL(30, 3)) AS jinzhong,CAST(ROUND(COALESCE(sum(a.settlement), 0), 2) AS DECIMAL(30, 2)) AS settlement FROM xipunum_erp_outbound AS a INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS d ON d.kuanhao = b.item_number AND b.item_number != '' LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id AND b.specification_id IS NOT NULL AND b.specification_id != '' WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “' ”, 查找出库库房, “ GROUP BY CASE WHEN COALESCE(d.category_id, e.category_id, '') = '' THEN '0' ELSE COALESCE(d.category_id, e.category_id) END) AS chuku ON chuku.pinleiid = a.pinleiid LEFT JOIN (SELECT rktol.pinleiid AS pinleiid,CAST(ROUND( sum( rktol.kucun ), 2 ) AS DECIMAL ( 10, 2 )) AS kucunnum,CAST(ROUND( sum( rktol.jinzhong ), 3 ) AS DECIMAL ( 10, 3 )) AS kucunjinzhong FROM (SELECT CASE WHEN b.kufang = '0' THEN '0' ELSE b.kufang END AS kufangid,CASE WHEN COALESCE ( d.id, '' ) = '' THEN '0' ELSE d.id END AS pinleiid,CASE WHEN b.kufang = '0' THEN '总库' ELSE h.title  END AS kufang,b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) AS kucun,b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 ) AS jinzhong  FROM xipunum_erp_shop_kucun AS b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store AS c ON c.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store_order AS f ON f.id = c.order_id  AND f.creationtime < '”, 查找结束日期, “' LEFT JOIN xipunum_erp_type AS h ON h.id = b.kufang LEFT JOIN xipunum_erp_about AS g ON g.id = f.factory LEFT JOIN xipunum_erp_ksiamges AS i ON i.kuanhao = a.item_number  AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e1 ON e1.id = i.specification_id  AND a.item_number IS NOT NULL  AND a.item_number != '' LEFT JOIN xipunum_erp_specs AS e2 ON e2.id = a.specification_id  AND a.specification_id IS NOT NULL  AND a.specification_id != '' LEFT JOIN xipunum_erp_category AS d ON d.id = COALESCE ( e1.category_id, e2.category_id )  AND COALESCE ( e1.category_id, e2.category_id ) IS NOT NULL LEFT JOIN ( SELECT b.poduct_code as poduct_code,b.kufang as kufang,sum( b.quantity ) AS quantity,sum( b.net_weight ) AS jinzhong  FROM xipunum_erp_outbound as b WHERE b.creationtime >= '”, 查找结束日期, “'”, 查找入库库房, “  GROUP BY b.poduct_code,b.kufang  ) AS j ON j.poduct_code = b.poduct_code  AND j.kufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY a.poduct_code,a.ykufang  ) AS k ON k.poduct_code = b.poduct_code  AND k.ykufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.xkufang as xkufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调入id数据, “ GROUP BY a.poduct_code,a.xkufang  ) AS l ON l.poduct_code = b.poduct_code  AND l.xkufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_tuiku as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY a.poduct_code,a.ykufang  ) AS m ON m.poduct_code = b.poduct_code  AND m.ykufang = b.kufang  WHERE 1=1 ”, 查找入库库房, “ AND ( b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) > 0  OR b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 ) > 0  )  GROUP BY b.poduct_code,  b.kufang  ) AS rktol  WHERE 1=1 GROUP BY rktol.pinleiid ORDER BY rktol.kufangid ASC) as kucun ON kucun.pinleiid =a.pinleiid LEFT JOIN (SELECT CASE WHEN COALESCE (d.category_id, e.category_id,'') = '' THEN '0' ELSE COALESCE (d.category_id, e.category_id) END AS pinleiid,CAST(ROUND(sum( b.quantity ), 2 ) AS DECIMAL ( 30, 2 )) AS rukunum,CAST(ROUND(sum( b.jin_zhong ), 3 ) AS DECIMAL ( 30, 3 )) AS jinzhong FROM xipunum_erp_store AS a INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code  LEFT JOIN xipunum_erp_ksiamges AS d ON d.kuanhao = b.item_number AND b.item_number != '' LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id AND b.specification_id IS NOT NULL AND b.specification_id != '' WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “' ”, 查找入库库房, “ GROUP BY CASE WHEN COALESCE(d.category_id, e.category_id, '') = '' THEN '0' ELSE COALESCE(d.category_id, e.category_id) END) as ruku ON ruku.pinleiid = a.pinleiid LEFT JOIN (SELECT CASE WHEN COALESCE (d.category_id, e.category_id,'') = '' THEN '0' ELSE COALESCE (d.category_id, e.category_id) END AS pinleiid,CAST(ROUND( sum( a.quantity ), 2 ) AS DECIMAL ( 30, 2 )) AS thquantity,CAST(ROUND( sum( a.jinzhong ), 3 ) AS DECIMAL ( 30, 3 )) AS thjinzhong FROM xipunum_erp_tuiku AS a INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = a.order_id AND c.state = '正常' INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code  LEFT JOIN xipunum_erp_ksiamges AS d ON d.kuanhao = b.item_number AND b.item_number != '' LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id AND b.specification_id IS NOT NULL AND b.specification_id != '' WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY CASE WHEN COALESCE(d.category_id, e.category_id, '') = '' THEN '0' ELSE COALESCE(d.category_id, e.category_id) END) as tuihuo  ON tuihuo.pinleiid = a.pinleiid  LEFT JOIN (SELECT CASE WHEN COALESCE (d.category_id, e.category_id,'') = '' THEN '0' ELSE COALESCE (d.category_id, e.category_id) END AS pinleiid,CAST(ROUND( sum( a.quantity ), 2 ) AS DECIMAL ( 30, 2 )) AS trquantity,CAST(ROUND( sum( a.jinzhong ), 3 ) AS DECIMAL ( 30, 3 )) AS trjinzhong FROM xipunum_erp_tuiku AS a INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = a.order_id AND c.state = '正常' INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code  LEFT JOIN xipunum_erp_ksiamges AS d ON d.kuanhao = b.item_number AND b.item_number != '' LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id AND b.specification_id IS NOT NULL AND b.specification_id != '' WHERE a.creationtime >= '”, 查找开始日期, “'  AND a.creationtime < '”, 查找结束日期, “'”, 查找调入id数据, “ GROUP BY CASE WHEN COALESCE(d.category_id, e.category_id, '') = '' THEN '0' ELSE COALESCE(d.category_id, e.category_id) END) as tuiru  ON tuiru.pinleiid = a.pinleiid LEFT JOIN (SELECT CASE WHEN COALESCE (d.category_id, e.category_id,'') = '' THEN '0' ELSE COALESCE (d.category_id, e.category_id) END AS pinleiid,CAST(ROUND(sum(a.quantity), 2 ) AS DECIMAL ( 30, 2 )) AS drquantity,CAST(ROUND(sum(a.jinzhong), 3 ) AS DECIMAL ( 30, 3 )) AS drjinzhong FROM xipunum_erp_transfer AS a   INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code    LEFT JOIN xipunum_erp_ksiamges AS d ON d.kuanhao = b.item_number AND b.item_number != '' LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id AND b.specification_id IS NOT NULL AND b.specification_id != '' WHERE   a.creationtime >= '”, 查找开始日期, “'    AND a.creationtime < '”, 查找结束日期, “'”, 查找调入id数据, “ GROUP BY CASE WHEN COALESCE(d.category_id, e.category_id, '') = '' THEN '0' ELSE COALESCE(d.category_id, e.category_id) END) as diaoru  ON diaoru.pinleiid = a.pinleiid LEFT JOIN (SELECT CASE WHEN COALESCE (d.category_id, e.category_id,'') = '' THEN '0' ELSE COALESCE (d.category_id, e.category_id) END AS pinleiid,CAST(ROUND(sum(a.quantity), 2 ) AS DECIMAL ( 30, 2 )) AS dcquantity,CAST(ROUND(sum(a.jinzhong), 3 ) AS DECIMAL ( 30, 3 )) AS dcjinzhong FROM xipunum_erp_transfer AS a INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code LEFT JOIN xipunum_erp_ksiamges AS d ON d.kuanhao = b.item_number AND b.item_number != '' LEFT JOIN xipunum_erp_specs AS e ON e.id = b.specification_id AND b.specification_id IS NOT NULL AND b.specification_id != '' WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY CASE WHEN COALESCE(d.category_id, e.category_id, '') = '' THEN '0' ELSE COALESCE(d.category_id, e.category_id) END) as diaochu  ON diaochu.pinleiid = a.pinleiid LEFT JOIN (SELECT CASE WHEN b.category_id = '' THEN '0' ELSE b.category_id END AS pinleiid,CAST(ROUND( sum( a.jin_zhong ), 2 ) AS DECIMAL ( 30, 3 )) AS hsjin_zhong,CAST(ROUND( sum( a.retreat_amount ), 3 ) AS DECIMAL ( 30, 2 )) AS hsjine FROM xipunum_erp_retreat AS a INNER JOIN xipunum_erp_retreat_title AS b ON b.id = a.product_name WHERE a.creationtime >= '”, 查找开始日期, “' AND a.creationtime < '”, 查找结束日期, “'”, 查找回收id数据, “ GROUP BY CASE WHEN ( b.category_id = '' OR b.category_id IS NULL ) THEN '0' ELSE b.category_id END) as huishou  ON huishou.pinleiid = a.pinleiid WHERE 1 = 1 ORDER BY a.pinleiid ASC;”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (商品品类数据集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (商品品类数量, 取记录集行数 (商品品类数据集句柄))
+
+.计次循环首 (商品品类数量, 商品品类计次)
+    赋值 (销售品类数据名称, “”)
+    赋值 (销售品类数据数量, “”)
+    赋值 (销售品类数据金重, “”)
+    赋值 (销售品类应收金额, “”)
+    赋值 (库存数据汇总总数, “”)
+    赋值 (库存数据汇总金重, “”)
+    赋值 (入库数据汇总总数, “”)
+    赋值 (入库数据汇总金重, “”)
+    赋值 (退库数据汇总数量, “”)
+    赋值 (退库数据汇总金重, “”)
+    赋值 (调入数据汇总数量, “”)
+    赋值 (调入数据汇总金重, “”)
+    赋值 (调出数据汇总数量, “”)
+    赋值 (调出数据汇总金重, “”)
+    赋值 (实际销售汇总金额, “”)
+    赋值 (回收金重汇总数量, “”)
+    赋值 (回收金额汇总金重, “”)
+    
+    读字段值 (商品品类数据集句柄, “pinlei”, 销售品类数据名称)
+    读字段值 (商品品类数据集句柄, “ckquantity”, 销售品类数据数量)
+    读字段值 (商品品类数据集句柄, “ckjinzhong”, 销售品类数据金重)
+    读字段值 (商品品类数据集句柄, “cksettlement”, 销售品类应收金额)
+    读字段值 (商品品类数据集句柄, “kckucunnum”, 库存数据汇总总数)
+    读字段值 (商品品类数据集句柄, “kckucunjinzhong”, 库存数据汇总金重)
+    读字段值 (商品品类数据集句柄, “rukunum”, 入库数据汇总总数)
+    读字段值 (商品品类数据集句柄, “rkjinzhong”, 入库数据汇总金重)
+    读字段值 (商品品类数据集句柄, “thquantity”, 退库数据汇总数量)
+    读字段值 (商品品类数据集句柄, “thjinzhong”, 退库数据汇总金重)
+    读字段值 (商品品类数据集句柄, “drquantity”, 调入数据汇总数量)
+    读字段值 (商品品类数据集句柄, “drjinzhong”, 调入数据汇总金重)
+    读字段值 (商品品类数据集句柄, “dcquantity”, 调出数据汇总数量)
+    读字段值 (商品品类数据集句柄, “dcjinzhong”, 调出数据汇总金重)
+    读字段值 (商品品类数据集句柄, “ssjine”, 实际销售汇总金额)
+    读字段值 (商品品类数据集句柄, “hsjin_zhong”, 回收金重汇总数量)
+    读字段值 (商品品类数据集句柄, “hsjine”, 回收金额汇总金重)
+    赋值 (插入表格行数, 相加 (插入表格行数, 1))
+    窗口_报表收银汇总表.高级表格1.插入行 (, )
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 0, #表格常量.文本型, 到文本 (编码转换 (到字节集 (销售品类数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 1, #表格常量.文本型, 到文本 (编码转换 (到字节集 (销售品类数据数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 2, #表格常量.文本型, 到文本 (编码转换 (到字节集 (销售品类数据金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 3, #表格常量.文本型, 到文本 (编码转换 (到字节集 (销售品类应收金额), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 4, #表格常量.文本型, 到文本 (编码转换 (到字节集 (实际销售汇总金额), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 5, #表格常量.文本型, 到文本 (编码转换 (到字节集 (回收金重汇总数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 6, #表格常量.文本型, 到文本 (编码转换 (到字节集 (回收金额汇总金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 7, #表格常量.文本型, 到文本 (编码转换 (到字节集 (库存数据汇总总数), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 8, #表格常量.文本型, 到文本 (编码转换 (到字节集 (库存数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 9, #表格常量.文本型, 到文本 (编码转换 (到字节集 (入库数据汇总总数), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 10, #表格常量.文本型, 到文本 (编码转换 (到字节集 (入库数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 11, #表格常量.文本型, 到文本 (编码转换 (到字节集 (退库数据汇总数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 12, #表格常量.文本型, 到文本 (编码转换 (到字节集 (退库数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 13, #表格常量.文本型, 到文本 (编码转换 (到字节集 (调入数据汇总数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 14, #表格常量.文本型, 到文本 (编码转换 (到字节集 (调入数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 15, #表格常量.文本型, 到文本 (编码转换 (到字节集 (调出数据汇总数量), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 16, #表格常量.文本型, 到文本 (编码转换 (到字节集 (调出数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+    到下一行 (商品品类数据集句柄)
+.计次循环尾 ()
+释放记录集 (商品品类数据集句柄)
+
+
+赋值 (数据汇总库存数据汇总总数, “”)
+赋值 (数据汇总库存数据汇总金重, “”)
+赋值 (数据汇总入库数据汇总总数, “”)
+赋值 (数据汇总入库数据汇总金重, “”)
+赋值 (数据汇总退库数据汇总数量, “”)
+赋值 (数据汇总退库数据汇总金重, “”)
+赋值 (数据汇总退入数据汇总数量, “”)
+赋值 (数据汇总退入数据汇总金重, “”)
+赋值 (数据汇总调入数据汇总数量, “”)
+赋值 (数据汇总调入数据汇总金重, “”)
+赋值 (数据汇总调出数据汇总数量, “”)
+赋值 (数据汇总调出数据汇总金重, “”)
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT (SELECT CAST(ROUND( sum( rktol.kucun ), 2 ) AS DECIMAL ( 10, 2 )) AS kucunnum FROM (SELECT b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) AS kucun,b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 ) AS jinzhong FROM xipunum_erp_shop_kucun AS b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store AS c ON c.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store_order AS f ON f.id = c.order_id AND f.creationtime < '”, 查找结束日期, “' LEFT JOIN ( SELECT b.poduct_code as poduct_code,b.kufang as kufang,sum( b.quantity ) AS quantity,sum( b.net_weight ) AS jinzhong  FROM xipunum_erp_outbound as b WHERE b.creationtime >= '”, 查找结束日期, “'”, 查找入库库房, “  GROUP BY b.poduct_code,b.kufang  ) AS j ON j.poduct_code = b.poduct_code  AND j.kufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY a.poduct_code,a.ykufang  ) AS k ON k.poduct_code = b.poduct_code  AND k.ykufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.xkufang as xkufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调入id数据, “ GROUP BY a.poduct_code,a.xkufang  ) AS l ON l.poduct_code = b.poduct_code  AND l.xkufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_tuiku as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY a.poduct_code,a.ykufang  ) AS m ON m.poduct_code = b.poduct_code  AND m.ykufang = b.kufang  WHERE 1=1 ”, 查找入库库房, “ AND ( b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) > 0  OR b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 ) > 0  )  GROUP BY b.poduct_code,  b.kufang  ) AS rktol) as kucunnum,(SELECT CAST(ROUND( sum( rktol.jinzhong ), 3 ) AS DECIMAL ( 10, 3 )) AS kucunjinzhong FROM (SELECT b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) AS kucun,b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 ) AS jinzhong FROM xipunum_erp_shop_kucun AS b INNER JOIN xipunum_erp_shop AS a ON a.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store AS c ON c.poduct_code = b.poduct_code INNER JOIN xipunum_erp_store_order AS f ON f.id = c.order_id AND f.creationtime < '”, 查找结束日期, “' LEFT JOIN ( SELECT b.poduct_code as poduct_code,b.kufang as kufang,sum( b.quantity ) AS quantity,sum( b.net_weight ) AS jinzhong  FROM xipunum_erp_outbound as b WHERE b.creationtime >= '”, 查找结束日期, “'”, 查找入库库房, “  GROUP BY b.poduct_code,b.kufang  ) AS j ON j.poduct_code = b.poduct_code  AND j.kufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY a.poduct_code,a.ykufang  ) AS k ON k.poduct_code = b.poduct_code  AND k.ykufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.xkufang as xkufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调入id数据, “ GROUP BY a.poduct_code,a.xkufang  ) AS l ON l.poduct_code = b.poduct_code  AND l.xkufang = b.kufang LEFT JOIN ( SELECT a.poduct_code as poduct_code,a.ykufang as ykufang,sum( a.quantity ) AS quantity,sum( a.jinzhong ) AS jinzhong  FROM xipunum_erp_tuiku as a WHERE a.creationtime >= '”, 查找结束日期, “'”, 查找调出id数据, “ GROUP BY a.poduct_code,a.ykufang  ) AS m ON m.poduct_code = b.poduct_code  AND m.ykufang = b.kufang  WHERE 1=1 ”, 查找入库库房, “ AND ( b.quantity + COALESCE ( j.quantity, 0 ) + COALESCE ( k.quantity, 0 ) - COALESCE ( l.quantity, 0 ) + COALESCE ( m.quantity, 0 ) > 0  OR b.jinzhong + COALESCE ( j.jinzhong, 0 ) + COALESCE ( k.jinzhong, 0 ) - COALESCE ( l.jinzhong, 0 ) + COALESCE ( m.jinzhong, 0 ) > 0  )  GROUP BY b.poduct_code,b.kufang  ) AS rktol) as kucunjinzhong,(SELECT CAST(ROUND(SUM(b.quantity), 2) AS DECIMAL(30, 2)) FROM xipunum_erp_store AS a INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找入库库房, “ ) AS rukunum,(SELECT CAST(ROUND(SUM(b.jin_zhong), 3) AS DECIMAL(30, 3)) FROM xipunum_erp_store AS a INNER JOIN xipunum_erp_shop AS b ON b.poduct_code = a.poduct_code WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找入库库房, “) AS jinzhong,(SELECT CAST(ROUND(SUM(a.quantity), 2) AS DECIMAL(30, 2)) FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = a.order_id AND c.state = '正常' WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调出id数据, “ ) AS thquantity,(SELECT CAST(ROUND(SUM(a.jinzhong), 3) AS DECIMAL(30, 3)) FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = a.order_id AND c.state = '正常' WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调出id数据, “ ) AS thjinzhong,(SELECT CAST(ROUND(SUM(a.quantity), 2) AS DECIMAL(30, 2)) FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = a.order_id AND c.state = '正常' WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调入id数据, “ ) AS trquantity,(SELECT CAST(ROUND(SUM(a.jinzhong), 3) AS DECIMAL(30, 3)) FROM xipunum_erp_tuiku as a INNER JOIN xipunum_erp_tuiku_order AS c ON c.id = a.order_id AND c.state = '正常' WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调入id数据, “ ) AS trjinzhong,(SELECT CAST(ROUND(SUM(a.quantity), 2) AS DECIMAL(30, 2)) FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调入id数据, “) AS drquantity,(SELECT CAST(ROUND(SUM(a.jinzhong), 3) AS DECIMAL(30, 3)) FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调入id数据, “) AS drjinzhong,(SELECT CAST(ROUND(SUM(a.quantity), 2) AS DECIMAL(30, 2)) FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调出id数据, “ ) AS dcquantity,(SELECT CAST(ROUND(SUM(a.jinzhong), 3) AS DECIMAL(30, 3)) FROM xipunum_erp_transfer as a WHERE a.creationtime >= '”, 查找开始日期, “'   AND a.creationtime < '”, 查找结束日期, “' ”, 查找调出id数据, “) AS dcjinzhong;”)), #编码_GBK, #编码_UTF_8, )))
+赋值 (数据汇总集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (数据汇总集句柄, “kucunnum”, 数据汇总库存数据汇总总数)
+读字段值 (数据汇总集句柄, “kucunjinzhong”, 数据汇总库存数据汇总金重)
+读字段值 (数据汇总集句柄, “rukunum”, 数据汇总入库数据汇总总数)
+读字段值 (数据汇总集句柄, “jinzhong”, 数据汇总入库数据汇总金重)
+读字段值 (数据汇总集句柄, “thquantity”, 数据汇总退库数据汇总数量)
+读字段值 (数据汇总集句柄, “thjinzhong”, 数据汇总退库数据汇总金重)
+读字段值 (数据汇总集句柄, “trquantity”, 数据汇总退入数据汇总数量)
+读字段值 (数据汇总集句柄, “trjinzhong”, 数据汇总退入数据汇总金重)
+读字段值 (数据汇总集句柄, “drquantity”, 数据汇总调入数据汇总数量)
+读字段值 (数据汇总集句柄, “drjinzhong”, 数据汇总调入数据汇总金重)
+读字段值 (数据汇总集句柄, “dcquantity”, 数据汇总调出数据汇总数量)
+读字段值 (数据汇总集句柄, “dcjinzhong”, 数据汇总调出数据汇总金重)
+释放记录集 (数据汇总集句柄)
+
+
+赋值 (调入数量合计汇总, 到文本 (相加 (到数值 (数据汇总退入数据汇总数量), 到数值 (数据汇总调入数据汇总数量))))
+赋值 (调入重量合计汇总, 到文本 (相加 (到数值 (数据汇总退入数据汇总金重), 到数值 (数据汇总调入数据汇总金重))))
+赋值 (三位数处理文本, “”)
+赋值 (三位数处理内容, “”)
+赋值 (三位数处理文本, 到文本 (四舍五入 (到数值 (调入重量合计汇总), 3)))
+.如果 (不等于 (三位数处理文本, “”))
+    赋值 (三位数处理文本数组, 分割文本 (三位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (三位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 1))
+            赋值 (三位数处理内容, 到文本 (相加 (三位数处理文本, “00”)))
+        .否则
+            
+            .如果 (等于 (取文本长度 (三位数处理文本数组[2]), 2))
+                赋值 (三位数处理内容, 到文本 (相加 (三位数处理文本, “0”)))
+            .否则
+                赋值 (三位数处理内容, 到文本 (三位数处理文本))
+            .如果结束
+            
+        .如果结束
+        
+    .否则
+        赋值 (三位数处理内容, 到文本 (相加 (三位数处理文本, “.000”)))
+    .如果结束
+    
+.否则
+    赋值 (三位数处理内容, 到文本 (“0.000”))
+.如果结束
+赋值 (调入重量合计汇总, 三位数处理内容)
+
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (调入数量合计汇总), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “0”)))
+        .否则
+            赋值 (二位数处理内容, 到文本 (二位数处理文本))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “.00”)))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (“0.00”))
+.如果结束
+赋值 (调入数量合计汇总, 二位数处理内容)
+
+
+赋值 (插入表格行数, 相加 (插入表格行数, 1))
+窗口_报表收银汇总表.高级表格1.插入行 (, )
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 0, #表格常量.文本型, “总计”)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 1, #表格常量.文本型, 销售合计销售数量)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 2, #表格常量.文本型, 销售合计销售重量)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 3, #表格常量.文本型, 销售合计销售金额)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 4, #表格常量.文本型, 销售实收金额)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 5, #表格常量.文本型, 回收合计回收重量)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 6, #表格常量.文本型, 回收合计回收金额)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 7, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总库存数据汇总总数), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 8, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总库存数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 9, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总入库数据汇总总数), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 10, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总入库数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 11, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总退库数据汇总数量), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 12, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总退库数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 13, #表格常量.文本型, 到文本 (编码转换 (到字节集 (调入数量合计汇总), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 14, #表格常量.文本型, 到文本 (编码转换 (到字节集 (调入重量合计汇总), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 15, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总调出数据汇总数量), #编码_UTF_8, #编码_GBK, )))
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 16, #表格常量.文本型, 到文本 (编码转换 (到字节集 (数据汇总调出数据汇总金重), #编码_UTF_8, #编码_GBK, )))
+
+窗口_报表收银汇总表.高级表格1.置对齐方式 (3, 0, 插入表格行数, 0, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (3, 1, 插入表格行数, 16, #表格常量.右对齐)
+
+
+赋值 (插入表格行数, 相加 (插入表格行数, 1))
+赋值 (销售合计差异行数, 插入表格行数)
+
+窗口_报表收银汇总表.高级表格1.插入行 (, )
+窗口_报表收银汇总表.高级表格1.合并 (销售合计差异行数, 1, 销售合计差异行数, 6)
+窗口_报表收银汇总表.高级表格1.合并 (销售合计差异行数, 7, 销售合计差异行数, 8)
+窗口_报表收银汇总表.高级表格1.合并 (销售合计差异行数, 9, 销售合计差异行数, 16)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (销售合计差异行数, 0, 销售合计差异行数, 16, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置数据 (销售合计差异行数, 7, #表格常量.文本型, “收款差异”)
+
+窗口_报表收银汇总表.高级表格1.置数据 (销售合计差异行数, 0, #表格常量.文本型, “销售总计”)
+窗口_报表收银汇总表.高级表格1.置数据 (销售合计差异行数, 1, #表格常量.文本型, 销售实收金额)
+窗口_报表收银汇总表.高级表格1.置字体尺寸 (销售合计差异行数, 0, 销售合计差异行数, 16, 22)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (1, 0, 销售合计差异行数, 0, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置单元格文字颜色 (销售合计差异行数, 1, 销售合计差异行数, 16, #红色)
+
+执行SQL语句 (全_MySQL读取_报表, 到文本 (编码转换 (到字节集 (相加 (“SELECT a.NAME AS zhifumingc,CAST(ROUND(COALESCE(c.jine, 0), 2) AS DECIMAL (10,2)) AS jine FROM xipunum_erp_pay AS a  LEFT JOIN (SELECT b.type AS zffs, sum(b.xianjin) AS jine FROM xipunum_erp_shoukuan as b WHERE b.leibie = '1' ”, 查找入库库房, “ and b.creationtime>='”, 查找开始日期, “' and b.creationtime<'”, 查找结束日期, “' GROUP BY b.type) as c on c.zffs=a.id WHERE 1 = 1 ORDER BY a.id ASC”)), #编码_GBK, #编码_UTF_8, )))
+
+赋值 (收款方式集句柄, 取记录集 (全_MySQL读取_报表))
+赋值 (收款方式数量, 取记录集行数 (收款方式集句柄))
+.计次循环首 (收款方式数量, 收款方式计次)
+    赋值 (收款方式数据名称, “”)
+    赋值 (收款方式数据金额, “”)
+    读字段值 (收款方式集句柄, “zhifumingc”, 收款方式数据名称)
+    读字段值 (收款方式集句柄, “jine”, 收款方式数据金额)
+    赋值 (插入表格行数, 相加 (插入表格行数, 1))
+    窗口_报表收银汇总表.高级表格1.插入行 (, )
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 0, #表格常量.文本型, 到文本 (编码转换 (到字节集 (收款方式数据名称), #编码_UTF_8, #编码_GBK, )))
+    窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 1, #表格常量.文本型, 收款方式数据金额)
+    窗口_报表收银汇总表.高级表格1.合并 (插入表格行数, 1, 插入表格行数, 2)
+    到下一行 (收款方式集句柄)
+.计次循环尾 ()
+释放记录集 (收款方式集句柄)
+
+窗口_报表收银汇总表.高级表格1.合并 (相加 (相减 (插入表格行数, 收款方式数量), 1), 3, 相加 (相减 (插入表格行数, 收款方式数量), 1), 4)
+窗口_报表收银汇总表.高级表格1.合并 (相加 (相减 (插入表格行数, 收款方式数量), 1), 5, 相加 (相减 (插入表格行数, 收款方式数量), 1), 6)
+窗口_报表收银汇总表.高级表格1.合并 (相加 (相减 (插入表格行数, 收款方式数量), 1), 7, 相加 (相减 (插入表格行数, 收款方式数量), 1), 8)
+窗口_报表收银汇总表.高级表格1.合并 (相加 (相减 (插入表格行数, 收款方式数量), 1), 9, 相加 (相减 (插入表格行数, 收款方式数量), 1), 10)
+
+赋值 (单回收汇总金额, “”)
+执行SQL语句 (全_MySQL读取_报表, 相加 (“SELECT CAST(ROUND( COALESCE ( sum( b.xianjin ), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS jine FROM xipunum_erp_shoukuan AS b WHERE b.leibie = '2' ”, 查找入库库房, “ and b.creationtime>='”, 查找开始日期, “' and b.creationtime<'”, 查找结束日期, “'”))
+赋值 (单回收汇总集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (单回收汇总集句柄, “jine”, 单回收汇总金额)
+释放记录集 (单回收汇总集句柄)
+
+赋值 (预售汇总金额, “”)
+执行SQL语句 (全_MySQL读取_报表, 相加 (“SELECT CAST(ROUND( COALESCE ( sum( b.xianjin ), 0 ), 2 ) AS DECIMAL ( 30, 2 )) AS jine FROM xipunum_erp_shoukuan AS b WHERE b.leibie = '3' ”, 查找入库库房, “ and b.creationtime>='”, 查找开始日期, “' and b.creationtime<'”, 查找结束日期, “'”))
+赋值 (预售汇总集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (预售汇总集句柄, “jine”, 预售汇总金额)
+释放记录集 (预售汇总集句柄)
+窗口_报表收银汇总表.高级表格1.置数据 (相加 (相减 (插入表格行数, 收款方式数量), 1), 3, #表格常量.文本型, “单回收金额”)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (相加 (相减 (插入表格行数, 收款方式数量), 1), 3, 相加 (相减 (插入表格行数, 收款方式数量), 1), 3, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置数据 (相加 (相减 (插入表格行数, 收款方式数量), 1), 5, #表格常量.文本型, 单回收汇总金额)
+窗口_报表收银汇总表.高级表格1.置数据 (相加 (相减 (插入表格行数, 收款方式数量), 1), 7, #表格常量.文本型, “预收定金”)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (相加 (相减 (插入表格行数, 收款方式数量), 1), 7, 相加 (相减 (插入表格行数, 收款方式数量), 1), 7, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置数据 (相加 (相减 (插入表格行数, 收款方式数量), 1), 9, #表格常量.文本型, 预售汇总金额)
+
+赋值 (收款数据汇总金额, “”)
+执行SQL语句 (全_MySQL读取_报表, 相加 (“SELECT (SELECT COALESCE(CAST(ROUND(SUM(COALESCE(b.xianjin, 0)), 2) AS DECIMAL(30, 2)), 0) FROM xipunum_erp_shoukuan AS b INNER JOIN xipunum_erp_outbound_order AS a    ON a.settlement_number = b.settlement_number WHERE b.leibie IN ('1') ”, 查找入库库房, “ AND b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' ) - (SELECT COALESCE(CAST(ROUND(SUM(COALESCE(b.xianjin, 0)), 2) AS DECIMAL(30, 2)), 0) FROM xipunum_erp_shoukuan AS b INNER JOIN xipunum_erp_retreat_order AS a   ON a.retrea_umber = b.settlement_number WHERE b.leibie IN ('2') ”, 查找入库库房, “ AND b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' ) + (SELECT COALESCE(CAST(ROUND(SUM(COALESCE(b.xianjin, 0)), 2) AS DECIMAL(30, 2)), 0) FROM xipunum_erp_shoukuan AS b INNER JOIN xipunum_erp_presale_order AS a   ON a.presale_umber = b.settlement_number WHERE b.leibie IN ('3') ”, 查找入库库房, “ AND b.creationtime >= '”, 查找开始日期, “' AND b.creationtime < '”, 查找结束日期, “' ) AS jine;”))
+赋值 (收款数据汇总集句柄, 取记录集 (全_MySQL读取_报表))
+读字段值 (收款数据汇总集句柄, “jine”, 收款数据汇总金额)
+释放记录集 (收款数据汇总集句柄)
+.如果真 (等于 (销售合计优惠金额, “”))
+    赋值 (销售合计优惠金额, “0.00”)
+.如果真结束
+赋值 (插入表格行数, 相加 (插入表格行数, 1))
+窗口_报表收银汇总表.高级表格1.插入行 (, )
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 0, #表格常量.文本型, “优惠金额”)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 1, #表格常量.文本型, 销售合计优惠金额)
+窗口_报表收银汇总表.高级表格1.合并 (插入表格行数, 1, 插入表格行数, 2)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (相加 (销售合计差异行数, 1), 0, 插入表格行数, 0, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (相加 (销售合计差异行数, 1), 1, 插入表格行数, 2, #表格常量.右对齐)
+
+赋值 (插入表格行数, 相加 (插入表格行数, 1))
+窗口_报表收银汇总表.高级表格1.插入行 (, )
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 0, #表格常量.文本型, “收款合计”)
+窗口_报表收银汇总表.高级表格1.置数据 (插入表格行数, 1, #表格常量.文本型, 收款数据汇总金额)
+窗口_报表收银汇总表.高级表格1.合并 (插入表格行数, 1, 插入表格行数, 2)
+窗口_报表收银汇总表.高级表格1.置单元格文字颜色 (插入表格行数, 1, 插入表格行数, 16, #红色)
+窗口_报表收银汇总表.高级表格1.置字体尺寸 (插入表格行数, 0, 插入表格行数, 16, 22)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (相加 (销售合计差异行数, 1), 0, 插入表格行数, 0, #表格常量.居中对齐)
+窗口_报表收银汇总表.高级表格1.置对齐方式 (相加 (销售合计差异行数, 1), 1, 插入表格行数, 2, #表格常量.右对齐)
+
+赋值 (销售数据差异金额, 到文本 (相减 (到数值 (销售实收金额), 到数值 (收款数据汇总金额), 到数值 (销售合计优惠金额), 到数值 (预售汇总金额))))
+赋值 (二位数处理文本, “”)
+赋值 (二位数处理内容, “”)
+赋值 (二位数处理文本, 到文本 (四舍五入 (到数值 (销售数据差异金额), 2)))
+.如果 (不等于 (二位数处理文本, “”))
+    赋值 (二位数处理文本数组, 分割文本 (二位数处理文本, “.”, ))
+    .如果 (大于 (取数组成员数 (二位数处理文本数组), 1))
+        .如果 (等于 (取文本长度 (二位数处理文本数组[2]), 1))
+            赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “0”)))
+        .否则
+            赋值 (二位数处理内容, 到文本 (二位数处理文本))
+        .如果结束
+        
+    .否则
+        赋值 (二位数处理内容, 到文本 (相加 (二位数处理文本, “.00”)))
+    .如果结束
+    
+.否则
+    赋值 (二位数处理内容, 到文本 (“0.00”))
+.如果结束
+赋值 (销售数据差异金额, 二位数处理内容)
+窗口_报表收银汇总表.高级表格1.置数据 (销售合计差异行数, 9, #表格常量.文本型, 销售数据差异金额)
+返回 ()
+
