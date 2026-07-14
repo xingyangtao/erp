@@ -1,0 +1,22 @@
+------WebKitFormBoundaryvYHiHrIaFl4cMbTZ
+Content-Disposition: form-data; name="stu_name"
+
+文件名
+------WebKitFormBoundaryvYHiHrIaFl4cMbTZ
+Content-Disposition: form-data; name="category_id"
+
+品类
+------WebKitFormBoundaryvYHiHrIaFl4cMbTZ
+Content-Disposition: form-data; name="specification_id"
+
+规格
+------WebKitFormBoundaryvYHiHrIaFl4cMbTZ
+Content-Disposition: form-data; name="caizhi"
+
+材质
+------WebKitFormBoundaryvYHiHrIaFl4cMbTZ
+Content-Disposition: form-data; name="file"; filename="路径"
+Content-Type: image/jpeg
+
+图片数据
+------WebKitFormBoundaryvYHiHrIaFl4cMbTZ--

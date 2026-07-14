@@ -1,0 +1,24 @@
+﻿{
+    "Address": "",
+    "Author": "莆阳科技V3",
+    "BuilderVersion": {
+        "Major": 0,
+        "Minor": 0
+    },
+    "CompilePlugins": "",
+    "Copyright": "",
+    "DebugCommandParameters": "",
+    "Description": "莆阳科技V3\r\n@备注:\r\n莆阳科技V3",
+    "Email": "",
+    "ExportPublicClassMethod": false,
+    "FaxNumber": "",
+    "Homepage": "",
+    "Name": "莆阳科技V3",
+    "ReleaseVersion": {
+        "Major": 3,
+        "Minor": 0
+    },
+    "TelephoneNumber": "",
+    "WriteVersion": false,
+    "ZipCode": ""
+}

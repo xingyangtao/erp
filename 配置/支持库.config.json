@@ -1,0 +1,199 @@
+﻿[    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "d09f2340818511d396f6aaf844c7e325",
+        "Key": "krnln",
+        "Name": "系统核心支持库",
+        "Version": {
+            "Major": 5,
+            "Minor": 7
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "27bb20fdd3e145e4bee3db39ddd6e64c",
+        "Key": "iext",
+        "Name": "扩展界面支持库一",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "A512548E76954B6E92C21055517615B0",
+        "Key": "spec",
+        "Name": "特殊功能支持库",
+        "Version": {
+            "Major": 3,
+            "Minor": 1
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "5014D8FA6DCA40b68FA626D8186666EB",
+        "Key": "ExuiKrnln",
+        "Name": "EXUI",
+        "Version": {
+            "Major": 2025,
+            "Minor": 11
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "5F99C1642A2F4e03850721B4F5D7C3F8",
+        "Key": "EThread",
+        "Name": "多线程支持库",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "7F54B9CE8887428dBA9CEEB94CEF4C72",
+        "Key": "mysql",
+        "Name": "MySQL支持库",
+        "Version": {
+            "Major": 3,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "{A0005538-9391-4dd9-B4D6-8EB7B9360F08}",
+        "Key": "iconv",
+        "Name": "编码转换支持库",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "707ca37322474f6ca841f0e224f4b620",
+        "Key": "internet",
+        "Name": "互联网支持库",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "46E94341933A462383A4DE26B146322C",
+        "Key": "eDB",
+        "Name": "数据库操作支持库",
+        "Version": {
+            "Major": 2,
+            "Minor": 7
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "7B68736E818E41c5A28B0AE4D43C128C",
+        "Key": "eCompress",
+        "Name": "压缩解压支持库",
+        "Version": {
+            "Major": 2,
+            "Minor": 1
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "4BB4003860154917BC7D8230BF4FA58A",
+        "Key": "dp1",
+        "Name": "数据操作支持库一",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "0B4337DA651B4b619ACF61334A7E8B47",
+        "Key": "eGrid",
+        "Name": "高级表格支持库",
+        "Version": {
+            "Major": 3,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "AF6AD80AA4244A59AFB3D83ECF5173CC",
+        "Key": "iext2",
+        "Name": "扩展界面支持库二",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "{B6F7542F-B8FE-46a8-9605-98856A687097}",
+        "Key": "iext3",
+        "Name": "扩展界面支持库三",
+        "Version": {
+            "Major": 3,
+            "Minor": 1
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "F7FC1AE45C5C4758AF03EF19F18A395D",
+        "Key": "eAPI",
+        "Name": "应用接口支持库",
+        "Version": {
+            "Major": 3,
+            "Minor": 1
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "52F260023059454187AF826A3C07AF2A",
+        "Key": "shell",
+        "Name": "操作系统界面功能支持库",
+        "Version": {
+            "Major": 3,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "8FA3AA46276847db8F28E57E7FB97B7F",
+        "Key": "eImgConverter",
+        "Name": "图像格式转换支持库",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    },    {
+        "CmdCount": 0,
+        "MaxRefConstPos": 0,
+        "MaxRefObjectPos": 0,
+        "Guid": "AA50CDD5A14C4C5DB81BAE05DE4DDE6D",
+        "Key": "e2ee",
+        "Name": "E2EE互联网服务器套件2.7.2",
+        "Version": {
+            "Major": 2,
+            "Minor": 0
+        }
+    }]

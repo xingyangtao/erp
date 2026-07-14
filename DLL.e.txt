@@ -1,0 +1,44 @@
+﻿.版本 2
+
+.DLL命令 BCryptOpenAlgorithmProvider, 整数型, "bcrypt.dll", "BCryptOpenAlgorithmProvider", , 
+    .参数 phAlgorithm, 整数型, 传址, 
+    .参数 pszAlgId, 字节集, , 
+    .参数 pszImplementation, 整数型, , 
+    .参数 dwFlags, 整数型, , 
+
+.DLL命令 BCryptGetProperty, 整数型, "bcrypt.dll", "BCryptGetProperty", , 
+    .参数 hObject, 整数型, , 
+    .参数 pszProperty, 字节集, , 
+    .参数 pbOutput, 整数型, 传址, 
+    .参数 cbOutput, 整数型, , 
+    .参数 pcbResult, 整数型, 传址, 
+    .参数 dwFlags, 整数型, , 
+
+.DLL命令 BCryptCloseAlgorithmProvider, 整数型, "bcrypt.dll", "BCryptCloseAlgorithmProvider", , 
+    .参数 hAlgorithm, 整数型, , 
+    .参数 dwFlags, 整数型, , 
+
+.DLL命令 BCryptCreateHash2, 整数型, "bcrypt.dll", "BCryptCreateHash", , 
+    .参数 hAlgorithm, 整数型, , 
+    .参数 phHash, 整数型, 传址, 
+    .参数 pbHashObject, 整数型, , 
+    .参数 cbHashObject, 整数型, , 
+    .参数 pbSecret, 字节集, , 
+    .参数 cbSecret, 整数型, , 
+    .参数 dwFlags, 整数型, , 
+
+.DLL命令 BCryptHashData, 整数型, "bcrypt.dll", "BCryptHashData", , 
+    .参数 hHash, 整数型, , 
+    .参数 pbInput, 字节集, , 
+    .参数 cbInput, 整数型, , 
+    .参数 dwFlags, 整数型, , 
+
+.DLL命令 BCryptFinishHash, 整数型, "bcrypt.dll", "BCryptFinishHash", , 
+    .参数 hHash, 整数型, , 
+    .参数 pbOutput, 字节集, , 
+    .参数 cbOutput, 整数型, , 
+    .参数 dwFlags, 整数型, , 
+
+.DLL命令 BCryptDestroyHash, 整数型, "bcrypt.dll", "BCryptDestroyHash", , 
+    .参数 hHash, 整数型, , 
+
